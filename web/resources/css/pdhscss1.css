@@ -19,7 +19,7 @@
 .pdhede{
     color: #663300;
     font-size: small;
-    alignment-adjust: middle;
+    
 }
 .pdfullpage{
     width: 80%;
@@ -31,4 +31,8 @@
 }
 #top{
     vertical-align: top;
+}
+
+.pdpotrait{
+    
 }
