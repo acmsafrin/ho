@@ -8,10 +8,8 @@
 package gov.sp.health.entity;
 
 import java.io.Serializable;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import java.util.Date;
+import javax.persistence.*;
 
 /**
  *
@@ -25,6 +23,28 @@ public class Population implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+
+    //Created Properties
+    @ManyToOne
+    WebUser creater;
+    @Temporal(javax.persistence.TemporalType.TIMESTAMP)
+    Date createdAt;
+    //Retairing properties
+    boolean retired;
+    @ManyToOne
+    WebUser retirer;
+    @Temporal(javax.persistence.TemporalType.TIMESTAMP)
+    Date retiredAt;
+    String retireComments;
+    @ManyToOne
+    DPDHSArea dPDHSArea;
+    @ManyToOne
+    MOHArea mOHArea;
+    @ManyToOne
+    PHIArea pHIArea;
+    @ManyToOne
+    GNArea gNArea;
+    
     public Long getId() {
         return id;
     }
