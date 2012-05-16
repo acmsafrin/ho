@@ -1,4 +1,29 @@
-.heading-text {
+
+h1{
     color: #D20005;
     background-color: #808080;
+    
+}
+
+
+p{
+    color: #D20005;
+    background-color: #808080;
+    
+}
+
+.pdheading {
+    font-size: xx-large;
+    color: #D20005;
+    background-color: #808080;
+}
+
+
+.pdtext {
+    color: #036fab;
+    background-color: #c2dfef;
+}
+
+.pdbackground{
+    background-color: #ece3a5;
 }
