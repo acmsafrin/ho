@@ -2,11 +2,13 @@
 .pdheading {
     font-size: x-large;
     color: #663300;
+    font-family: sans-serif;
 
 }
 
 .pdtext {
-    color: #cc0033
+    color: #cc0033;
+    font-family: sans-serif;
     
 }
 
@@ -14,6 +16,7 @@
     background-color: #ffdef8; 
     text-align: center;
     vertical-align: top;
+    alignment-adjust: middle;
 }
 
 .pdhede{
@@ -45,4 +48,23 @@
 .pdname{
     font-size: small;
     color:#003333;
+}
+.pdverticalaling{
+   vertical-align:top;
+   
+    
+}
+
+.pdtopic{
+    vertical-align: text-bottom;
+    text-align: left;
+    vertical-align: bottom;
+}
+    
+
+.pdsubtopic{
+    vertical-align: text-top;
+    text-align: left;
+    vertical-align: top;
+    
 }

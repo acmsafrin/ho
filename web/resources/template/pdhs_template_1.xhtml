@@ -6,39 +6,39 @@
 
     <h:head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-
-        <title>Facelets Template</title>
-
+        <title>PDHS, Southern Province</title>
+        <h:outputStylesheet library="css" name="pdhscss1.css" ></h:outputStylesheet>
     </h:head>
 
     <h:body class="pdbackground">
-        
 
-        <h:outputStylesheet library="css" name="pdhscss1.css" ></h:outputStylesheet>
 
-    <table class="pdfullpage" cellspacing="10px">
+
+
+        <table class="pdfullpage" cellspacing="10px">
             <tr>
                 <td id="top" colspan="3">
                     <ui:insert  name="top">
-        
-                        <table border="1" width="100%">
-                            <tr>
-                                <td rowspan="2" width="15%" height="10%">
-                                    Logo
+
+                        <table >
+                            <tr>    
+                                <td rowspan="2" width="15%">
+                                    <h:graphicImage  class="pdpotrait" library="image" name="logo.jpg" ></h:graphicImage> 
                                 </td>
-                                <td width="60%">
-                                    PDHS Office
+
+                                <td  class="pdtopic" width="60%" height="100" align="left">
+                                    <h:outputLabel class="pdheading" >Department of Health Services</h:outputLabel>
                                 </td>
-                                <td width="20%">
-                                    Search
+                                <td width="20%" >
+                                    <input type ="text" size="10" maxlength="8"> Search </input> 
                                 </td>
                             </tr>
                             <tr>
-                                <td>
-                                    Southern Province
+                                <td class="pdsubtopic">
+                                    <p class="pdtext" >Southern Province</p>
                                 </td>
                                 <td>
-                                    
+
                                 </td>
 
                             </tr>
@@ -54,21 +54,20 @@
                 </td>
                 <td id="content">
                     <ui:insert name="content">
-                        
- 
-                        <h:outputLabel class="pdheading" >Department of Health Services</h:outputLabel>
 
-                        <p class="pdtext" >Southern Province</p>
+
+
+
 
                         <p class="pdhede">Welcome to Department of Health Services - Southern Province</p>
-                   
+
                         <h:graphicImage  class="pdpotrait" library="image" name="minister.jpg" ></h:graphicImage> 
-                      
-                        
+
+
                         <h:outputLabel class="pdname">Hon.Chief Minister Southern Province</h:outputLabel>
-                       
-                        
-                        
+
+
+
                     </ui:insert>
                 </td>
                 <td id="right">
