@@ -6,24 +6,31 @@
 
     <h:head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-        <link href="./../css/pdhscss1.css" rel="stylesheet" type="text/css" />
-         <title>Facelets Template</title>
+
+        <title>Facelets Template</title>
+
     </h:head>
 
-    <h:body>
-        <table cellspacing="10px">
+    <h:body class="pdbackground">
+        
+
+        <h:outputStylesheet library="css" name="pdhscss1.css" ></h:outputStylesheet>
+
+    
+        <table class="pdfullpage" cellspacing="10px">
             <tr>
                 <td id="top" colspan="3">
                     <ui:insert  name="top">
-                        
-                        
-                        
-                        <h1 class="heading-text">PDHS Office</h1>
-                       
-                        
-                        
-                        
-                        
+
+
+
+                        <h:outputLabel class="pdheading" >Department of Health Services</h:outputLabel>
+
+                        <p class="pdtext" >Southern Province</p>
+
+                        <p class="pdhede">Welcome to Department of Health Services - Southern Province</p>
+
+
                     </ui:insert>
                 </td>
             </tr>

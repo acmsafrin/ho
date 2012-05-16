@@ -1,29 +1,34 @@
 
-h1{
-    color: #D20005;
-    background-color: #808080;
-    
-}
-
-
-p{
-    color: #D20005;
-    background-color: #808080;
-    
-}
-
 .pdheading {
-    font-size: xx-large;
-    color: #D20005;
-    background-color: #808080;
-}
+    font-size: x-large;
+    color: #663300;
 
+}
 
 .pdtext {
-    color: #036fab;
-    background-color: #c2dfef;
+    color: #cc0033
+    
 }
 
 .pdbackground{
-    background-color: #ece3a5;
+    background-color: #ffdef8; 
+    text-align: center;
+    vertical-align: top;
+}
+
+.pdhede{
+    color: #663300;
+    font-size: small;
+    alignment-adjust: middle;
+}
+.pdfullpage{
+    width: 80%;
+    height: 1000px;
+    border-width: medium;
+    border-style: solid;
+    border-color: gold;
+    text-align: center;
+}
+#top{
+    vertical-align: top;
 }
