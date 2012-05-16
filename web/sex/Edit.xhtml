@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditSexTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditSexLabel_id}" for="id" />
+                    <h:inputText id="id" value="#{sexController.selected.id}" title="#{bundle.EditSexTitle_id}" />
+                    <h:outputLabel value="#{bundle.EditSexLabel_createdAt}" for="createdAt" />
+                    <h:inputText id="createdAt" value="#{sexController.selected.createdAt}" title="#{bundle.EditSexTitle_createdAt}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.EditSexLabel_creater}" for="creater" />
+                    <h:selectOneMenu id="creater" value="#{sexController.selected.creater}" title="#{bundle.EditSexTitle_creater}" >
+                        <f:selectItems value="#{webUserController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditSexLabel_description}" for="description" />
+                    <h:inputText id="description" value="#{sexController.selected.description}" title="#{bundle.EditSexTitle_description}" />
+                    <h:outputLabel value="#{bundle.EditSexLabel_name}" for="name" />
+                    <h:inputText id="name" value="#{sexController.selected.name}" title="#{bundle.EditSexTitle_name}" />
+                    <h:outputLabel value="#{bundle.EditSexLabel_retireComments}" for="retireComments" />
+                    <h:inputText id="retireComments" value="#{sexController.selected.retireComments}" title="#{bundle.EditSexTitle_retireComments}" />
+                    <h:outputLabel value="#{bundle.EditSexLabel_retiredAt}" for="retiredAt" />
+                    <h:inputText id="retiredAt" value="#{sexController.selected.retiredAt}" title="#{bundle.EditSexTitle_retiredAt}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.EditSexLabel_retirer}" for="retirer" />
+                    <h:selectOneMenu id="retirer" value="#{sexController.selected.retirer}" title="#{bundle.EditSexTitle_retirer}" >
+                        <f:selectItems value="#{webUserController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{sexController.update}" value="#{bundle.EditSexSaveLink}"/>
+                <br />
+                <br />
+                <h:commandLink action="View" value="#{bundle.EditSexViewLink}" immediate="true"/>
+                <br />
+                <h:commandLink action="#{sexController.prepareList}" value="#{bundle.EditSexShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:commandLink value="#{bundle.EditSexIndexLink}" action="/index" immediate="true" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

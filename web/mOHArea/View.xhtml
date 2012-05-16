@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewMOHAreaTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewMOHAreaLabel_id}"/>
+                    <h:outputText value="#{mOHAreaController.selected.id}" title="#{bundle.ViewMOHAreaTitle_id}"/>
+                    <h:outputText value="#{bundle.ViewMOHAreaLabel_createdAt}"/>
+                    <h:outputText value="#{mOHAreaController.selected.createdAt}" title="#{bundle.ViewMOHAreaTitle_createdAt}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewMOHAreaLabel_creater}"/>
+                    <h:outputText value="#{mOHAreaController.selected.creater}" title="#{bundle.ViewMOHAreaTitle_creater}"/>
+                    <h:outputText value="#{bundle.ViewMOHAreaLabel_description}"/>
+                    <h:outputText value="#{mOHAreaController.selected.description}" title="#{bundle.ViewMOHAreaTitle_description}"/>
+                    <h:outputText value="#{bundle.ViewMOHAreaLabel_name}"/>
+                    <h:outputText value="#{mOHAreaController.selected.name}" title="#{bundle.ViewMOHAreaTitle_name}"/>
+                    <h:outputText value="#{bundle.ViewMOHAreaLabel_retireComments}"/>
+                    <h:outputText value="#{mOHAreaController.selected.retireComments}" title="#{bundle.ViewMOHAreaTitle_retireComments}"/>
+                    <h:outputText value="#{bundle.ViewMOHAreaLabel_retiredAt}"/>
+                    <h:outputText value="#{mOHAreaController.selected.retiredAt}" title="#{bundle.ViewMOHAreaTitle_retiredAt}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewMOHAreaLabel_retirer}"/>
+                    <h:outputText value="#{mOHAreaController.selected.retirer}" title="#{bundle.ViewMOHAreaTitle_retirer}"/>
+                    <h:outputText value="#{bundle.ViewMOHAreaLabel_dPDHSArea}"/>
+                    <h:outputText value="#{mOHAreaController.selected.dPDHSArea}" title="#{bundle.ViewMOHAreaTitle_dPDHSArea}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{mOHAreaController.destroyAndView}" value="#{bundle.ViewMOHAreaDestroyLink}"/>
+                <br />
+                <br />
+                <h:commandLink action="Edit" value="#{bundle.ViewMOHAreaEditLink}"/>
+                <br />
+                <h:commandLink action="#{mOHAreaController.prepareCreate}" value="#{bundle.ViewMOHAreaCreateLink}" />
+                <br />
+                <h:commandLink action="#{mOHAreaController.prepareList}" value="#{bundle.ViewMOHAreaShowAllLink}"/>
+                <br />
+                <br />
+                <h:commandLink value="#{bundle.ViewMOHAreaIndexLink}" action="/index" immediate="true" />
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

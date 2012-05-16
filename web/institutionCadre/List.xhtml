@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListInstitutionCadreTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListInstitutionCadreEmpty}" rendered="#{institutionCadreController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{institutionCadreController.items.rowCount > 0}">
+                    <h:outputText value="#{institutionCadreController.pagination.pageFirstItem + 1}..#{institutionCadreController.pagination.pageLastItem + 1}/#{institutionCadreController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{institutionCadreController.previous}" value="#{bundle.Previous} #{institutionCadreController.pagination.pageSize}" rendered="#{institutionCadreController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{institutionCadreController.next}" value="#{bundle.Next} #{institutionCadreController.pagination.pageSize}" rendered="#{institutionCadreController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{institutionCadreController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListInstitutionCadreTitle_id}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.id}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListInstitutionCadreTitle_createdAt}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.createdAt}">
+                                <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                            </h:outputText>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListInstitutionCadreTitle_creater}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.creater}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListInstitutionCadreTitle_description}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.description}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListInstitutionCadreTitle_name}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.name}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListInstitutionCadreTitle_retireComments}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.retireComments}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListInstitutionCadreTitle_retiredAt}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.retiredAt}">
+                                <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                            </h:outputText>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListInstitutionCadreTitle_retirer}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.retirer}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListInstitutionCadreTitle_approved}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.approved}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListInstitutionCadreTitle_femaleIn}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.femaleIn}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListInstitutionCadreTitle_maleAndFemaleIn}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.maleAndFemaleIn}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListInstitutionCadreTitle_maleIn}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.maleIn}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListInstitutionCadreTitle_vac}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.vac}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{institutionCadreController.prepareView}" value="#{bundle.ListInstitutionCadreViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{institutionCadreController.prepareEdit}" value="#{bundle.ListInstitutionCadreEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{institutionCadreController.destroy}" value="#{bundle.ListInstitutionCadreDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{institutionCadreController.prepareCreate}" value="#{bundle.ListInstitutionCadreCreateLink}"/>
+                <br />
+                <br />
+                <h:commandLink value="#{bundle.ListInstitutionCadreIndexLink}" action="/index" immediate="true" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

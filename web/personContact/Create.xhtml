@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreatePersonContactTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreatePersonContactLabel_contactType}" for="contactType" />
+                    <h:selectOneMenu id="contactType" value="#{personContactController.selected.contactType}" title="#{bundle.CreatePersonContactTitle_contactType}" >
+                        <f:selectItems value="#{contactTypeController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreatePersonContactLabel_createdAt}" for="createdAt" />
+                    <h:inputText id="createdAt" value="#{personContactController.selected.createdAt}" title="#{bundle.CreatePersonContactTitle_createdAt}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.CreatePersonContactLabel_creater}" for="creater" />
+                    <h:selectOneMenu id="creater" value="#{personContactController.selected.creater}" title="#{bundle.CreatePersonContactTitle_creater}" >
+                        <f:selectItems value="#{webUserController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreatePersonContactLabel_description}" for="description" />
+                    <h:inputText id="description" value="#{personContactController.selected.description}" title="#{bundle.CreatePersonContactTitle_description}" />
+                    <h:outputLabel value="#{bundle.CreatePersonContactLabel_name}" for="name" />
+                    <h:inputText id="name" value="#{personContactController.selected.name}" title="#{bundle.CreatePersonContactTitle_name}" />
+                    <h:outputLabel value="#{bundle.CreatePersonContactLabel_person}" for="person" />
+                    <h:selectOneMenu id="person" value="#{personContactController.selected.person}" title="#{bundle.CreatePersonContactTitle_person}" >
+                        <f:selectItems value="#{personController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreatePersonContactLabel_retireComments}" for="retireComments" />
+                    <h:inputText id="retireComments" value="#{personContactController.selected.retireComments}" title="#{bundle.CreatePersonContactTitle_retireComments}" />
+                    <h:outputLabel value="#{bundle.CreatePersonContactLabel_retiredAt}" for="retiredAt" />
+                    <h:inputText id="retiredAt" value="#{personContactController.selected.retiredAt}" title="#{bundle.CreatePersonContactTitle_retiredAt}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.CreatePersonContactLabel_retirer}" for="retirer" />
+                    <h:selectOneMenu id="retirer" value="#{personContactController.selected.retirer}" title="#{bundle.CreatePersonContactTitle_retirer}" >
+                        <f:selectItems value="#{webUserController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreatePersonContactLabel_id}" for="id" />
+                    <h:inputText id="id" value="#{personContactController.selected.id}" title="#{bundle.CreatePersonContactTitle_id}" />
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{personContactController.create}" value="#{bundle.CreatePersonContactSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{personContactController.prepareList}" value="#{bundle.CreatePersonContactShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:commandLink value="#{bundle.CreatePersonContactIndexLink}" action="/index" immediate="true" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

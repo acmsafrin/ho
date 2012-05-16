@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewInstitutionCadreTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewInstitutionCadreLabel_id}"/>
+                    <h:outputText value="#{institutionCadreController.selected.id}" title="#{bundle.ViewInstitutionCadreTitle_id}"/>
+                    <h:outputText value="#{bundle.ViewInstitutionCadreLabel_createdAt}"/>
+                    <h:outputText value="#{institutionCadreController.selected.createdAt}" title="#{bundle.ViewInstitutionCadreTitle_createdAt}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewInstitutionCadreLabel_creater}"/>
+                    <h:outputText value="#{institutionCadreController.selected.creater}" title="#{bundle.ViewInstitutionCadreTitle_creater}"/>
+                    <h:outputText value="#{bundle.ViewInstitutionCadreLabel_description}"/>
+                    <h:outputText value="#{institutionCadreController.selected.description}" title="#{bundle.ViewInstitutionCadreTitle_description}"/>
+                    <h:outputText value="#{bundle.ViewInstitutionCadreLabel_name}"/>
+                    <h:outputText value="#{institutionCadreController.selected.name}" title="#{bundle.ViewInstitutionCadreTitle_name}"/>
+                    <h:outputText value="#{bundle.ViewInstitutionCadreLabel_retireComments}"/>
+                    <h:outputText value="#{institutionCadreController.selected.retireComments}" title="#{bundle.ViewInstitutionCadreTitle_retireComments}"/>
+                    <h:outputText value="#{bundle.ViewInstitutionCadreLabel_retiredAt}"/>
+                    <h:outputText value="#{institutionCadreController.selected.retiredAt}" title="#{bundle.ViewInstitutionCadreTitle_retiredAt}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewInstitutionCadreLabel_retirer}"/>
+                    <h:outputText value="#{institutionCadreController.selected.retirer}" title="#{bundle.ViewInstitutionCadreTitle_retirer}"/>
+                    <h:outputText value="#{bundle.ViewInstitutionCadreLabel_approved}"/>
+                    <h:outputText value="#{institutionCadreController.selected.approved}" title="#{bundle.ViewInstitutionCadreTitle_approved}"/>
+                    <h:outputText value="#{bundle.ViewInstitutionCadreLabel_femaleIn}"/>
+                    <h:outputText value="#{institutionCadreController.selected.femaleIn}" title="#{bundle.ViewInstitutionCadreTitle_femaleIn}"/>
+                    <h:outputText value="#{bundle.ViewInstitutionCadreLabel_maleAndFemaleIn}"/>
+                    <h:outputText value="#{institutionCadreController.selected.maleAndFemaleIn}" title="#{bundle.ViewInstitutionCadreTitle_maleAndFemaleIn}"/>
+                    <h:outputText value="#{bundle.ViewInstitutionCadreLabel_maleIn}"/>
+                    <h:outputText value="#{institutionCadreController.selected.maleIn}" title="#{bundle.ViewInstitutionCadreTitle_maleIn}"/>
+                    <h:outputText value="#{bundle.ViewInstitutionCadreLabel_vac}"/>
+                    <h:outputText value="#{institutionCadreController.selected.vac}" title="#{bundle.ViewInstitutionCadreTitle_vac}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{institutionCadreController.destroyAndView}" value="#{bundle.ViewInstitutionCadreDestroyLink}"/>
+                <br />
+                <br />
+                <h:commandLink action="Edit" value="#{bundle.ViewInstitutionCadreEditLink}"/>
+                <br />
+                <h:commandLink action="#{institutionCadreController.prepareCreate}" value="#{bundle.ViewInstitutionCadreCreateLink}" />
+                <br />
+                <h:commandLink action="#{institutionCadreController.prepareList}" value="#{bundle.ViewInstitutionCadreShowAllLink}"/>
+                <br />
+                <br />
+                <h:commandLink value="#{bundle.ViewInstitutionCadreIndexLink}" action="/index" immediate="true" />
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

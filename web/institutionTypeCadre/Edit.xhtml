@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditInstitutionTypeCadreTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditInstitutionTypeCadreLabel_id}" for="id" />
+                    <h:inputText id="id" value="#{institutionTypeCadreController.selected.id}" title="#{bundle.EditInstitutionTypeCadreTitle_id}" />
+                    <h:outputLabel value="#{bundle.EditInstitutionTypeCadreLabel_createdAt}" for="createdAt" />
+                    <h:inputText id="createdAt" value="#{institutionTypeCadreController.selected.createdAt}" title="#{bundle.EditInstitutionTypeCadreTitle_createdAt}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.EditInstitutionTypeCadreLabel_creater}" for="creater" />
+                    <h:selectOneMenu id="creater" value="#{institutionTypeCadreController.selected.creater}" title="#{bundle.EditInstitutionTypeCadreTitle_creater}" >
+                        <f:selectItems value="#{webUserController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditInstitutionTypeCadreLabel_description}" for="description" />
+                    <h:inputText id="description" value="#{institutionTypeCadreController.selected.description}" title="#{bundle.EditInstitutionTypeCadreTitle_description}" />
+                    <h:outputLabel value="#{bundle.EditInstitutionTypeCadreLabel_designation}" for="designation" />
+                    <h:selectOneMenu id="designation" value="#{institutionTypeCadreController.selected.designation}" title="#{bundle.EditInstitutionTypeCadreTitle_designation}" >
+                        <f:selectItems value="#{designationController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditInstitutionTypeCadreLabel_institutionType}" for="institutionType" />
+                    <h:selectOneMenu id="institutionType" value="#{institutionTypeCadreController.selected.institutionType}" title="#{bundle.EditInstitutionTypeCadreTitle_institutionType}" >
+                        <f:selectItems value="#{institutionTypeController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditInstitutionTypeCadreLabel_name}" for="name" />
+                    <h:inputText id="name" value="#{institutionTypeCadreController.selected.name}" title="#{bundle.EditInstitutionTypeCadreTitle_name}" />
+                    <h:outputLabel value="#{bundle.EditInstitutionTypeCadreLabel_retireComments}" for="retireComments" />
+                    <h:inputText id="retireComments" value="#{institutionTypeCadreController.selected.retireComments}" title="#{bundle.EditInstitutionTypeCadreTitle_retireComments}" />
+                    <h:outputLabel value="#{bundle.EditInstitutionTypeCadreLabel_retiredAt}" for="retiredAt" />
+                    <h:inputText id="retiredAt" value="#{institutionTypeCadreController.selected.retiredAt}" title="#{bundle.EditInstitutionTypeCadreTitle_retiredAt}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.EditInstitutionTypeCadreLabel_retirer}" for="retirer" />
+                    <h:selectOneMenu id="retirer" value="#{institutionTypeCadreController.selected.retirer}" title="#{bundle.EditInstitutionTypeCadreTitle_retirer}" >
+                        <f:selectItems value="#{webUserController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{institutionTypeCadreController.update}" value="#{bundle.EditInstitutionTypeCadreSaveLink}"/>
+                <br />
+                <br />
+                <h:commandLink action="View" value="#{bundle.EditInstitutionTypeCadreViewLink}" immediate="true"/>
+                <br />
+                <h:commandLink action="#{institutionTypeCadreController.prepareList}" value="#{bundle.EditInstitutionTypeCadreShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:commandLink value="#{bundle.EditInstitutionTypeCadreIndexLink}" action="/index" immediate="true" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

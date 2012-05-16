@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditInstitutionContactTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditInstitutionContactLabel_contactType}" for="contactType" />
+                    <h:selectOneMenu id="contactType" value="#{institutionContactController.selected.contactType}" title="#{bundle.EditInstitutionContactTitle_contactType}" >
+                        <f:selectItems value="#{contactTypeController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditInstitutionContactLabel_createdAt}" for="createdAt" />
+                    <h:inputText id="createdAt" value="#{institutionContactController.selected.createdAt}" title="#{bundle.EditInstitutionContactTitle_createdAt}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.EditInstitutionContactLabel_creater}" for="creater" />
+                    <h:selectOneMenu id="creater" value="#{institutionContactController.selected.creater}" title="#{bundle.EditInstitutionContactTitle_creater}" >
+                        <f:selectItems value="#{webUserController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditInstitutionContactLabel_description}" for="description" />
+                    <h:inputText id="description" value="#{institutionContactController.selected.description}" title="#{bundle.EditInstitutionContactTitle_description}" />
+                    <h:outputLabel value="#{bundle.EditInstitutionContactLabel_institution}" for="institution" />
+                    <h:selectOneMenu id="institution" value="#{institutionContactController.selected.institution}" title="#{bundle.EditInstitutionContactTitle_institution}" >
+                        <f:selectItems value="#{institutionController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditInstitutionContactLabel_name}" for="name" />
+                    <h:inputText id="name" value="#{institutionContactController.selected.name}" title="#{bundle.EditInstitutionContactTitle_name}" />
+                    <h:outputLabel value="#{bundle.EditInstitutionContactLabel_retireComments}" for="retireComments" />
+                    <h:inputText id="retireComments" value="#{institutionContactController.selected.retireComments}" title="#{bundle.EditInstitutionContactTitle_retireComments}" />
+                    <h:outputLabel value="#{bundle.EditInstitutionContactLabel_retiredAt}" for="retiredAt" />
+                    <h:inputText id="retiredAt" value="#{institutionContactController.selected.retiredAt}" title="#{bundle.EditInstitutionContactTitle_retiredAt}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.EditInstitutionContactLabel_retirer}" for="retirer" />
+                    <h:selectOneMenu id="retirer" value="#{institutionContactController.selected.retirer}" title="#{bundle.EditInstitutionContactTitle_retirer}" >
+                        <f:selectItems value="#{webUserController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditInstitutionContactLabel_id}" for="id" />
+                    <h:inputText id="id" value="#{institutionContactController.selected.id}" title="#{bundle.EditInstitutionContactTitle_id}" />
+                </h:panelGrid>
+                <h:commandLink action="#{institutionContactController.update}" value="#{bundle.EditInstitutionContactSaveLink}"/>
+                <br />
+                <br />
+                <h:commandLink action="View" value="#{bundle.EditInstitutionContactViewLink}" immediate="true"/>
+                <br />
+                <h:commandLink action="#{institutionContactController.prepareList}" value="#{bundle.EditInstitutionContactShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:commandLink value="#{bundle.EditInstitutionContactIndexLink}" action="/index" immediate="true" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

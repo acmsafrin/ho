@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateMOHAreaTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateMOHAreaLabel_id}" for="id" />
+                    <h:inputText id="id" value="#{mOHAreaController.selected.id}" title="#{bundle.CreateMOHAreaTitle_id}" />
+                    <h:outputLabel value="#{bundle.CreateMOHAreaLabel_createdAt}" for="createdAt" />
+                    <h:inputText id="createdAt" value="#{mOHAreaController.selected.createdAt}" title="#{bundle.CreateMOHAreaTitle_createdAt}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.CreateMOHAreaLabel_creater}" for="creater" />
+                    <h:selectOneMenu id="creater" value="#{mOHAreaController.selected.creater}" title="#{bundle.CreateMOHAreaTitle_creater}" >
+                        <f:selectItems value="#{webUserController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreateMOHAreaLabel_description}" for="description" />
+                    <h:inputText id="description" value="#{mOHAreaController.selected.description}" title="#{bundle.CreateMOHAreaTitle_description}" />
+                    <h:outputLabel value="#{bundle.CreateMOHAreaLabel_name}" for="name" />
+                    <h:inputText id="name" value="#{mOHAreaController.selected.name}" title="#{bundle.CreateMOHAreaTitle_name}" />
+                    <h:outputLabel value="#{bundle.CreateMOHAreaLabel_retireComments}" for="retireComments" />
+                    <h:inputText id="retireComments" value="#{mOHAreaController.selected.retireComments}" title="#{bundle.CreateMOHAreaTitle_retireComments}" />
+                    <h:outputLabel value="#{bundle.CreateMOHAreaLabel_retiredAt}" for="retiredAt" />
+                    <h:inputText id="retiredAt" value="#{mOHAreaController.selected.retiredAt}" title="#{bundle.CreateMOHAreaTitle_retiredAt}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.CreateMOHAreaLabel_retirer}" for="retirer" />
+                    <h:selectOneMenu id="retirer" value="#{mOHAreaController.selected.retirer}" title="#{bundle.CreateMOHAreaTitle_retirer}" >
+                        <f:selectItems value="#{webUserController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreateMOHAreaLabel_dPDHSArea}" for="dPDHSArea" />
+                    <h:selectOneMenu id="dPDHSArea" value="#{mOHAreaController.selected.dPDHSArea}" title="#{bundle.CreateMOHAreaTitle_dPDHSArea}" >
+                        <f:selectItems value="#{dPDHSAreaController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{mOHAreaController.create}" value="#{bundle.CreateMOHAreaSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{mOHAreaController.prepareList}" value="#{bundle.CreateMOHAreaShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:commandLink value="#{bundle.CreateMOHAreaIndexLink}" action="/index" immediate="true" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

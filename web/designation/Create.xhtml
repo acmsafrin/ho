@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateDesignationTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateDesignationLabel_id}" for="id" />
+                    <h:inputText id="id" value="#{designationController.selected.id}" title="#{bundle.CreateDesignationTitle_id}" />
+                    <h:outputLabel value="#{bundle.CreateDesignationLabel_createdAt}" for="createdAt" />
+                    <h:inputText id="createdAt" value="#{designationController.selected.createdAt}" title="#{bundle.CreateDesignationTitle_createdAt}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.CreateDesignationLabel_creater}" for="creater" />
+                    <h:selectOneMenu id="creater" value="#{designationController.selected.creater}" title="#{bundle.CreateDesignationTitle_creater}" >
+                        <f:selectItems value="#{webUserController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreateDesignationLabel_description}" for="description" />
+                    <h:inputText id="description" value="#{designationController.selected.description}" title="#{bundle.CreateDesignationTitle_description}" />
+                    <h:outputLabel value="#{bundle.CreateDesignationLabel_name}" for="name" />
+                    <h:inputText id="name" value="#{designationController.selected.name}" title="#{bundle.CreateDesignationTitle_name}" />
+                    <h:outputLabel value="#{bundle.CreateDesignationLabel_retireComments}" for="retireComments" />
+                    <h:inputText id="retireComments" value="#{designationController.selected.retireComments}" title="#{bundle.CreateDesignationTitle_retireComments}" />
+                    <h:outputLabel value="#{bundle.CreateDesignationLabel_retiredAt}" for="retiredAt" />
+                    <h:inputText id="retiredAt" value="#{designationController.selected.retiredAt}" title="#{bundle.CreateDesignationTitle_retiredAt}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.CreateDesignationLabel_retirer}" for="retirer" />
+                    <h:selectOneMenu id="retirer" value="#{designationController.selected.retirer}" title="#{bundle.CreateDesignationTitle_retirer}" >
+                        <f:selectItems value="#{webUserController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{designationController.create}" value="#{bundle.CreateDesignationSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{designationController.prepareList}" value="#{bundle.CreateDesignationShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:commandLink value="#{bundle.CreateDesignationIndexLink}" action="/index" immediate="true" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

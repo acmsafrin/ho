@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateWebUserTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateWebUserLabel_createdAt}" for="createdAt" />
+                    <h:inputText id="createdAt" value="#{webUserController.selected.createdAt}" title="#{bundle.CreateWebUserTitle_createdAt}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.CreateWebUserLabel_creater}" for="creater" />
+                    <h:selectOneMenu id="creater" value="#{webUserController.selected.creater}" title="#{bundle.CreateWebUserTitle_creater}" >
+                        <f:selectItems value="#{webUserController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreateWebUserLabel_description}" for="description" />
+                    <h:inputText id="description" value="#{webUserController.selected.description}" title="#{bundle.CreateWebUserTitle_description}" />
+                    <h:outputLabel value="#{bundle.CreateWebUserLabel_name}" for="name" />
+                    <h:inputText id="name" value="#{webUserController.selected.name}" title="#{bundle.CreateWebUserTitle_name}" required="true" requiredMessage="#{bundle.CreateWebUserRequiredMessage_name}"/>
+                    <h:outputLabel value="#{bundle.CreateWebUserLabel_retireComments}" for="retireComments" />
+                    <h:inputText id="retireComments" value="#{webUserController.selected.retireComments}" title="#{bundle.CreateWebUserTitle_retireComments}" />
+                    <h:outputLabel value="#{bundle.CreateWebUserLabel_retiredAt}" for="retiredAt" />
+                    <h:inputText id="retiredAt" value="#{webUserController.selected.retiredAt}" title="#{bundle.CreateWebUserTitle_retiredAt}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.CreateWebUserLabel_retirer}" for="retirer" />
+                    <h:selectOneMenu id="retirer" value="#{webUserController.selected.retirer}" title="#{bundle.CreateWebUserTitle_retirer}" >
+                        <f:selectItems value="#{webUserController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreateWebUserLabel_id}" for="id" />
+                    <h:inputText id="id" value="#{webUserController.selected.id}" title="#{bundle.CreateWebUserTitle_id}" />
+                    <h:outputLabel value="#{bundle.CreateWebUserLabel_webUserPassword}" for="webUserPassword" />
+                    <h:inputText id="webUserPassword" value="#{webUserController.selected.webUserPassword}" title="#{bundle.CreateWebUserTitle_webUserPassword}" />
+                    <h:outputLabel value="#{bundle.CreateWebUserLabel_webUserPerson}" for="webUserPerson" />
+                    <h:selectOneMenu id="webUserPerson" value="#{webUserController.selected.webUserPerson}" title="#{bundle.CreateWebUserTitle_webUserPerson}" >
+                        <f:selectItems value="#{personController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreateWebUserLabel_userWebTheme}" for="userWebTheme" />
+                    <h:selectOneMenu id="userWebTheme" value="#{webUserController.selected.userWebTheme}" title="#{bundle.CreateWebUserTitle_userWebTheme}" >
+                        <f:selectItems value="#{webThemeController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{webUserController.create}" value="#{bundle.CreateWebUserSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{webUserController.prepareList}" value="#{bundle.CreateWebUserShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:commandLink value="#{bundle.CreateWebUserIndexLink}" action="/index" immediate="true" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

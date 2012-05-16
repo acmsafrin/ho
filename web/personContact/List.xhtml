@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListPersonContactTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListPersonContactEmpty}" rendered="#{personContactController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{personContactController.items.rowCount > 0}">
+                    <h:outputText value="#{personContactController.pagination.pageFirstItem + 1}..#{personContactController.pagination.pageLastItem + 1}/#{personContactController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{personContactController.previous}" value="#{bundle.Previous} #{personContactController.pagination.pageSize}" rendered="#{personContactController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{personContactController.next}" value="#{bundle.Next} #{personContactController.pagination.pageSize}" rendered="#{personContactController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{personContactController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPersonContactTitle_contactType}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.contactType}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPersonContactTitle_createdAt}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.createdAt}">
+                                <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                            </h:outputText>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPersonContactTitle_creater}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.creater}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPersonContactTitle_description}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.description}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPersonContactTitle_name}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.name}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPersonContactTitle_person}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.person}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPersonContactTitle_retireComments}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.retireComments}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPersonContactTitle_retiredAt}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.retiredAt}">
+                                <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                            </h:outputText>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPersonContactTitle_retirer}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.retirer}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPersonContactTitle_id}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.id}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{personContactController.prepareView}" value="#{bundle.ListPersonContactViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{personContactController.prepareEdit}" value="#{bundle.ListPersonContactEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{personContactController.destroy}" value="#{bundle.ListPersonContactDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{personContactController.prepareCreate}" value="#{bundle.ListPersonContactCreateLink}"/>
+                <br />
+                <br />
+                <h:commandLink value="#{bundle.ListPersonContactIndexLink}" action="/index" immediate="true" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

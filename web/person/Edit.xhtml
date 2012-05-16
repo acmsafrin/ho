@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditPersonTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditPersonLabel_retireComments}" for="retireComments" />
+                    <h:inputText id="retireComments" value="#{personController.selected.retireComments}" title="#{bundle.EditPersonTitle_retireComments}" />
+                    <h:outputLabel value="#{bundle.EditPersonLabel_dOB}" for="dOB" />
+                    <h:inputText id="dOB" value="#{personController.selected.dOB}" title="#{bundle.EditPersonTitle_dOB}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.EditPersonLabel_familyName}" for="familyName" />
+                    <h:inputText id="familyName" value="#{personController.selected.familyName}" title="#{bundle.EditPersonTitle_familyName}" />
+                    <h:outputLabel value="#{bundle.EditPersonLabel_givenName}" for="givenName" />
+                    <h:inputText id="givenName" value="#{personController.selected.givenName}" title="#{bundle.EditPersonTitle_givenName}" />
+                    <h:outputLabel value="#{bundle.EditPersonLabel_otherName}" for="otherName" />
+                    <h:inputText id="otherName" value="#{personController.selected.otherName}" title="#{bundle.EditPersonTitle_otherName}" />
+                    <h:outputLabel value="#{bundle.EditPersonLabel_personSex}" for="personSex" />
+                    <h:selectOneMenu id="personSex" value="#{personController.selected.personSex}" title="#{bundle.EditPersonTitle_personSex}" >
+                        <f:selectItems value="#{sexController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditPersonLabel_id}" for="id" />
+                    <h:inputText id="id" value="#{personController.selected.id}" title="#{bundle.EditPersonTitle_id}" />
+                    <h:outputLabel value="#{bundle.EditPersonLabel_createdAt}" for="createdAt" />
+                    <h:inputText id="createdAt" value="#{personController.selected.createdAt}" title="#{bundle.EditPersonTitle_createdAt}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.EditPersonLabel_creater}" for="creater" />
+                    <h:selectOneMenu id="creater" value="#{personController.selected.creater}" title="#{bundle.EditPersonTitle_creater}" >
+                        <f:selectItems value="#{webUserController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditPersonLabel_description}" for="description" />
+                    <h:inputText id="description" value="#{personController.selected.description}" title="#{bundle.EditPersonTitle_description}" />
+                    <h:outputLabel value="#{bundle.EditPersonLabel_name}" for="name" />
+                    <h:inputText id="name" value="#{personController.selected.name}" title="#{bundle.EditPersonTitle_name}" />
+                    <h:outputLabel value="#{bundle.EditPersonLabel_retiredAt}" for="retiredAt" />
+                    <h:inputText id="retiredAt" value="#{personController.selected.retiredAt}" title="#{bundle.EditPersonTitle_retiredAt}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.EditPersonLabel_retirer}" for="retirer" />
+                    <h:selectOneMenu id="retirer" value="#{personController.selected.retirer}" title="#{bundle.EditPersonTitle_retirer}" >
+                        <f:selectItems value="#{webUserController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{personController.update}" value="#{bundle.EditPersonSaveLink}"/>
+                <br />
+                <br />
+                <h:commandLink action="View" value="#{bundle.EditPersonViewLink}" immediate="true"/>
+                <br />
+                <h:commandLink action="#{personController.prepareList}" value="#{bundle.EditPersonShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:commandLink value="#{bundle.EditPersonIndexLink}" action="/index" immediate="true" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

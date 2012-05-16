@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateContactTypeTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateContactTypeLabel_retireComments}" for="retireComments" />
+                    <h:inputText id="retireComments" value="#{contactTypeController.selected.retireComments}" title="#{bundle.CreateContactTypeTitle_retireComments}" />
+                    <h:outputLabel value="#{bundle.CreateContactTypeLabel_id}" for="id" />
+                    <h:inputText id="id" value="#{contactTypeController.selected.id}" title="#{bundle.CreateContactTypeTitle_id}" />
+                    <h:outputLabel value="#{bundle.CreateContactTypeLabel_createdAt}" for="createdAt" />
+                    <h:inputText id="createdAt" value="#{contactTypeController.selected.createdAt}" title="#{bundle.CreateContactTypeTitle_createdAt}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.CreateContactTypeLabel_creater}" for="creater" />
+                    <h:selectOneMenu id="creater" value="#{contactTypeController.selected.creater}" title="#{bundle.CreateContactTypeTitle_creater}" >
+                        <f:selectItems value="#{webUserController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreateContactTypeLabel_description}" for="description" />
+                    <h:inputText id="description" value="#{contactTypeController.selected.description}" title="#{bundle.CreateContactTypeTitle_description}" />
+                    <h:outputLabel value="#{bundle.CreateContactTypeLabel_name}" for="name" />
+                    <h:inputText id="name" value="#{contactTypeController.selected.name}" title="#{bundle.CreateContactTypeTitle_name}" />
+                    <h:outputLabel value="#{bundle.CreateContactTypeLabel_retiredAt}" for="retiredAt" />
+                    <h:inputText id="retiredAt" value="#{contactTypeController.selected.retiredAt}" title="#{bundle.CreateContactTypeTitle_retiredAt}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.CreateContactTypeLabel_retirer}" for="retirer" />
+                    <h:selectOneMenu id="retirer" value="#{contactTypeController.selected.retirer}" title="#{bundle.CreateContactTypeTitle_retirer}" >
+                        <f:selectItems value="#{webUserController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{contactTypeController.create}" value="#{bundle.CreateContactTypeSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{contactTypeController.prepareList}" value="#{bundle.CreateContactTypeShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:commandLink value="#{bundle.CreateContactTypeIndexLink}" action="/index" immediate="true" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

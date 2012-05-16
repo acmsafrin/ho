@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditInstitutionCadreTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditInstitutionCadreLabel_id}" for="id" />
+                    <h:inputText id="id" value="#{institutionCadreController.selected.id}" title="#{bundle.EditInstitutionCadreTitle_id}" />
+                    <h:outputLabel value="#{bundle.EditInstitutionCadreLabel_createdAt}" for="createdAt" />
+                    <h:inputText id="createdAt" value="#{institutionCadreController.selected.createdAt}" title="#{bundle.EditInstitutionCadreTitle_createdAt}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.EditInstitutionCadreLabel_creater}" for="creater" />
+                    <h:selectOneMenu id="creater" value="#{institutionCadreController.selected.creater}" title="#{bundle.EditInstitutionCadreTitle_creater}" >
+                        <f:selectItems value="#{webUserController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditInstitutionCadreLabel_description}" for="description" />
+                    <h:inputText id="description" value="#{institutionCadreController.selected.description}" title="#{bundle.EditInstitutionCadreTitle_description}" />
+                    <h:outputLabel value="#{bundle.EditInstitutionCadreLabel_name}" for="name" />
+                    <h:inputText id="name" value="#{institutionCadreController.selected.name}" title="#{bundle.EditInstitutionCadreTitle_name}" />
+                    <h:outputLabel value="#{bundle.EditInstitutionCadreLabel_retireComments}" for="retireComments" />
+                    <h:inputText id="retireComments" value="#{institutionCadreController.selected.retireComments}" title="#{bundle.EditInstitutionCadreTitle_retireComments}" />
+                    <h:outputLabel value="#{bundle.EditInstitutionCadreLabel_retiredAt}" for="retiredAt" />
+                    <h:inputText id="retiredAt" value="#{institutionCadreController.selected.retiredAt}" title="#{bundle.EditInstitutionCadreTitle_retiredAt}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.EditInstitutionCadreLabel_retirer}" for="retirer" />
+                    <h:selectOneMenu id="retirer" value="#{institutionCadreController.selected.retirer}" title="#{bundle.EditInstitutionCadreTitle_retirer}" >
+                        <f:selectItems value="#{webUserController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditInstitutionCadreLabel_approved}" for="approved" />
+                    <h:inputText id="approved" value="#{institutionCadreController.selected.approved}" title="#{bundle.EditInstitutionCadreTitle_approved}" />
+                    <h:outputLabel value="#{bundle.EditInstitutionCadreLabel_femaleIn}" for="femaleIn" />
+                    <h:inputText id="femaleIn" value="#{institutionCadreController.selected.femaleIn}" title="#{bundle.EditInstitutionCadreTitle_femaleIn}" />
+                    <h:outputLabel value="#{bundle.EditInstitutionCadreLabel_maleAndFemaleIn}" for="maleAndFemaleIn" />
+                    <h:inputText id="maleAndFemaleIn" value="#{institutionCadreController.selected.maleAndFemaleIn}" title="#{bundle.EditInstitutionCadreTitle_maleAndFemaleIn}" />
+                    <h:outputLabel value="#{bundle.EditInstitutionCadreLabel_maleIn}" for="maleIn" />
+                    <h:inputText id="maleIn" value="#{institutionCadreController.selected.maleIn}" title="#{bundle.EditInstitutionCadreTitle_maleIn}" />
+                    <h:outputLabel value="#{bundle.EditInstitutionCadreLabel_vac}" for="vac" />
+                    <h:inputText id="vac" value="#{institutionCadreController.selected.vac}" title="#{bundle.EditInstitutionCadreTitle_vac}" />
+                </h:panelGrid>
+                <h:commandLink action="#{institutionCadreController.update}" value="#{bundle.EditInstitutionCadreSaveLink}"/>
+                <br />
+                <br />
+                <h:commandLink action="View" value="#{bundle.EditInstitutionCadreViewLink}" immediate="true"/>
+                <br />
+                <h:commandLink action="#{institutionCadreController.prepareList}" value="#{bundle.EditInstitutionCadreShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:commandLink value="#{bundle.EditInstitutionCadreIndexLink}" action="/index" immediate="true" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>
