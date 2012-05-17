@@ -7,17 +7,6 @@ package gov.sp.health.autobean;
 import java.util.List;
 import javax.persistence.EntityManager;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-import javax.persistence.EntityManager;
-import javax.persistence.Query;
-import javax.persistence.TypedQuery;
-import javax.persistence.criteria.ParameterExpression;
-import javax.persistence.criteria.Predicate;
-
-
-
 /**
  *
  * @author IT
