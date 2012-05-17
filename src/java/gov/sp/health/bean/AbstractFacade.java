@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import javax.persistence.EntityManager;
-import javax.persistence.Query;
-import javax.persistence.TypedQuery;
 import javax.persistence.criteria.ParameterExpression;
 import javax.persistence.criteria.Predicate;
 
@@ -13,11 +11,11 @@ import javax.persistence.criteria.Predicate;
  *
  * @author Buddhika
  */
-public abstract class AbstractFacade1<T> {
+public abstract class AbstractFacade<T> {
 
     protected Class<T> entityClass;
 
-    public AbstractFacade1(Class<T> entityClass) {
+    public AbstractFacade(Class<T> entityClass) {
         this.entityClass = entityClass;
     }
 
@@ -60,11 +58,6 @@ public abstract class AbstractFacade1<T> {
     }
 
     private void test(Class myClass, Object ob) {
-    }
-
-    public List<T> findAllByJPQL(String jPQL) {
-        TypedQuery<T> q = getEntityManager().createQuery("SELECT c FROM Country c", entityClass);
-        return q.getResultList();
     }
 
     public List<T> findAll(String fieldName, String fieldValue, boolean withoutRetired) {
@@ -125,22 +118,13 @@ public abstract class AbstractFacade1<T> {
         return getEntityManager().createQuery(cq).getResultList();
     }
 
+
+
     public int count() {
         javax.persistence.criteria.CriteriaQuery cq = getEntityManager().getCriteriaBuilder().createQuery();
         javax.persistence.criteria.Root<T> rt = cq.from(entityClass);
         cq.select(getEntityManager().getCriteriaBuilder().count(rt));
         javax.persistence.Query q = getEntityManager().createQuery(cq);
         return ((Long) q.getSingleResult()).intValue();
-    }
-    
-    
-    
-    public List<T> findRange(int[] range) {
-        javax.persistence.criteria.CriteriaQuery cq = getEntityManager().getCriteriaBuilder().createQuery();
-        cq.select(cq.from(entityClass));
-        javax.persistence.Query q = getEntityManager().createQuery(cq);
-        q.setMaxResults(range[1] - range[0]);
-        q.setFirstResult(range[0]);
-        return q.getResultList();
     }
 }

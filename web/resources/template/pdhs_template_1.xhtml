@@ -10,113 +10,94 @@
         <h:outputStylesheet library="css" name="pdhscss1.css" ></h:outputStylesheet>
     </h:head>
 
-    <h:body class="pdBody">
+    <h:body>
 
-        <table class="pdVivable" cellspacing="10px">
-            <tr>
-                <td id="top" colspan="3">
-                    <ui:insert  name="top">
+        <div class="pdBody">
+            <table class="pdHeadingTable" cellspacing="10px" border="1">
+                <tr>
+                    <td id="top" colspan="3">
+                        <ui:insert  name="top">
+                            <table width="100%"  >
+                                <tr>    
+                                    <td rowspan="2" width="15%">
+                                        <h:graphicImage  class="pdLogo" library="image" name="logo.jpg" ></h:graphicImage> 
+                                    </td>
+                                    <td  width="60%" height="100" align="left" valign="bottom">
+                                        <h:outputLabel class="pdTitle" >Department of Health Services</h:outputLabel><br/>&nbsp;
+                                    </td>
+                                    <td width="20%" align="right" >
+                                        <input type ="text" size="10" maxlength="8"> Search </input> 
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td align="left" valign="top">
+                                        <h:outputLabel class="pdSubTitle" >Southern Province</h:outputLabel>
+                                    </td>
+                                    <td>
+                                    </td>
+                                </tr>
+                            </table>
+                        </ui:insert>
+                    </td>
+                </tr>
+                <tr>
+                    <td id="left" width="175px">
+                        <ui:insert name="left">
+                            <table >
+                                <tr>  
+                                    <td>
+                                        <h:graphicImage  class="pdPotraitImage" library="image" name="governer.jpg" ></h:graphicImage><br/>
+                                        <h:outputLabel class="pdPotraitTitle"> Governer Southern Province</h:outputLabel><br/>
+                                        <h:outputLabel class="pdPotraitName">Hon. Kumari Balasooriya</h:outputLabel><br/>
+                                        <h:outputLabel class="pdPotraitTitle">Governer's Message</h:outputLabel><br/>
+                                    </td> 
+                                </tr> 
+                                <tr>
+                                    <td>
+                                        <h:graphicImage  class="pdPotraitImage" library="image" name="minister.jpg" ></h:graphicImage><br/>
+                                        <h:outputLabel class="pdPotraitTitle"> Hon. Chief Minister Southern Province</h:outputLabel><br/>
+                                        <h:outputLabel class="pdPotraitName"> Mr. Shan Wijayalal De Silva</h:outputLabel><br/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <h:graphicImage  class="pdPotraitImage" library="image" name="secretary.jpg" ></h:graphicImage><br></br>
+                                        <h:outputLabel class="pdPotraitTitle">Secretary</h:outputLabel><br></br>
+                                        <h:outputLabel class="pdPotraitTitle">Ministry of Health Southern Province</h:outputLabel><br></br>
+                                        <h:outputLabel class="pdPotraitName">Mr. M. W. Wijethilake</h:outputLabel><br></br>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <h:graphicImage  class="pdPotraitImage" library="image" name="director.jpg" ></h:graphicImage><br></br>
+                                        <h:outputLabel class="pdPotraitTitle">Director</h:outputLabel><br/> 
+                                        <h:outputLabel class="pdPotraitTitle">Department of Health Southern Province</h:outputLabel><br/>
+                                        <h:outputLabel class="pdPotraitName">Dr. H. Edirimanna</h:outputLabel><br/>
+                                    </td>
+                                </tr>
+                            </table> 
+                        </ui:insert>
 
-                        <table width="100%"  >
-                            <tr>    
-                                <td rowspan="2" width="15%">
-                                    <h:graphicImage  class="pdLogo" library="image" name="logo.jpg" ></h:graphicImage> 
-                                </td>
-                                <td  class="pdtopic" width="60%" height="100" align="left">
-                                    <h:outputLabel class="pdTitle" >Department of Health Services</h:outputLabel><br/>&nbsp;
-                                </td>
-                                <td width="20%" >
-                                    <input type ="text" size="10" maxlength="8"> Search </input> 
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="pdtopic" align="left">
-                                    <h:outputLabel class="pdSubtopic" >Southern Province</h:outputLabel>
+                    </td>
+                    <td id="content" valign="top" align="left">
+                        <ui:insert name="content" >
+                            <p class="pdhede">Welcome to Department of Health Services - Southern Province</p>
+                            <h:graphicImage  class="pdPotraitImage" library="image" name="minister.jpg" ></h:graphicImage> 
+                            <h:outputLabel class="pdname">Hon.Chief Minister Southern Province</h:outputLabel>
+                        </ui:insert>
+                    </td>
+                    <td id="right" width="200px">
+                        <ui:insert name="right" >Right</ui:insert>
+                    </td>
+                </tr>
+                <tr>
+                    <td id="bottom" colspan="3">
+                        <ui:insert name="bottom">Bottom</ui:insert>
+                    </td>
+                </tr>
+            </table>
 
-                                </td>
-                                <td>
-
-
-                                </td>
-
-                            </tr>
-                        </table>
-                        <p class="pdLine">fhjjdhfjdjh</p>
-                            
-
-
-                    </ui:insert>
-                </td>
-            </tr>
-            <tr>
-                <td id="left">
-                    <ui:insert name="left">
-
-                        <table class="pdimage">
-                            <tr>  
-                                <td>
-                                    <h:graphicImage  class="pdPotrait" library="image" name="governer.jpg" ></h:graphicImage><br/>
-                                    <h:outputLabel class="pdPotraitTitle"> Governer Southern Province</h:outputLabel><br/>
-                                    <h:outputLabel class="pdPotraitName">Hon. Kumari Balasooriya</h:outputLabel><br/>
-                                    <h:outputLabel class="pdPotraitTitle">Governer's Message</h:outputLabel><br/>
-                                </td> 
-                            </tr> 
-                            <tr>
-                                <td>
-                                    <h:graphicImage  class="pdPotrait" library="image" name="minister.jpg" ></h:graphicImage><br/>
-                                    <h:outputLabel class="pdPotraitTitle"> Hon. Chief Minister Southern Province</h:outputLabel><br/>
-                                    <h:outputLabel class="pdPotraitName"> Mr. Shan Wijayalal De Silva</h:outputLabel><br/>
-
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <h:graphicImage  class="pdPotrait" library="image" name="secretary.jpg" ></h:graphicImage><br></br>
-
-                                    <h:outputLabel class="pdPotraitTitle">Secretary</h:outputLabel><br></br>
-                                    <h:outputLabel class="pdPotraitTitle">Ministry of Health Southern Province</h:outputLabel><br></br>
-                                    <h:outputLabel class="pdPotraitName">Mr. M. W. Wijethilake</h:outputLabel><br></br>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <h:graphicImage  class="pdPotrait" library="image" name="director.jpg" ></h:graphicImage><br></br>
-                                    <h:outputLabel class="pdPotraitTitle">Director</h:outputLabel><br/> 
-                                    <h:outputLabel class="pdPotraitTitle">Department of Health Southern Province</h:outputLabel><br/>
-                                    <h:outputLabel class="pdPotraitName">Dr. H. Edirimanna</h:outputLabel><br/>
-
-                                </td>
-                            </tr>
-                        </table> 
-                    </ui:insert>
-
-                </td>
-                <td id="content">
-                    <ui:insert name="content">
-
-
-
-
-
-
-                        <p class="pdhede">Welcome to Department of Health Services - Southern Province</p>
-                        <h:graphicImage  class="pdPotrait" library="image" name="minister.jpg" ></h:graphicImage> 
-                        <h:outputLabel class="pdname">Hon.Chief Minister Southern Province</h:outputLabel>
-
-
-
-                    </ui:insert>
-                </td>
-                <td id="right">
-                    <ui:insert name="right">Right</ui:insert>
-                </td>
-            </tr>
-            <tr>
-                <td id="bottom" colspan="3">
-                    <ui:insert name="bottom">Bottom</ui:insert>
-                </td>
-            </tr>
-        </table>
+        </div>
     </h:body>
 
 </html>

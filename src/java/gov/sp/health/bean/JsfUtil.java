@@ -1,4 +1,4 @@
-package gov.sp.health.jsf.util;
+package gov.sp.health.bean;
 
 import java.util.List;
 import javax.faces.application.FacesMessage;

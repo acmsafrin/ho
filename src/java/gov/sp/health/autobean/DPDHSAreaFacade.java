@@ -4,6 +4,7 @@
  */
 package gov.sp.health.autobean;
 
+import gov.sp.health.bean.AbstractFacade;
 import gov.sp.health.entity.DPDHSArea;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
