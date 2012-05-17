@@ -3,17 +3,33 @@
 <ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
                 template="./../resources/template/pdhs_template_1.xhtml"
                 xmlns:h="http://java.sun.com/jsf/html"
-                xmlns:f="http://java.sun.com/jsf/core">
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:pou="http://primefaces.org/ui">
 
-   
+
     <ui:define name="content">
-          <h:form>
-            <h:selectOneListbox >
-                <f:selectItems value="#{dPDHSManager.getdPDHSAreas()}"></f:selectItems>
-            </h:selectOneListbox>
-            
+        <h:form>
+            <pou:growl></pou:growl>
+
+            <table>
+                <tr>
+                    <td>
+                        <h:selectOneListbox id="lstDPDHS" >
+                            <f:selectItems value="#{dPDHSAreaController1.items}"></f:selectItems>
+                        </h:selectOneListbox>
+                    </td>
+                    <td>
+                        <h:outputText id="txtDPDHS" value="#{dPDHSAreaController1.current.name}" ></h:outputText>
+                        <h:commandButton id="btnAddDPDHS" value="Add" action="#{dPDHSAreaController1.saveSelected()}" >
+                            <f:ajax execute="lstDPDHS txtDPDHS btnAddDPDHS" render="lstDPDHS txtDPDHS"></f:ajax>
+                        </h:commandButton>
+                    </td>
+                </tr>
+
+            </table>
+
         </h:form>
     </ui:define>
 
-   
+
 </ui:composition>
