@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateSalaryCodeTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateSalaryCodeLabel_createdAt}" for="createdAt" />
+                    <h:inputText id="createdAt" value="#{salaryCodeController.selected.createdAt}" title="#{bundle.CreateSalaryCodeTitle_createdAt}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.CreateSalaryCodeLabel_creater}" for="creater" />
+                    <h:selectOneMenu id="creater" value="#{salaryCodeController.selected.creater}" title="#{bundle.CreateSalaryCodeTitle_creater}" >
+                        <f:selectItems value="#{webUserController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreateSalaryCodeLabel_description}" for="description" />
+                    <h:inputText id="description" value="#{salaryCodeController.selected.description}" title="#{bundle.CreateSalaryCodeTitle_description}" />
+                    <h:outputLabel value="#{bundle.CreateSalaryCodeLabel_name}" for="name" />
+                    <h:inputText id="name" value="#{salaryCodeController.selected.name}" title="#{bundle.CreateSalaryCodeTitle_name}" />
+                    <h:outputLabel value="#{bundle.CreateSalaryCodeLabel_retireComments}" for="retireComments" />
+                    <h:inputText id="retireComments" value="#{salaryCodeController.selected.retireComments}" title="#{bundle.CreateSalaryCodeTitle_retireComments}" />
+                    <h:outputLabel value="#{bundle.CreateSalaryCodeLabel_retiredAt}" for="retiredAt" />
+                    <h:inputText id="retiredAt" value="#{salaryCodeController.selected.retiredAt}" title="#{bundle.CreateSalaryCodeTitle_retiredAt}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.CreateSalaryCodeLabel_retirer}" for="retirer" />
+                    <h:selectOneMenu id="retirer" value="#{salaryCodeController.selected.retirer}" title="#{bundle.CreateSalaryCodeTitle_retirer}" >
+                        <f:selectItems value="#{webUserController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreateSalaryCodeLabel_id}" for="id" />
+                    <h:inputText id="id" value="#{salaryCodeController.selected.id}" title="#{bundle.CreateSalaryCodeTitle_id}" />
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{salaryCodeController.create}" value="#{bundle.CreateSalaryCodeSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{salaryCodeController.prepareList}" value="#{bundle.CreateSalaryCodeShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:commandLink value="#{bundle.CreateSalaryCodeIndexLink}" action="/index" immediate="true" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

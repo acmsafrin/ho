@@ -7,22 +7,22 @@
 
     <ui:composition template="/template.xhtml">
         <ui:define name="title">
-            <h:outputText value="#{bundle.ListProvinceTitle}"></h:outputText>
+            <h:outputText value="#{bundle.ListDesignationCategoryTitle}"></h:outputText>
         </ui:define>
         <ui:define name="body">
             <h:form styleClass="jsfcrud_list_form">
                 <h:panelGroup id="messagePanel" layout="block">
                     <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
                 </h:panelGroup>
-                <h:outputText escape="false" value="#{bundle.ListProvinceEmpty}" rendered="#{provinceController.items.rowCount == 0}"/>
-                <h:panelGroup rendered="#{provinceController.items.rowCount > 0}">
-                    <h:outputText value="#{provinceController.pagination.pageFirstItem + 1}..#{provinceController.pagination.pageLastItem + 1}/#{provinceController.pagination.itemsCount}"/>&nbsp;
-                    <h:commandLink action="#{provinceController.previous}" value="#{bundle.Previous} #{provinceController.pagination.pageSize}" rendered="#{provinceController.pagination.hasPreviousPage}"/>&nbsp;
-                    <h:commandLink action="#{provinceController.next}" value="#{bundle.Next} #{provinceController.pagination.pageSize}" rendered="#{provinceController.pagination.hasNextPage}"/>&nbsp;
-                    <h:dataTable value="#{provinceController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                <h:outputText escape="false" value="#{bundle.ListDesignationCategoryEmpty}" rendered="#{designationCategoryController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{designationCategoryController.items.rowCount > 0}">
+                    <h:outputText value="#{designationCategoryController.pagination.pageFirstItem + 1}..#{designationCategoryController.pagination.pageLastItem + 1}/#{designationCategoryController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{designationCategoryController.previous}" value="#{bundle.Previous} #{designationCategoryController.pagination.pageSize}" rendered="#{designationCategoryController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{designationCategoryController.next}" value="#{bundle.Next} #{designationCategoryController.pagination.pageSize}" rendered="#{designationCategoryController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{designationCategoryController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
                         <h:column>
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListProvinceTitle_createdAt}"/>
+                                <h:outputText value="#{bundle.ListDesignationCategoryTitle_createdAt}"/>
                             </f:facet>
                             <h:outputText value="#{item.createdAt}">
                                 <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
@@ -30,37 +30,31 @@
                         </h:column>
                         <h:column>
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListProvinceTitle_creater}"/>
+                                <h:outputText value="#{bundle.ListDesignationCategoryTitle_creater}"/>
                             </f:facet>
                             <h:outputText value="#{item.creater}"/>
                         </h:column>
                         <h:column>
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListProvinceTitle_description}"/>
+                                <h:outputText value="#{bundle.ListDesignationCategoryTitle_description}"/>
                             </f:facet>
                             <h:outputText value="#{item.description}"/>
                         </h:column>
                         <h:column>
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListProvinceTitle_id}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.id}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListProvinceTitle_name}"/>
+                                <h:outputText value="#{bundle.ListDesignationCategoryTitle_name}"/>
                             </f:facet>
                             <h:outputText value="#{item.name}"/>
                         </h:column>
                         <h:column>
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListProvinceTitle_retireComments}"/>
+                                <h:outputText value="#{bundle.ListDesignationCategoryTitle_retireComments}"/>
                             </f:facet>
                             <h:outputText value="#{item.retireComments}"/>
                         </h:column>
                         <h:column>
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListProvinceTitle_retiredAt}"/>
+                                <h:outputText value="#{bundle.ListDesignationCategoryTitle_retiredAt}"/>
                             </f:facet>
                             <h:outputText value="#{item.retiredAt}">
                                 <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
@@ -68,27 +62,33 @@
                         </h:column>
                         <h:column>
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListProvinceTitle_retirer}"/>
+                                <h:outputText value="#{bundle.ListDesignationCategoryTitle_retirer}"/>
                             </f:facet>
                             <h:outputText value="#{item.retirer}"/>
                         </h:column>
                         <h:column>
                             <f:facet name="header">
+                                <h:outputText value="#{bundle.ListDesignationCategoryTitle_id}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.id}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
                                 <h:outputText value="&nbsp;"/>
                             </f:facet>
-                            <h:commandLink action="#{provinceController.prepareView}" value="#{bundle.ListProvinceViewLink}"/>
+                            <h:commandLink action="#{designationCategoryController.prepareView}" value="#{bundle.ListDesignationCategoryViewLink}"/>
                             <h:outputText value=" "/>
-                            <h:commandLink action="#{provinceController.prepareEdit}" value="#{bundle.ListProvinceEditLink}"/>
+                            <h:commandLink action="#{designationCategoryController.prepareEdit}" value="#{bundle.ListDesignationCategoryEditLink}"/>
                             <h:outputText value=" "/>
-                            <h:commandLink action="#{provinceController.destroy}" value="#{bundle.ListProvinceDestroyLink}"/>
+                            <h:commandLink action="#{designationCategoryController.destroy}" value="#{bundle.ListDesignationCategoryDestroyLink}"/>
                         </h:column>
                     </h:dataTable>
                 </h:panelGroup>
                 <br />
-                <h:commandLink action="#{provinceController.prepareCreate}" value="#{bundle.ListProvinceCreateLink}"/>
+                <h:commandLink action="#{designationCategoryController.prepareCreate}" value="#{bundle.ListDesignationCategoryCreateLink}"/>
                 <br />
                 <br />
-                <h:commandLink value="#{bundle.ListProvinceIndexLink}" action="/index" immediate="true" />
+                <h:commandLink value="#{bundle.ListDesignationCategoryIndexLink}" action="/index" immediate="true" />
             </h:form>
         </ui:define>
     </ui:composition>

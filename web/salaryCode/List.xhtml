@@ -7,22 +7,22 @@
 
     <ui:composition template="/template.xhtml">
         <ui:define name="title">
-            <h:outputText value="#{bundle.ListProvinceTitle}"></h:outputText>
+            <h:outputText value="#{bundle.ListSalaryCodeTitle}"></h:outputText>
         </ui:define>
         <ui:define name="body">
             <h:form styleClass="jsfcrud_list_form">
                 <h:panelGroup id="messagePanel" layout="block">
                     <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
                 </h:panelGroup>
-                <h:outputText escape="false" value="#{bundle.ListProvinceEmpty}" rendered="#{provinceController.items.rowCount == 0}"/>
-                <h:panelGroup rendered="#{provinceController.items.rowCount > 0}">
-                    <h:outputText value="#{provinceController.pagination.pageFirstItem + 1}..#{provinceController.pagination.pageLastItem + 1}/#{provinceController.pagination.itemsCount}"/>&nbsp;
-                    <h:commandLink action="#{provinceController.previous}" value="#{bundle.Previous} #{provinceController.pagination.pageSize}" rendered="#{provinceController.pagination.hasPreviousPage}"/>&nbsp;
-                    <h:commandLink action="#{provinceController.next}" value="#{bundle.Next} #{provinceController.pagination.pageSize}" rendered="#{provinceController.pagination.hasNextPage}"/>&nbsp;
-                    <h:dataTable value="#{provinceController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                <h:outputText escape="false" value="#{bundle.ListSalaryCodeEmpty}" rendered="#{salaryCodeController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{salaryCodeController.items.rowCount > 0}">
+                    <h:outputText value="#{salaryCodeController.pagination.pageFirstItem + 1}..#{salaryCodeController.pagination.pageLastItem + 1}/#{salaryCodeController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{salaryCodeController.previous}" value="#{bundle.Previous} #{salaryCodeController.pagination.pageSize}" rendered="#{salaryCodeController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{salaryCodeController.next}" value="#{bundle.Next} #{salaryCodeController.pagination.pageSize}" rendered="#{salaryCodeController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{salaryCodeController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
                         <h:column>
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListProvinceTitle_createdAt}"/>
+                                <h:outputText value="#{bundle.ListSalaryCodeTitle_createdAt}"/>
                             </f:facet>
                             <h:outputText value="#{item.createdAt}">
                                 <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
@@ -30,37 +30,31 @@
                         </h:column>
                         <h:column>
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListProvinceTitle_creater}"/>
+                                <h:outputText value="#{bundle.ListSalaryCodeTitle_creater}"/>
                             </f:facet>
                             <h:outputText value="#{item.creater}"/>
                         </h:column>
                         <h:column>
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListProvinceTitle_description}"/>
+                                <h:outputText value="#{bundle.ListSalaryCodeTitle_description}"/>
                             </f:facet>
                             <h:outputText value="#{item.description}"/>
                         </h:column>
                         <h:column>
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListProvinceTitle_id}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.id}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListProvinceTitle_name}"/>
+                                <h:outputText value="#{bundle.ListSalaryCodeTitle_name}"/>
                             </f:facet>
                             <h:outputText value="#{item.name}"/>
                         </h:column>
                         <h:column>
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListProvinceTitle_retireComments}"/>
+                                <h:outputText value="#{bundle.ListSalaryCodeTitle_retireComments}"/>
                             </f:facet>
                             <h:outputText value="#{item.retireComments}"/>
                         </h:column>
                         <h:column>
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListProvinceTitle_retiredAt}"/>
+                                <h:outputText value="#{bundle.ListSalaryCodeTitle_retiredAt}"/>
                             </f:facet>
                             <h:outputText value="#{item.retiredAt}">
                                 <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
@@ -68,27 +62,33 @@
                         </h:column>
                         <h:column>
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListProvinceTitle_retirer}"/>
+                                <h:outputText value="#{bundle.ListSalaryCodeTitle_retirer}"/>
                             </f:facet>
                             <h:outputText value="#{item.retirer}"/>
                         </h:column>
                         <h:column>
                             <f:facet name="header">
+                                <h:outputText value="#{bundle.ListSalaryCodeTitle_id}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.id}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
                                 <h:outputText value="&nbsp;"/>
                             </f:facet>
-                            <h:commandLink action="#{provinceController.prepareView}" value="#{bundle.ListProvinceViewLink}"/>
+                            <h:commandLink action="#{salaryCodeController.prepareView}" value="#{bundle.ListSalaryCodeViewLink}"/>
                             <h:outputText value=" "/>
-                            <h:commandLink action="#{provinceController.prepareEdit}" value="#{bundle.ListProvinceEditLink}"/>
+                            <h:commandLink action="#{salaryCodeController.prepareEdit}" value="#{bundle.ListSalaryCodeEditLink}"/>
                             <h:outputText value=" "/>
-                            <h:commandLink action="#{provinceController.destroy}" value="#{bundle.ListProvinceDestroyLink}"/>
+                            <h:commandLink action="#{salaryCodeController.destroy}" value="#{bundle.ListSalaryCodeDestroyLink}"/>
                         </h:column>
                     </h:dataTable>
                 </h:panelGroup>
                 <br />
-                <h:commandLink action="#{provinceController.prepareCreate}" value="#{bundle.ListProvinceCreateLink}"/>
+                <h:commandLink action="#{salaryCodeController.prepareCreate}" value="#{bundle.ListSalaryCodeCreateLink}"/>
                 <br />
                 <br />
-                <h:commandLink value="#{bundle.ListProvinceIndexLink}" action="/index" immediate="true" />
+                <h:commandLink value="#{bundle.ListSalaryCodeIndexLink}" action="/index" immediate="true" />
             </h:form>
         </ui:define>
     </ui:composition>

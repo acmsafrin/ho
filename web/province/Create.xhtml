@@ -15,8 +15,30 @@
             </h:panelGroup>
             <h:form>
                 <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateProvinceLabel_createdAt}" for="createdAt" />
+                    <h:inputText id="createdAt" value="#{provinceController.selected.createdAt}" title="#{bundle.CreateProvinceTitle_createdAt}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.CreateProvinceLabel_creater}" for="creater" />
+                    <h:selectOneMenu id="creater" value="#{provinceController.selected.creater}" title="#{bundle.CreateProvinceTitle_creater}" >
+                        <f:selectItems value="#{webUserController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreateProvinceLabel_description}" for="description" />
+                    <h:inputText id="description" value="#{provinceController.selected.description}" title="#{bundle.CreateProvinceTitle_description}" />
                     <h:outputLabel value="#{bundle.CreateProvinceLabel_id}" for="id" />
                     <h:inputText id="id" value="#{provinceController.selected.id}" title="#{bundle.CreateProvinceTitle_id}" />
+                    <h:outputLabel value="#{bundle.CreateProvinceLabel_name}" for="name" />
+                    <h:inputText id="name" value="#{provinceController.selected.name}" title="#{bundle.CreateProvinceTitle_name}" />
+                    <h:outputLabel value="#{bundle.CreateProvinceLabel_retireComments}" for="retireComments" />
+                    <h:inputText id="retireComments" value="#{provinceController.selected.retireComments}" title="#{bundle.CreateProvinceTitle_retireComments}" />
+                    <h:outputLabel value="#{bundle.CreateProvinceLabel_retiredAt}" for="retiredAt" />
+                    <h:inputText id="retiredAt" value="#{provinceController.selected.retiredAt}" title="#{bundle.CreateProvinceTitle_retiredAt}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.CreateProvinceLabel_retirer}" for="retirer" />
+                    <h:selectOneMenu id="retirer" value="#{provinceController.selected.retirer}" title="#{bundle.CreateProvinceTitle_retirer}" >
+                        <f:selectItems value="#{webUserController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
                 </h:panelGrid>
                 <br />
                 <h:commandLink action="#{provinceController.create}" value="#{bundle.CreateProvinceSaveLink}" />

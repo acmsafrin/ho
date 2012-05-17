@@ -20,29 +20,32 @@
                 <td id="top" colspan="3">
                     <ui:insert  name="top">
 
-                        <table >
+                        <table width="100%"  >
                             <tr>    
                                 <td rowspan="2" width="15%">
-                                    <h:graphicImage  class="pdpotrait" library="image" name="logo.jpg" ></h:graphicImage> 
+                                    <h:graphicImage  class="pdLogo" library="image" name="logo.jpg" ></h:graphicImage> 
                                 </td>
-
                                 <td  class="pdtopic" width="60%" height="100" align="left">
-                                    <h:outputLabel class="pdheading" >Department of Health Services</h:outputLabel>
+                                    <h:outputLabel class="pdTitle" >Department of Health Services</h:outputLabel><br/>&nbsp;
                                 </td>
                                 <td width="20%" >
                                     <input type ="text" size="10" maxlength="8"> Search </input> 
                                 </td>
                             </tr>
                             <tr>
-                                <td class="pdsubtopic">
-                                    <p class="pdtext" >Southern Province</p>
+                                <td class="pdtopic" align="left">
+                                    <h:outputLabel class="pdSubtopic" >Southern Province</h:outputLabel>
+
                                 </td>
                                 <td>
+
 
                                 </td>
 
                             </tr>
                         </table>
+                        <p class="pdLine">fhjjdhfjdjh</p>
+                            
 
 
                     </ui:insert>
@@ -50,45 +53,47 @@
             </tr>
             <tr>
                 <td id="left">
-                    <ui:insert name="left">Left</ui:insert>
+                    <ui:insert name="left">
+
+                        <table class="pdimage">
+                            <tr>  
+                                <td>
+                                    <h:graphicImage  class="pdPotrait" library="image" name="governer.jpg" ></h:graphicImage><br/>
+                                    <h:outputLabel class="pdPotraitTitle"> Governer Southern Province</h:outputLabel><br/>
+                                    <h:outputLabel class="pdPotraitName">Hon. Kumari Balasooriya</h:outputLabel><br/>
+                                    <h:outputLabel class="pdPotraitTitle">Governer's Message</h:outputLabel><br/>
+                                </td> 
+                            </tr> 
+                            <tr>
+                                <td>
+                                    <h:graphicImage  class="pdPotrait" library="image" name="minister.jpg" ></h:graphicImage><br/>
+                                    <h:outputLabel class="pdPotraitTitle"> Hon. Chief Minister Southern Province</h:outputLabel><br/>
+                                    <h:outputLabel class="pdPotraitName"> Mr. Shan Wijayalal De Silva</h:outputLabel><br/>
+
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <h:graphicImage  class="pdPotrait" library="image" name="secretary.jpg" ></h:graphicImage><br></br>
+
+                                    <h:outputLabel class="pdPotraitTitle">Secretary</h:outputLabel><br></br>
+                                    <h:outputLabel class="pdPotraitTitle">Ministry of Health Southern Province</h:outputLabel><br></br>
+                                    <h:outputLabel class="pdPotraitName">Mr. M. W. Wijethilake</h:outputLabel><br></br>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <h:graphicImage  class="pdPotrait" library="image" name="director.jpg" ></h:graphicImage><br></br>
+                                    <h:outputLabel class="pdPotraitTitle">Director</h:outputLabel><br/> 
+                                    <h:outputLabel class="pdPotraitTitle">Department of Health Southern Province</h:outputLabel><br/>
+                                    <h:outputLabel class="pdPotraitName">Dr. H. Edirimanna</h:outputLabel><br/>
+
+                                </td>
+                            </tr>
+                        </table> 
+                    </ui:insert>
+
                 </td>
-
-                <table class="pdimage">
-                    <tr>  
-                        <td>
-                            <h:graphicImage  class="pdpotrait" library="image" name="governer.jpg" ></h:graphicImage> 
-                            Governer Southern Province
-                            Hon. Kumari Balasooriya
-                            Governer's Message 
-                        </td> 
-                    </tr> 
-                    <tr>
-                        <td>
-                            <h:graphicImage  class="pdpotrait" library="image" name="minister.jpg" ></h:graphicImage> 
-                            Hon. Chief Minister Southern Province
-                            Mr. Shan Wijayalal De Silva
-
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <h:graphicImage  class="pdpotrait" library="image" name="secretary.jpg" ></h:graphicImage>
-                            Secretary
-                            Ministry of Health Southern Province
-                            Mr. M. W. Wijethilake
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <h:graphicImage  class="pdpotrait" library="image" name="director.jpg" ></h:graphicImage>
-                            Director  
-                            Department of Health Southern Province
-                            Dr. H. Edirimanna
-                            Director's Message
-                        </td>
-                    </tr>
-                </table> 
-
                 <td id="content">
                     <ui:insert name="content">
 
@@ -98,10 +103,7 @@
 
 
                         <p class="pdhede">Welcome to Department of Health Services - Southern Province</p>
-
-                        <h:graphicImage  class="pdpotrait" library="image" name="minister.jpg" ></h:graphicImage> 
-
-
+                        <h:graphicImage  class="pdPotrait" library="image" name="minister.jpg" ></h:graphicImage> 
                         <h:outputLabel class="pdname">Hon.Chief Minister Southern Province</h:outputLabel>
 
 

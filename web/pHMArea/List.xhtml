@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListPHMAreaTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListPHMAreaEmpty}" rendered="#{pHMAreaController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{pHMAreaController.items.rowCount > 0}">
+                    <h:outputText value="#{pHMAreaController.pagination.pageFirstItem + 1}..#{pHMAreaController.pagination.pageLastItem + 1}/#{pHMAreaController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{pHMAreaController.previous}" value="#{bundle.Previous} #{pHMAreaController.pagination.pageSize}" rendered="#{pHMAreaController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{pHMAreaController.next}" value="#{bundle.Next} #{pHMAreaController.pagination.pageSize}" rendered="#{pHMAreaController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{pHMAreaController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPHMAreaTitle_id}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.id}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPHMAreaTitle_code}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.code}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPHMAreaTitle_createdAt}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.createdAt}">
+                                <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                            </h:outputText>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPHMAreaTitle_creater}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.creater}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPHMAreaTitle_dPDHSArea}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.dPDHSArea}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPHMAreaTitle_description}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.description}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPHMAreaTitle_mOHArea}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.mOHArea}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPHMAreaTitle_name}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.name}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPHMAreaTitle_pHIArea}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.pHIArea}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPHMAreaTitle_retireComments}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.retireComments}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPHMAreaTitle_retiredAt}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.retiredAt}">
+                                <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                            </h:outputText>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPHMAreaTitle_retirer}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.retirer}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{pHMAreaController.prepareView}" value="#{bundle.ListPHMAreaViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{pHMAreaController.prepareEdit}" value="#{bundle.ListPHMAreaEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{pHMAreaController.destroy}" value="#{bundle.ListPHMAreaDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{pHMAreaController.prepareCreate}" value="#{bundle.ListPHMAreaCreateLink}"/>
+                <br />
+                <br />
+                <h:commandLink value="#{bundle.ListPHMAreaIndexLink}" action="/index" immediate="true" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

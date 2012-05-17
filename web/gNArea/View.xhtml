@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewGNAreaTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewGNAreaLabel_id}"/>
+                    <h:outputText value="#{gNAreaController.selected.id}" title="#{bundle.ViewGNAreaTitle_id}"/>
+                    <h:outputText value="#{bundle.ViewGNAreaLabel_code}"/>
+                    <h:outputText value="#{gNAreaController.selected.code}" title="#{bundle.ViewGNAreaTitle_code}"/>
+                    <h:outputText value="#{bundle.ViewGNAreaLabel_createdAt}"/>
+                    <h:outputText value="#{gNAreaController.selected.createdAt}" title="#{bundle.ViewGNAreaTitle_createdAt}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewGNAreaLabel_creater}"/>
+                    <h:outputText value="#{gNAreaController.selected.creater}" title="#{bundle.ViewGNAreaTitle_creater}"/>
+                    <h:outputText value="#{bundle.ViewGNAreaLabel_dPDHSArea}"/>
+                    <h:outputText value="#{gNAreaController.selected.dPDHSArea}" title="#{bundle.ViewGNAreaTitle_dPDHSArea}"/>
+                    <h:outputText value="#{bundle.ViewGNAreaLabel_description}"/>
+                    <h:outputText value="#{gNAreaController.selected.description}" title="#{bundle.ViewGNAreaTitle_description}"/>
+                    <h:outputText value="#{bundle.ViewGNAreaLabel_mOHArea}"/>
+                    <h:outputText value="#{gNAreaController.selected.mOHArea}" title="#{bundle.ViewGNAreaTitle_mOHArea}"/>
+                    <h:outputText value="#{bundle.ViewGNAreaLabel_name}"/>
+                    <h:outputText value="#{gNAreaController.selected.name}" title="#{bundle.ViewGNAreaTitle_name}"/>
+                    <h:outputText value="#{bundle.ViewGNAreaLabel_pHMArea}"/>
+                    <h:outputText value="#{gNAreaController.selected.pHMArea}" title="#{bundle.ViewGNAreaTitle_pHMArea}"/>
+                    <h:outputText value="#{bundle.ViewGNAreaLabel_retireComments}"/>
+                    <h:outputText value="#{gNAreaController.selected.retireComments}" title="#{bundle.ViewGNAreaTitle_retireComments}"/>
+                    <h:outputText value="#{bundle.ViewGNAreaLabel_retiredAt}"/>
+                    <h:outputText value="#{gNAreaController.selected.retiredAt}" title="#{bundle.ViewGNAreaTitle_retiredAt}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewGNAreaLabel_retirer}"/>
+                    <h:outputText value="#{gNAreaController.selected.retirer}" title="#{bundle.ViewGNAreaTitle_retirer}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{gNAreaController.destroyAndView}" value="#{bundle.ViewGNAreaDestroyLink}"/>
+                <br />
+                <br />
+                <h:commandLink action="Edit" value="#{bundle.ViewGNAreaEditLink}"/>
+                <br />
+                <h:commandLink action="#{gNAreaController.prepareCreate}" value="#{bundle.ViewGNAreaCreateLink}" />
+                <br />
+                <h:commandLink action="#{gNAreaController.prepareList}" value="#{bundle.ViewGNAreaShowAllLink}"/>
+                <br />
+                <br />
+                <h:commandLink value="#{bundle.ViewGNAreaIndexLink}" action="/index" immediate="true" />
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

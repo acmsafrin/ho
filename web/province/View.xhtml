@@ -15,8 +15,26 @@
             </h:panelGroup>
             <h:form>
                 <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewProvinceLabel_createdAt}"/>
+                    <h:outputText value="#{provinceController.selected.createdAt}" title="#{bundle.ViewProvinceTitle_createdAt}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewProvinceLabel_creater}"/>
+                    <h:outputText value="#{provinceController.selected.creater}" title="#{bundle.ViewProvinceTitle_creater}"/>
+                    <h:outputText value="#{bundle.ViewProvinceLabel_description}"/>
+                    <h:outputText value="#{provinceController.selected.description}" title="#{bundle.ViewProvinceTitle_description}"/>
                     <h:outputText value="#{bundle.ViewProvinceLabel_id}"/>
                     <h:outputText value="#{provinceController.selected.id}" title="#{bundle.ViewProvinceTitle_id}"/>
+                    <h:outputText value="#{bundle.ViewProvinceLabel_name}"/>
+                    <h:outputText value="#{provinceController.selected.name}" title="#{bundle.ViewProvinceTitle_name}"/>
+                    <h:outputText value="#{bundle.ViewProvinceLabel_retireComments}"/>
+                    <h:outputText value="#{provinceController.selected.retireComments}" title="#{bundle.ViewProvinceTitle_retireComments}"/>
+                    <h:outputText value="#{bundle.ViewProvinceLabel_retiredAt}"/>
+                    <h:outputText value="#{provinceController.selected.retiredAt}" title="#{bundle.ViewProvinceTitle_retiredAt}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewProvinceLabel_retirer}"/>
+                    <h:outputText value="#{provinceController.selected.retirer}" title="#{bundle.ViewProvinceTitle_retirer}"/>
                 </h:panelGrid>
                 <br />
                 <h:commandLink action="#{provinceController.destroyAndView}" value="#{bundle.ViewProvinceDestroyLink}"/>

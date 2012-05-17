@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditGNAreaTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditGNAreaLabel_id}" for="id" />
+                    <h:inputText id="id" value="#{gNAreaController.selected.id}" title="#{bundle.EditGNAreaTitle_id}" />
+                    <h:outputLabel value="#{bundle.EditGNAreaLabel_code}" for="code" />
+                    <h:inputText id="code" value="#{gNAreaController.selected.code}" title="#{bundle.EditGNAreaTitle_code}" />
+                    <h:outputLabel value="#{bundle.EditGNAreaLabel_createdAt}" for="createdAt" />
+                    <h:inputText id="createdAt" value="#{gNAreaController.selected.createdAt}" title="#{bundle.EditGNAreaTitle_createdAt}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.EditGNAreaLabel_creater}" for="creater" />
+                    <h:selectOneMenu id="creater" value="#{gNAreaController.selected.creater}" title="#{bundle.EditGNAreaTitle_creater}" >
+                        <f:selectItems value="#{webUserController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditGNAreaLabel_dPDHSArea}" for="dPDHSArea" />
+                    <h:selectOneMenu id="dPDHSArea" value="#{gNAreaController.selected.dPDHSArea}" title="#{bundle.EditGNAreaTitle_dPDHSArea}" >
+                        <f:selectItems value="#{dPDHSAreaController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditGNAreaLabel_description}" for="description" />
+                    <h:inputText id="description" value="#{gNAreaController.selected.description}" title="#{bundle.EditGNAreaTitle_description}" />
+                    <h:outputLabel value="#{bundle.EditGNAreaLabel_mOHArea}" for="mOHArea" />
+                    <h:selectOneMenu id="mOHArea" value="#{gNAreaController.selected.mOHArea}" title="#{bundle.EditGNAreaTitle_mOHArea}" >
+                        <f:selectItems value="#{mOHAreaController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditGNAreaLabel_name}" for="name" />
+                    <h:inputText id="name" value="#{gNAreaController.selected.name}" title="#{bundle.EditGNAreaTitle_name}" />
+                    <h:outputLabel value="#{bundle.EditGNAreaLabel_pHMArea}" for="pHMArea" />
+                    <h:selectOneMenu id="pHMArea" value="#{gNAreaController.selected.pHMArea}" title="#{bundle.EditGNAreaTitle_pHMArea}" >
+                        <f:selectItems value="#{pHMAreaController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditGNAreaLabel_retireComments}" for="retireComments" />
+                    <h:inputText id="retireComments" value="#{gNAreaController.selected.retireComments}" title="#{bundle.EditGNAreaTitle_retireComments}" />
+                    <h:outputLabel value="#{bundle.EditGNAreaLabel_retiredAt}" for="retiredAt" />
+                    <h:inputText id="retiredAt" value="#{gNAreaController.selected.retiredAt}" title="#{bundle.EditGNAreaTitle_retiredAt}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.EditGNAreaLabel_retirer}" for="retirer" />
+                    <h:selectOneMenu id="retirer" value="#{gNAreaController.selected.retirer}" title="#{bundle.EditGNAreaTitle_retirer}" >
+                        <f:selectItems value="#{webUserController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{gNAreaController.update}" value="#{bundle.EditGNAreaSaveLink}"/>
+                <br />
+                <br />
+                <h:commandLink action="View" value="#{bundle.EditGNAreaViewLink}" immediate="true"/>
+                <br />
+                <h:commandLink action="#{gNAreaController.prepareList}" value="#{bundle.EditGNAreaShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:commandLink value="#{bundle.EditGNAreaIndexLink}" action="/index" immediate="true" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>
