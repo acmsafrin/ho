@@ -6,6 +6,7 @@ import gov.sp.health.jsf.util.PaginationHelper;
 import gov.sp.health.autobean.DPDHSAreaFacade;
 
 import java.io.Serializable;
+import java.util.List;
 import java.util.ResourceBundle;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
@@ -158,6 +159,10 @@ public class DPDHSAreaController implements Serializable {
             items = getPagination().createPageDataModel();
         }
         return items;
+    }
+
+    public List getAllItems() {
+        return getFacade().findAll();
     }
 
     private void recreateModel() {
