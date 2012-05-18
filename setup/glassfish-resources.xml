@@ -11,4 +11,9 @@
         <property name="driverClass" value="com.mysql.jdbc.Driver"/>
     </jdbc-connection-pool>
     <jdbc-resource enabled="true" jndi-name="dsHO" object-type="user" pool-name="mysql_healthoffice_healthofficePool"/>
+
+
+
+
+
 </resources>
