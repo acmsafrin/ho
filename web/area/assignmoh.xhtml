@@ -11,17 +11,17 @@
         <h:form>
             <pou:growl></pou:growl>
 
-            <table>
+            <table border="2">
                 <tr>
                     <td>
                         <h:selectOneListbox id="lstDPDHS" >
-                            <f:selectItems value="#{dPDHSAreaController1.items}"></f:selectItems>
+                            <f:selectItems value="#{dPDHSAreaController.items}"></f:selectItems>
                         </h:selectOneListbox>
                     </td>
                     <td>
-                        <h:outputText id="txtDPDHS" value="#{dPDHSAreaController1.current.name}" ></h:outputText>
-                        <h:commandButton id="btnAddDPDHS" value="Add" action="#{dPDHSAreaController1.saveSelected()}" >
-                            <f:ajax execute="lstDPDHS txtDPDHS btnAddDPDHS" render="lstDPDHS txtDPDHS"></f:ajax>
+                        <h:inputText id="txtDPDHS" value="#{dPDHSAreaController.current.name}" ></h:inputText>
+                        <h:commandButton id="btnAddDPDHS" value="Add" action="#{dPDHSAreaController.testApp()}" >
+                            
                         </h:commandButton>
                     </td>
                 </tr>

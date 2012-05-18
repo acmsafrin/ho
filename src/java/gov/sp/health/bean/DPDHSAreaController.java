@@ -2,7 +2,7 @@
  * MSc(Biomedical Informatics) Project
  * 
  * Development and Implementation of a Web-based Combined Data Repository of 
-Genealogical, Clinical, Laboratory and Genetic Data 
+ Genealogical, Clinical, Laboratory and Genetic Data 
  * and
  * a Set of Related Tools
  */
@@ -26,12 +26,11 @@ import javax.faces.model.ListDataModel;
  * @author Dr. M. H. B. Ariyaratne, MBBS, PGIM Trainee for MSc(Biomedical
  * Informatics)
  */
-@ManagedBean(name = "dPDHSAreaController1")
+@ManagedBean(name = "dPDHSAreaController")
 @SessionScoped
-public class DPDHSAreaController {
+public final class DPDHSAreaController {
 
-
-      private DPDHSArea current;
+    private DPDHSArea current;
     private DataModel items = null;
     @EJB
     private DPDHSAreaFacade ejbFacade;
@@ -40,6 +39,11 @@ public class DPDHSAreaController {
     boolean modifyControlDisable = true;
     String selectText = "";
 
+    public DPDHSAreaController() {
+    }
+
+    
+    
     public int getSelectedItemIndex() {
         return selectedItemIndex;
     }
@@ -50,6 +54,9 @@ public class DPDHSAreaController {
 
     public DPDHSArea getCurrent() {
         JsfUtil.addSuccessMessage("Got current");
+        if(current==null){
+            current = new DPDHSArea();
+        }
         return current;
     }
 
@@ -58,9 +65,11 @@ public class DPDHSAreaController {
         this.current = current;
     }
 
-    public DPDHSAreaController() {
-    }
 
+    public void testApp(){
+         JsfUtil.addSuccessMessage("Setted current");
+    }
+    
     private DPDHSAreaFacade getFacade() {
         return ejbFacade;
     }
@@ -87,8 +96,8 @@ public class DPDHSAreaController {
             if (selectText.equals("")) {
                 items = new ListDataModel(getFacade().findAll("name", true));
             } else {
-                items = new ListDataModel(getFacade().findAll("name", "%" + selectText + "%", 
-true));
+                items = new ListDataModel(getFacade().findAll("name", "%" + selectText + "%",
+                        true));
                 if (items.getRowCount() > 0) {
                     items.setRowIndex(0);
                     current = (DPDHSArea) items.getRowData();
@@ -110,7 +119,7 @@ true));
         if (items.getRowCount() > 0) {
             items.setRowIndex(0);
             searchedItem = (DPDHSArea) items.getRowData();
-        } else if(createNewIfNotPresent) {
+        } else if (createNewIfNotPresent) {
             searchedItem = new DPDHSArea();
             searchedItem.setName(itemName);
             searchedItem.setCreatedAt(Calendar.getInstance().getTime());
@@ -146,14 +155,12 @@ true));
     public void saveSelected() {
         if (selectedItemIndex > 0) {
             getFacade().edit(current);
-            JsfUtil.addSuccessMessage(new MessageProvider().getValue
-("savedOldSuccessfully"));
+            JsfUtil.addSuccessMessage(new MessageProvider().getValue("savedOldSuccessfully"));
         } else {
             current.setCreatedAt(Calendar.getInstance().getTime());
             current.setCreater(SessionController.loggedUser);
             getFacade().create(current);
-            JsfUtil.addSuccessMessage(new MessageProvider().getValue
-("savedNewSuccessfully"));
+            JsfUtil.addSuccessMessage(new MessageProvider().getValue("savedNewSuccessfully"));
         }
         this.prepareSelect();
         recreateModel();
@@ -162,6 +169,22 @@ true));
         selectedItemIndex = intValue(current.getId());
     }
 
+    public void addDirectly(){
+        JsfUtil.addSuccessMessage("1");
+        try{
+            
+            current.setCreatedAt(Calendar.getInstance().getTime());
+            current.setCreater(SessionController.loggedUser);
+            
+            getFacade().create(current);
+            JsfUtil.addSuccessMessage(new MessageProvider().getValue("savedNewSuccessfully"));
+            current = new DPDHSArea();
+        }catch (Exception e){
+            JsfUtil.addErrorMessage(e, "Error");
+        }
+        
+    }
+    
     public void cancelSelect() {
         this.prepareSelect();
     }
@@ -222,13 +245,11 @@ true));
     @FacesConverter(forClass = DPDHSArea.class)
     public static class DPDHSAreaControllerConverter implements Converter {
 
-        public Object getAsObject(FacesContext facesContext, UIComponent component, String 
-value) {
+        public Object getAsObject(FacesContext facesContext, UIComponent component, String value) {
             if (value == null || value.length() == 0) {
                 return null;
             }
-            DPDHSAreaController controller = (DPDHSAreaController) facesContext.getApplication
-().getELResolver().
+            DPDHSAreaController controller = (DPDHSAreaController) facesContext.getApplication().getELResolver().
                     getValue(facesContext.getELContext(), null, "dPDHSAreaController");
             return controller.ejbFacade.find(getKey(value));
         }
@@ -245,8 +266,7 @@ value) {
             return sb.toString();
         }
 
-        public String getAsString(FacesContext facesContext, UIComponent component, Object 
-object) {
+        public String getAsString(FacesContext facesContext, UIComponent component, Object object) {
             if (object == null) {
                 return null;
             }
@@ -254,14 +274,9 @@ object) {
                 DPDHSArea o = (DPDHSArea) object;
                 return getStringKey(o.getId());
             } else {
-                throw new IllegalArgumentException("object " + object + " is of type " + 
-object.getClass().getName() + "; expected type: " + DPDHSAreaController.class.getName());
+                throw new IllegalArgumentException("object " + object + " is of type "
+                        + object.getClass().getName() + "; expected type: " + DPDHSAreaController.class.getName());
             }
         }
     }
-
-    
-    
-    
-    
 }
