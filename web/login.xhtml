@@ -16,25 +16,45 @@
 
 
             <form id="testForm" action="./">
-                <table class="register-table">
+
+                <table cellpadding="2px" cellspacing="1px" bgcolor="#F4F5F7" width="400px" class="tableBorder" align="center">
                     <tr>
-                        <td> Login</td>
+                        <td colspan="2" bgcolor="#0066FF">&nbsp;</td>
                     </tr>
                     <tr>
-                        <td>Username:</td>
-                        <td><input type="text" id="userInput" class="text-input" /></td>
+                        <td colspan="2" class="label">&nbsp;</td>
+                    </tr>
+
+                    <tr>
+                        <td align="center" colspan="2">
+                            <img src="images/locked.png" border="0" align="absbottom"/>&nbsp;
+                            <span class="message">Login to the Admin Panel</span>
+                        </td>
+                    </tr>                  
+                    <tr>
+                        <td colspan="2" class="label">&nbsp;</td>
                     </tr>
                     <tr>
-                        <td>Password:</td>
-                        <td><input type="password" id="passwordInput" class="text-input" /></td>
+                        <td class="label" align="right" width="40%">Username:</td>
+                        <td align="left" width="60%"><input type="text" name="username" maxlength="20"/></td>
+                    </tr>
+                    <tr>
+                        <td class="label" align="right">Password:</td>
+                        <td align="left"><input type="password" name="password" maxlength="20" /></td>
+                    </tr>
+                    <tr>
+                        <td class="label" align="right">&nbsp;</td>
+                        <td align="left"><input type="submit" value="Register" /> </td>
+                        <td align="left"><input type="submit" value="Login" /></td>
+
+
+                    </tr>                  
+                    <tr>
+                        <td colspan="2" class="label">&nbsp;</td>
                     </tr>
                 </table>
             </form>
-
-
-            <button>OK</button><br/>
-
-            <h:outputLabel> <button>Register </button> </h:outputLabel>
+          
         </h:form>
     </ui:define>
 
