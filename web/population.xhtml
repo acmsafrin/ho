@@ -1,0 +1,60 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="./resources/template/pdhs_template_1.xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:p="http://primefaces.org/ui">
+
+
+
+    <ui:define name="content">
+        <h:form>
+            <h:commandLink action="areas" value="Areas" ></h:commandLink>
+            <h:commandLink action="login" value="Login Page" ></h:commandLink>
+            <h:commandLink action="register" value="Register" ></h:commandLink>
+            <h:commandLink action="population" value="Population Page" > </h:commandLink><br/>
+
+            <form id="testForm" action="./">
+                <table class="register-table">
+                    <tr>
+                        <td>  <h:selectOneListbox class="PdListBox"> DPDHS Aria:</h:selectOneListbox></td>
+                        <td> <input type ="text" size="20" maxlength="20"> </input></td>
+                        <td>  <button>Add</button><br/> </td>
+                    </tr>
+                   
+                     <tr>
+                        <td>  <h:selectOneListbox class="PdListBox"> MOH Aria:  </h:selectOneListbox></td>
+                        <td> <input type ="text" size="20" maxlength="20"> </input></td>
+                        <td>  <button>Add</button><br/> </td>
+                    </tr>
+                    
+                     <tr>
+                         <td>PHI Aria:
+                             
+                         </td>
+                        <td>  <h:selectOneListbox class="PdListBox">   </h:selectOneListbox></td>
+                        <td> <input type ="text" size="20" maxlength="20"> </input></td>
+                        <td>  <button>Add</button><br/> </td>
+                    </tr>
+                    
+                     <tr>
+                        <td>  <h:selectOneListbox class="PdListBox"> PHM Aria:    </h:selectOneListbox></td>
+                        <td> <input type ="text" size="20" maxlength="20"> </input></td>
+                        <td>  <button>Add</button><br/> </td>
+                    </tr>
+                    
+                     <tr>
+                        <td>  <h:selectOneListbox class="PdListBox"> GN Aria:    </h:selectOneListbox></td>
+                        <td> <input type ="text" size="20" maxlength="20"> </input></td>
+                        <td>  <button>Add</button><br/> </td>
+                    </tr>
+                    
+                </table>
+            </form>
+
+            
+        </h:form>
+    </ui:define>
+
+
+</ui:composition>

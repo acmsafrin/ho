@@ -1,0 +1,42 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="./resources/template/pdhs_template_1.xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:p="http://primefaces.org/ui">
+
+
+
+    <ui:define name="content">
+        <h:form>
+            <h:commandLink action="areas" value="Areas" > </h:commandLink>
+            <h:commandLink action="login" value="Login Page"> </h:commandLink>
+            <h:commandLink action="register" value="Register Page" > </h:commandLink>
+            <h:commandLink action="population" value="Population Page" > </h:commandLink> <br/>
+
+
+            <form id="testForm" action="./">
+                <table class="register-table">
+                    <tr>
+                        <td> Login</td>
+                    </tr>
+                    <tr>
+                        <td>Username:</td>
+                        <td><input type="text" id="userInput" class="text-input" /></td>
+                    </tr>
+                    <tr>
+                        <td>Password:</td>
+                        <td><input type="password" id="passwordInput" class="text-input" /></td>
+                    </tr>
+                </table>
+            </form>
+
+
+            <button>OK</button><br/>
+
+            <h:outputLabel> <button>Register </button> </h:outputLabel>
+        </h:form>
+    </ui:define>
+
+
+</ui:composition>
