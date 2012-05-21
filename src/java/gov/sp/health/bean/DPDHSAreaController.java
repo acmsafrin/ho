@@ -11,6 +11,7 @@ package gov.sp.health.bean;
 import gov.sp.health.autobean.DPDHSAreaFacade;
 import gov.sp.health.entity.DPDHSArea;
 import java.util.Calendar;
+import java.util.List;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
@@ -30,6 +31,7 @@ import javax.faces.model.ListDataModel;
 @SessionScoped
 public final class DPDHSAreaController {
 
+    List<DPDHSArea> areas;
     private DPDHSArea current;
     private DataModel items = null;
     @EJB
@@ -42,8 +44,17 @@ public final class DPDHSAreaController {
     public DPDHSAreaController() {
     }
 
-    
-    
+    public List<DPDHSArea> getAreas() {
+
+        areas = getFacade().findAll();
+
+        return areas;
+    }
+
+    public void setAreas(List<DPDHSArea> areas) {
+        this.areas = areas;
+    }
+
     public int getSelectedItemIndex() {
         return selectedItemIndex;
     }
@@ -54,7 +65,7 @@ public final class DPDHSAreaController {
 
     public DPDHSArea getCurrent() {
         JsfUtil.addSuccessMessage("Got current");
-        if(current==null){
+        if (current == null) {
             current = new DPDHSArea();
         }
         return current;
@@ -65,18 +76,18 @@ public final class DPDHSAreaController {
         this.current = current;
     }
 
-
-    public void testApp(){
-         JsfUtil.addSuccessMessage("Setted current");
+    public void testApp() {
+        JsfUtil.addSuccessMessage("Setted current");
     }
-    
+
     private DPDHSAreaFacade getFacade() {
         return ejbFacade;
     }
 
     public DataModel getItems() {
         if (items == null) {
-            items = new ListDataModel(getFacade().findAll("name", true));
+            items = new ListDataModel(getFacade().findBySQL("Select d From DPDHSArea d"));
+            JsfUtil.addSuccessMessage("Got Item");
         }
         return items;
     }
@@ -169,22 +180,22 @@ public final class DPDHSAreaController {
         selectedItemIndex = intValue(current.getId());
     }
 
-    public void addDirectly(){
+    public void addDirectly() {
         JsfUtil.addSuccessMessage("1");
-        try{
-            
+        try {
+
             current.setCreatedAt(Calendar.getInstance().getTime());
             current.setCreater(SessionController.loggedUser);
-            
+
             getFacade().create(current);
             JsfUtil.addSuccessMessage(new MessageProvider().getValue("savedNewSuccessfully"));
             current = new DPDHSArea();
-        }catch (Exception e){
+        } catch (Exception e) {
             JsfUtil.addErrorMessage(e, "Error");
         }
-        
+
     }
-    
+
     public void cancelSelect() {
         this.prepareSelect();
     }

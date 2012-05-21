@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 import javax.persistence.criteria.ParameterExpression;
 import javax.persistence.criteria.Predicate;
 
@@ -42,7 +44,10 @@ public abstract class AbstractFacade<T> {
     }
 
     public List<T> findAll() {
-        return findAll(null, null, false);
+        javax.persistence.criteria.CriteriaBuilder cb = getEntityManager().getCriteriaBuilder();
+        javax.persistence.criteria.CriteriaQuery<T> cq = cb.createQuery(entityClass);
+        javax.persistence.criteria.Root<T> rt = cq.from(entityClass);
+        return getEntityManager().createQuery(cq).getResultList();
     }
 
     public List<T> findAll(String fieldName) {
@@ -55,6 +60,11 @@ public abstract class AbstractFacade<T> {
 
     public List<T> findAll(String fieldName, String fieldValue) {
         return findAll(fieldName, fieldValue, false);
+    }
+
+    public List<T> findBySQL(String temSQL) {
+        TypedQuery<T> qry = getEntityManager().createQuery(temSQL, entityClass);
+        return qry.getResultList();
     }
 
     private void test(Class myClass, Object ob) {
@@ -117,8 +127,6 @@ public abstract class AbstractFacade<T> {
 
         return getEntityManager().createQuery(cq).getResultList();
     }
-
-
 
     public int count() {
         javax.persistence.criteria.CriteriaQuery cq = getEntityManager().getCriteriaBuilder().createQuery();
