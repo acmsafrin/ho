@@ -7,6 +7,7 @@
  */
 package gov.sp.health.bean;
 
+import gov.sp.health.autobean.PersonFacade;
 import gov.sp.health.autobean.WebUserFacade;
 import gov.sp.health.entity.Person;
 import gov.sp.health.entity.WebUser;
@@ -25,7 +26,9 @@ import javax.faces.bean.RequestScoped;
 public class ConnetcionController {
 
     @EJB
-    WebUserFacade ejbFacade;
+    WebUserFacade uFacade;
+    @EJB
+            PersonFacade pFacade;
     WebUser current;
     String userName;
     String passord;
@@ -37,7 +40,7 @@ public class ConnetcionController {
     }
 
     private WebUserFacade getFacede() {
-        return ejbFacade;
+        return uFacade;
     }
 
     public String loginAction(){
@@ -73,7 +76,7 @@ public class ConnetcionController {
             JsfUtil.addSuccessMessage("First Visit");
             return true;
         } else {
-            JsfUtil.addSuccessMessage("First Visit");Not
+            JsfUtil.addSuccessMessage("Not First Visit");
             return false;
         }
         
@@ -102,11 +105,11 @@ public class ConnetcionController {
     }
 
     public WebUserFacade getEjbFacade() {
-        return ejbFacade;
+        return uFacade;
     }
 
     public void setEjbFacade(WebUserFacade ejbFacade) {
-        this.ejbFacade = ejbFacade;
+        this.uFacade = ejbFacade;
     }
 
     public String getPassord() {
