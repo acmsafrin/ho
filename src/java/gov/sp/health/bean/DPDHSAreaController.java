@@ -46,7 +46,7 @@ public final class DPDHSAreaController {
 
     public List<DPDHSArea> getAreas() {
 
-        areas = getFacade().findAll();
+        areas =  (getFacade().findBySQL("Select d From DPDHSArea d"));
 
         return areas;
     }
