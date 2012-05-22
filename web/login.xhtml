@@ -17,12 +17,12 @@
 
             <form id="testForm" action="./">
 
-                <table cellpadding="2px" cellspacing="1px" bgcolor="#F4F5F7" width="400px" class="tableBorder" align="center">
+                <table cellpadding="2px" cellspacing="1px" bgcolor="#F4F5F7" width="400px" class="pdTableBorder" align="center">
                     <tr>
                         <td colspan="2" bgcolor="#0066FF">&nbsp;</td>
                     </tr>
                     <tr>
-                        <td colspan="2" class="label">&nbsp;</td>
+                        <td colspan="2" class="pdLabel">&nbsp;</td>
                     </tr>
 
                     <tr>
@@ -32,25 +32,25 @@
                         </td>
                     </tr>                  
                     <tr>
-                        <td colspan="2" class="label">&nbsp;</td>
+                        <td colspan="2" class="pdLabel">&nbsp;</td>
                     </tr>
                     <tr>
-                        <td class="label" align="right" width="40%">Username:</td>
-                        <td align="left" width="60%"><input type="text" name="username" maxlength="20"/></td>
+                        <td class="pdLabel" align="right" width="40%">Username:</td>
+                        <td align="left" width="60%"><input type="text" name="username" maxlength="20" value="#{connetcionController.userName}"/></td>
                     </tr>
                     <tr>
-                        <td class="label" align="right">Password:</td>
-                        <td align="left"><input type="password" name="password" maxlength="20" /></td>
+                        <td class="pdLabel" align="right">Password:</td>
+                        <td align="left"><input type="password" name="password" maxlength="20" value="#{connetcionController.passord}" /></td>
                     </tr>
                     <tr>
-                        <td class="label" align="right">&nbsp;</td>
-                        <td align="left"><input type="submit" value="Register" /> </td>
-                        <td align="left"><input type="submit" value="Login" /></td>
+                        <td class="pdLabel" align="right">&nbsp;</td>
+                        <td align="left"><input type="submit" value="Register"  /> </td>
+                        <td align="left"><input type="submit" value="Login" action="#{connetcionController.loginAction()}"/></td>
 
 
                     </tr>                  
                     <tr>
-                        <td colspan="2" class="label">&nbsp;</td>
+                        <td colspan="2" class="pdLabel">&nbsp;</td>
                     </tr>
                 </table>
             </form>
