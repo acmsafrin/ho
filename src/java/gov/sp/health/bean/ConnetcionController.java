@@ -28,7 +28,7 @@ public class ConnetcionController {
     @EJB
     WebUserFacade uFacade;
     @EJB
-            PersonFacade pFacade;
+    PersonFacade pFacade;
     WebUser current;
     String userName;
     String passord;
@@ -43,20 +43,21 @@ public class ConnetcionController {
         return uFacade;
     }
 
-    public String loginAction(){
-        if (login()){
+    public String loginAction() {
+        if (login()) {
             return "registered";
-        }else{
+        } else {
             JsfUtil.addErrorMessage("Login Failure. Please try again");
             return "";
         }
     }
-    
+
     private boolean login() {
         if (isFirstVisit()) {
             prepareFirstVisit();
             return true;
         } else {
+            JsfUtil.addSuccessMessage("Checking Old Users");
             return checkUsers();
         }
     }
@@ -65,10 +66,12 @@ public class ConnetcionController {
         WebUser user = new WebUser();
         Person person = new Person();
         person.setName(userName);
+        pFacade.create(person);
         user.setName(HOSecurity.encrypt(userName));
         user.setWebUserPassword(HOSecurity.hash(passord));
         user.setWebUserPerson(person);
-        
+        uFacade.create(user);
+        JsfUtil.addSuccessMessage("New User Added");
     }
 
     private boolean isFirstVisit() {
@@ -76,16 +79,18 @@ public class ConnetcionController {
             JsfUtil.addSuccessMessage("First Visit");
             return true;
         } else {
-            JsfUtil.addSuccessMessage("Not First Visit");
+            JsfUtil.addSuccessMessage("Not, Not First Visit");
             return false;
         }
-        
+
     }
 
     private boolean checkUsers() {
+        JsfUtil.addSuccessMessage("A user found");
         List<WebUser> allUsers = getFacede().findAll();
         for (WebUser u : allUsers) {
-            if (HOSecurity.encrypt(u.getName()).equals(userName)) {
+            if (HOSecurity.encrypt(u.getName()).equalsIgnoreCase(userName)) {
+                JsfUtil.addSuccessMessage("A user found");
                 if (HOSecurity.matchPassword(passord, u.getWebUserPassword())) {
                     SessionController.setLoggedUser(u);
                     JsfUtil.addSuccessMessage("Logged successfully");
@@ -127,7 +132,4 @@ public class ConnetcionController {
     public void setUserName(String userName) {
         this.userName = userName;
     }
-    
-    
-    
 }
