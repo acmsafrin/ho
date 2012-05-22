@@ -54,6 +54,16 @@
                     </tr>
 
                 </table>
+                
+                
+                <p:dataTable value="#{dPDHSAreaController.areas}" var="area" >
+                
+                    <h:column >
+                        <h:outputLabel value="#{area.name}" ></h:outputLabel>
+                    </h:column>
+                    
+                </p:dataTable>
+                
             </form>
 
            
