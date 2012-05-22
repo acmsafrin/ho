@@ -3,7 +3,8 @@
 <ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
                 template="./resources/template/pdhs_template_1.xhtml"
                 xmlns:h="http://java.sun.com/jsf/html"
-                xmlns:p="http://primefaces.org/ui">
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://java.sun.com/jsf/core">
 
 
 
@@ -48,9 +49,12 @@
 
                     <tr>
                         <td class="pdLabel">GN Aria: </td>
-                        <td>  <h:selectOneListbox class="PdListBox"> </h:selectOneListbox></td>
-                        <td> <input type ="text" size="20" maxlength="20"> </input></td>
-                        <td>  <button class="pdLabel">Add</button><br/> </td>
+                        <td>  <h:selectOneListbox class="PdListBox"> 
+                                <f:selectItems value="#{areaController.getgNAreas()}"/>
+                            </h:selectOneListbox>
+                        </td>
+                        <td> <h:inputText size="20" maxlength="20" value="#{areaController.getgNArea().name}" /></td>
+                        <td>  <h:commandButton action="#{areaController.addGN()}" class="pdLabel" value="Add"/><br/> </td>
                     </tr>
 
                 </table>
