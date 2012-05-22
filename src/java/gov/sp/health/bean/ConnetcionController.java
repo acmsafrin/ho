@@ -40,6 +40,15 @@ public class ConnetcionController {
         return ejbFacade;
     }
 
+    public String loginAction(){
+        if (login()){
+            return "registered";
+        }else{
+            JsfUtil.addErrorMessage("Login Failure. Please try again");
+            return "";
+        }
+    }
+    
     private boolean login() {
         if (isFirstVisit()) {
             prepareFirstVisit();
@@ -61,10 +70,13 @@ public class ConnetcionController {
 
     private boolean isFirstVisit() {
         if (getFacede().count() <= 0) {
+            JsfUtil.addSuccessMessage("First Visit");
             return true;
         } else {
+            JsfUtil.addSuccessMessage("First Visit");Not
             return false;
         }
+        
     }
 
     private boolean checkUsers() {
@@ -73,10 +85,46 @@ public class ConnetcionController {
             if (HOSecurity.encrypt(u.getName()).equals(userName)) {
                 if (HOSecurity.matchPassword(passord, u.getWebUserPassword())) {
                     SessionController.setLoggedUser(u);
+                    JsfUtil.addSuccessMessage("Logged successfully");
                     return true;
                 }
             }
         }
         return false;
     }
+
+    public WebUser getCurrent() {
+        return current;
+    }
+
+    public void setCurrent(WebUser current) {
+        this.current = current;
+    }
+
+    public WebUserFacade getEjbFacade() {
+        return ejbFacade;
+    }
+
+    public void setEjbFacade(WebUserFacade ejbFacade) {
+        this.ejbFacade = ejbFacade;
+    }
+
+    public String getPassord() {
+        return passord;
+    }
+
+    public void setPassord(String passord) {
+        this.passord = passord;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+    
+    
+    
 }
