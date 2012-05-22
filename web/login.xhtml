@@ -3,11 +3,12 @@
 <ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
                 template="./resources/template/pdhs_template_1.xhtml"
                 xmlns:h="http://java.sun.com/jsf/html"
-                xmlns:p="http://primefaces.org/ui">
+                >
 
 
 
     <ui:define name="content">
+
         <h:form>
             <h:commandLink action="areas" value="Areas" > </h:commandLink><br/>
             <h:commandLink action="login" value="Login Page"> </h:commandLink>
@@ -15,46 +16,48 @@
             <h:commandLink action="population" value="Population Page" > </h:commandLink> <br/>
 
 
-            <form id="testForm" action="./">
-
-                <table cellpadding="2px" cellspacing="1px" bgcolor="#F4F5F7" width="400px" class="pdTableBorder" align="center">
-                    <tr>
-                        <td colspan="2" bgcolor="#0066FF">&nbsp;</td>
-                    </tr>
-                    <tr>
-                        <td colspan="2" class="pdLabel">&nbsp;</td>
-                    </tr>
-
-                    <tr>
-                        <td align="center" colspan="2">
-                            <img src="images/locked.png" border="0" align="absbottom"/>&nbsp;
-                            <span class="message">Login to the Admin Panel</span>
-                        </td>
-                    </tr>                  
-                    <tr>
-                        <td colspan="2" class="pdLabel">&nbsp;</td>
-                    </tr>
-                    <tr>
-                        <td class="pdLabel" align="right" width="40%">Username:</td>
-                        <td align="left" width="60%"><input type="text" name="username" maxlength="20" value="#{connetcionController.userName}"/></td>
-                    </tr>
-                    <tr>
-                        <td class="pdLabel" align="right">Password:</td>
-                        <td align="left"><input type="password" name="password" maxlength="20" value="#{connetcionController.passord}" /></td>
-                    </tr>
-                    <tr>
-                        <td class="pdLabel" align="right">&nbsp;</td>
-                        <td align="left"><input type="submit" value="Register"  /> </td>
-                        <td align="left"><input type="submit" value="Login" action="#{connetcionController.loginAction()}"/></td>
 
 
-                    </tr>                  
-                    <tr>
-                        <td colspan="2" class="pdLabel">&nbsp;</td>
-                    </tr>
-                </table>
-            </form>
-          
+
+
+            <table cellpadding="2px" cellspacing="1px" bgcolor="#F4F5F7" width="400px" class="pdTableBorder" align="center">
+                <tr>
+                    <td colspan="2" bgcolor="#0066FF">&nbsp;</td>
+                </tr>
+                <tr>
+                    <td colspan="2" class="pdLabel">&nbsp;</td>
+                </tr>
+
+                <tr>
+                    <td align="center" colspan="2">
+
+                        <span class="message">Login to the Admin Panel</span>
+                    </td>
+                </tr>                  
+                <tr>
+                    <td colspan="2" class="pdLabel">&nbsp;</td>
+                </tr>
+                <tr>
+                    <td class="pdLabel" align="right" width="40%">Username:</td>
+                    <td align="left" width="60%"><h:inputText value="#{connetcionController.userName}"/></td>
+                </tr>
+                <tr>
+                    <td class="pdLabel" align="right">Password:</td>
+                    <td align="left"><h:inputSecret value="#{connetcionController.passord}"  /></td>
+                </tr>
+                <tr>
+
+                    <td align="left"><h:commandButton type="submit" value="Register" action="register" /> </td>
+                    <td align="left"><h:commandButton type="submit" value="Login" action="#{connetcionController.loginAction()}"/></td>
+
+
+                </tr>                  
+                <tr>
+                    <td colspan="2" class="pdLabel">&nbsp;</td>
+                </tr>
+            </table>
+
+
         </h:form>
     </ui:define>
 
