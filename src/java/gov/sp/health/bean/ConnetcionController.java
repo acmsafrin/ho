@@ -57,7 +57,7 @@ public class ConnetcionController {
             prepareFirstVisit();
             return true;
         } else {
-            JsfUtil.addSuccessMessage("Checking Old Users");
+//            JsfUtil.addSuccessMessage("Checking Old Users");
             return checkUsers();
         }
     }
@@ -71,29 +71,30 @@ public class ConnetcionController {
         user.setWebUserPassword(HOSecurity.hash(passord));
         user.setWebUserPerson(person);
         uFacade.create(user);
-        JsfUtil.addSuccessMessage("New User Added");
+//        JsfUtil.addSuccessMessage("New User Added");
     }
 
     private boolean isFirstVisit() {
         if (getFacede().count() <= 0) {
-            JsfUtil.addSuccessMessage("First Visit");
+//            JsfUtil.addSuccessMessage("First Visit");
             return true;
         } else {
-            JsfUtil.addSuccessMessage("Not, Not First Visit");
+//            JsfUtil.addSuccessMessage("Not, Not First Visit");
             return false;
         }
 
     }
 
     private boolean checkUsers() {
-        JsfUtil.addSuccessMessage("A user found");
+        JsfUtil.addSuccessMessage("Going to check users");
         List<WebUser> allUsers = getFacede().findAll();
         for (WebUser u : allUsers) {
-            if (HOSecurity.encrypt(u.getName()).equalsIgnoreCase(userName)) {
-                JsfUtil.addSuccessMessage("A user found");
+            if (HOSecurity.decrypt(u.getName()).equalsIgnoreCase(userName)) {
+//                JsfUtil.addSuccessMessage("A user found");
+                
                 if (HOSecurity.matchPassword(passord, u.getWebUserPassword())) {
                     SessionController.setLoggedUser(u);
-                    JsfUtil.addSuccessMessage("Logged successfully");
+//                    JsfUtil.addSuccessMessage("Logged successfully");
                     return true;
                 }
             }

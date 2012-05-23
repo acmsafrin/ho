@@ -17,6 +17,7 @@ import gov.sp.health.entity.GNArea;
 import gov.sp.health.entity.MOHArea;
 import gov.sp.health.entity.PHIArea;
 import gov.sp.health.entity.PHMArea;
+import java.util.Calendar;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
@@ -56,11 +57,11 @@ public class AreaController {
     GNArea gNArea;
 
     public AreaController() {
-       dPDHSArea = new DPDHSArea();
-       mOHArea = new MOHArea();
-       pHIArea = new PHIArea();
-       pHMArea = new PHMArea();
-       gNArea = new GNArea();
+        dPDHSArea = new DPDHSArea();
+        mOHArea = new MOHArea();
+        pHIArea = new PHIArea();
+        pHMArea = new PHMArea();
+        gNArea = new GNArea();
     }
 
     public DPDHSAreaFacade getdPDHSFacade() {
@@ -88,17 +89,20 @@ public class AreaController {
     }
 
     public List<GNArea> getgNAreas() {
-        String temSQL = "SELECT a FROM gnrea a";
+        String temSQL = "";
+        if (pHMArea.getId() == 0) {
+            temSQL = "SELECT a FROM GNArea a ORDER BY a.name";
+        } else {
+            
+            temSQL = "SELECT gn FROM GNArea gn INNER JOIN gn.pHMArea phm WHERE phm.id = " + pHMArea.getId();
+                    
+        }
         return getGnFacade().findBySQL(temSQL);
     }
 
-    public List<GNArea> getgNAreas(PHMArea pHMArea) {
-        String temSQL = "SELECT a FROM gnrea a";
-        return getGnFacade().findBySQL(null);
-    }
-
     public List<MOHArea> getmOHAreas() {
-        return mOHAreas;
+        String temSQL = "SELECT m FROM MOHArea m ORDER By m.name";
+        return getMohFacade().findBySQL(temSQL);
     }
 
     public List<PHIArea> getpHIAreas() {
@@ -106,15 +110,25 @@ public class AreaController {
     }
 
     public List<PHMArea> getpHMAreas() {
-        return pHMAreas;
+        String temSQL = "SELECT p FROM PHMArea p ORDER By p.name";
+        return getPhmFacade().findBySQL(temSQL);
     }
 
     public void addGN() {
+//        gNArea.setpHMArea(pHMArea);
         gnFacade.create(gNArea);
         JsfUtil.addSuccessMessage("Grama Niladhari Area Added");
         gNArea = new GNArea();
+
     }
 
+    public void addPHM(){
+        pHMArea.setpHIArea(pHIArea);
+        phmFacade.create(pHMArea);
+        JsfUtil.addSuccessMessage("Grama Niladhari Area Added");
+        pHMArea = new PHMArea();
+    }
+  
     public DPDHSArea getdPDHSArea() {
         return dPDHSArea;
     }
@@ -154,31 +168,4 @@ public class AreaController {
     public void setpHMArea(PHMArea pHMArea) {
         this.pHMArea = pHMArea;
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
 }

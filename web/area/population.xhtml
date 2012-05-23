@@ -1,10 +1,10 @@
 <?xml version='1.0' encoding='UTF-8' ?>
-<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
-                template="./resources/template/pdhs_template_1.xhtml"
+                template="./../resources/template/pdhs_template_1.xhtml"
                 xmlns:h="http://java.sun.com/jsf/html"
-                xmlns:p="http://primefaces.org/ui"
-                xmlns:f="http://java.sun.com/jsf/core">
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:pou="http://primefaces.org/ui">
 
 
 
@@ -15,7 +15,10 @@
             <h:commandLink action="register" value="Register" ></h:commandLink>
             <h:commandLink action="population" value="Population Page" > </h:commandLink><br/>
 
-            <form id="testForm" action="./">
+            
+            <pou:growl></pou:growl>
+            
+
                 <table class="register-table">
                     <tr>
                         <td class="pdLabel"> DPDHS Aria:</td>
@@ -42,7 +45,10 @@
 
                     <tr>
                         <td class="pdLabel">PHM Aria: </td>
-                        <td>  <h:selectOneListbox class="PdListBox"> </h:selectOneListbox></td>
+                        <td>  <h:selectOneListbox class="PdListBox" value="#{areaController.getpHMArea()}"> 
+                                <f:selectItems value="#{areaController.getpHMAreas()}" var="item" itemLsabel="#{item.name}"></f:selectItems>
+                            </h:selectOneListbox>
+                        </td>
                         <td> <input type ="text" size="20" maxlength="20"> </input></td>
                         <td>  <button class="pdLabel">Add</button><br/> </td>
                     </tr>
@@ -50,28 +56,17 @@
                     <tr>
                         <td class="pdLabel">GN Aria: </td>
                         <td>  <h:selectOneListbox class="PdListBox"> 
-                                <f:selectItems value="#{areaController.getgNAreas()}"/>
+                                <f:selectItems value="#{areaController.getgNAreas()}" var="item" itemLabel="#{item.name}"></f:selectItems>
                             </h:selectOneListbox>
                         </td>
                         <td> <h:inputText size="20" maxlength="20" value="#{areaController.getgNArea().name}" /></td>
-                        <td>  <h:commandButton action="#{areaController.addGN()}" class="pdLabel" value="Add"/><br/> </td>
-                    </tr>
-
-                </table>
-                
-                
-                <p:dataTable value="#{dPDHSAreaController.areas}" var="area" >
-                
-                    <h:column >
-                        <h:outputLabel value="#{area.name}" ></h:outputLabel>
-                    </h:column>
+                        <td>
+                            <pou:commandButton value="Non-Ajax Submit" actionListener="#{areaController.addGN()}"   
+                                           ajax="false" ></pou:commandButton>
                     
-                </p:dataTable>
-                
-            </form>
-
-           
-
+                        </td>
+                    </tr>
+                </table>
 
         </h:form>
     </ui:define>

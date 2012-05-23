@@ -49,7 +49,7 @@ public class HOSecurity {
     
     public static boolean matchPassword(String planePassword,String encryptedPassword ){
         BasicPasswordEncryptor en = new BasicPasswordEncryptor();
-        return en.checkPassword(planePassword, null);
+        return en.checkPassword(planePassword, encryptedPassword);
     }
     
     public static String decrypt(String word){

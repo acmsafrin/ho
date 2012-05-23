@@ -14,32 +14,7 @@
 
             <h:outputLabel value="Distribution of DPDHS,MOH, PHI, PHM and Grama Niladhari Areas" ></h:outputLabel>
 
-            <h:commandLink action="area/assignmoh1" value="Assign MOH Areas"></h:commandLink>
-
-            <h:inputText value="#{dPDHSAreaController.current.name}" ></h:inputText>
-
-            <h:commandButton value="Add" action="#{dPDHSAreaController.addDirectly()}" ></h:commandButton>
-
-            <pou:dataTable id="tbl" value="#{dPDHSAreaController.areas}" var="area" rendered="true" >
-
-                <pou:column>
-                    <h:outputText value="#{area.name}"></h:outputText>
-                </pou:column>
-
-            </pou:dataTable>
-            <h:commandLink value="Export" >
-                <pou:dataExporter type="csv" target="tbl" fileName="Areas" ></pou:dataExporter>
-            </h:commandLink>
-
-            <h:dataTable value="#{dPDHSAreaController.items}" var="area" >
-
-                <h:column>
-                    <h:outputLabel value="#{area.name}"></h:outputLabel>
-                </h:column>
-
-            </h:dataTable>
-
-            <h:outputLabel value="#{dPDHSAreaController.items}"  ></h:outputLabel>
+            <h:commandLink action="area/population" value="Assign MOH Areas"></h:commandLink>
 
         </h:form>
     </ui:define>
