@@ -3,70 +3,63 @@
 <ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
                 template="./../resources/template/pdhs_template_1.xhtml"
                 xmlns:h="http://java.sun.com/jsf/html"
-                xmlns:f="http://java.sun.com/jsf/core"
-                xmlns:pou="http://primefaces.org/ui">
+                xmlns:f="http://java.sun.com/jsf/core">
 
 
 
     <ui:define name="content">
         <h:form>
-            <h:commandLink action="areas" value="Areas" ></h:commandLink>
-            <h:commandLink action="login" value="Login Page" ></h:commandLink>
-            <h:commandLink action="register" value="Register" ></h:commandLink>
-            <h:commandLink action="population" value="Population Page" > </h:commandLink><br/>
 
-            
-            <pou:growl></pou:growl>
-            
 
-                <table class="register-table">
-                    <tr>
-                        <td class="pdLabel"> DPDHS Aria:</td>
-                        <td>  <h:selectOneListbox class="PdListBox"> </h:selectOneListbox></td>
-                        <td> <input type ="text" size="20" maxlength="20"> </input></td>
-                        <td>  <button class="pdLabel">Add</button><br/> </td>
-                    </tr>
 
-                    <tr>
-                        <td class="pdLabel">MOH Aria: </td>
-                        <td>  <h:selectOneListbox class="PdListBox">  </h:selectOneListbox></td>
-                        <td> <input type ="text" size="20" maxlength="20"> </input></td>
-                        <td>  <button class="pdLabel">Add</button><br/> </td>
-                    </tr>
+            <table class="register-table">
+                <tr>
+                    <td class="pdLabel"> DPDHS Aria:</td>
+                    <td>  
+                        <h:selectOneListbox class="PdListBox" value="#{areaController.dpdhsID}"> 
+                            <f:selectItems value="#{areaController.getdPDHSAreas()}" var="itemD" itemValue="#{itemD.id}" itemLabel="#{itemD.name}" />
+                        </h:selectOneListbox>
+                    </td>
+                    <td>
+                        <h:inputText value="#{areaController.getdPDHSArea().name}"  size="20" maxlength="20"/>
+                    </td>
+                    <td>
+                        <h:commandButton class="pdLabel" value="Add DPDHS" action="#{areaController.addDPDHS}" /><br/>
+                    </td>
+                </tr>
 
-                    <tr>
-                        <td class="pdLabel">PHI Aria:
+                <tr>
+                    <td class="pdLabel"> MOH Aria:</td>
+                    <td>  
+                        <h:selectOneListbox class="PdListBox" value="#{areaController.mohID}"> 
+                            <f:selectItems value="#{areaController.getmOHAreas()}" var="itemD" itemValue="#{itemD.id}" itemLabel="#{itemD.name}" />
+                        </h:selectOneListbox>
+                    </td>
+                    <td>
+                        <h:inputText value="#{areaController.getmOHArea().name}"  size="20" maxlength="20"/>
+                    </td>
+                    <td>
+                        <h:commandButton class="pdLabel" value="Add DPDHS" action="#{areaController.addMOH}" /><br/>
+                    </td>
+                </tr>
 
-                        </td>
-                        <td>  <h:selectOneListbox class="PdListBox">   </h:selectOneListbox></td>
-                        <td> <input type ="text" size="20" maxlength="20"> </input></td>
-                        <td>  <button class="pdLabel">Add</button><br/> </td>
-                    </tr>
+                <tr>
+                    <td class="pdLabel"> PHI Aria:</td>
+                    <td>  
+                        <h:selectOneListbox class="PdListBox" value="#{areaController.phiID}"> 
+                            <f:selectItems value="#{areaController.getpHIAreas()}" var="itemD" itemValue="#{itemD.id}" itemLabel="#{itemD.name}" />
+                        </h:selectOneListbox>
+                    </td>
+                    <td>
+                        <h:inputText value="#{areaController.getpHIArea().name}"  size="20" maxlength="20"/>
+                    </td>
+                    <td>
+                        <h:commandButton class="pdLabel" value="Add DPDHS" action="#{areaController.addPHI}" /><br/>
+                    </td>
+                </tr>
 
-                    <tr>
-                        <td class="pdLabel">PHM Aria: </td>
-                        <td>  <h:selectOneListbox class="PdListBox" value="#{areaController.getpHMArea()}"> 
-                                <f:selectItems value="#{areaController.getpHMAreas()}" var="item" itemLsabel="#{item.name}"></f:selectItems>
-                            </h:selectOneListbox>
-                        </td>
-                        <td> <input type ="text" size="20" maxlength="20"> </input></td>
-                        <td>  <button class="pdLabel">Add</button><br/> </td>
-                    </tr>
 
-                    <tr>
-                        <td class="pdLabel">GN Aria: </td>
-                        <td>  <h:selectOneListbox class="PdListBox"> 
-                                <f:selectItems value="#{areaController.getgNAreas()}" var="item" itemLabel="#{item.name}"></f:selectItems>
-                            </h:selectOneListbox>
-                        </td>
-                        <td> <h:inputText size="20" maxlength="20" value="#{areaController.getgNArea().name}" /></td>
-                        <td>
-                            <pou:commandButton value="Non-Ajax Submit" actionListener="#{areaController.addGN()}"   
-                                           ajax="false" ></pou:commandButton>
-                    
-                        </td>
-                    </tr>
-                </table>
+            </table>
 
         </h:form>
     </ui:define>
