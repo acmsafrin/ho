@@ -3,43 +3,77 @@
 <ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
                 template="./resources/template/pdhs_template_1.xhtml"
                 xmlns:h="http://java.sun.com/jsf/html"
-                xmlns:p="http://primefaces.org/ui">
+                xmlns:p="http://primefaces.org/ui"
+                xmlns="http://www.w3.org/1999/xhtml">
 
 
 
     <ui:define name="content">
         <h:form>
-            <h:commandLink action="areas" value="Areas" ></h:commandLink>
-            <h:commandLink action="login" value="Login Page" ></h:commandLink>
-            
-             <h:commandLink action="population" value="Population Page" > </h:commandLink><br/>
-      
-             <h:commandLink action="register" value="Register" ></h:commandLink><br/>
-             
-             <form id="testForm" action="./">
-                <table class="register-table">
-                                        <tr>
-                                            <td class="pdLabel">Name:</td>
-                        <td><input type="text" id="userInput" class="text-input" /></td>
-                    </tr>
-                    <tr>
-                        <td class="pdLabel">Designation:</td>
-                        <td><input type="text" id="userInput" class="text-input" /></td>
-                    </tr>
-                    <tr>
-                        <td class="pdLabel"> Institute:</td>
-                        <td><input type="text" id="userInput" class="text-input" /></td>
-                    </tr>
-                    <tr>
-                        <td class="pdLabel">Username: </td>
-                        <td><input type="text" id="userInput" class="text-input" /></td>
-                    </tr>
-                </table>
-            </form>
-          
-           <button class="pdLabel">OK</button><br/>
-           
+            <table  width="400px" class="pdTable" align="center">
+                <tr>
+                    <td colspan="2"  class="pdTableHighlightRow">&nbsp;</td>
+                </tr>
+                <tr>
+                    <td colspan="2" class="pdLabel">&nbsp;</td>
+                </tr>
+
+                <tr>
+                    <td align="center" colspan="2">
+                        <span class="pdHeading1">Please fill the details to register</span>
+                    </td>
+                </tr>                  
+                <tr>
+                    <td colspan="2" class="pdLabel">&nbsp;</td>
+                </tr>
+                <tr>
+                    <td class="pdLabel" align="right" width="40%">Name</td>
+                    <td align="left" width="60%"><h:inputText value="#{connetcionController.newPersonName}"/></td>
+                </tr>
+                <tr>
+                    <td class="pdLabel" align="right">Designation</td>
+                    <td align="left"><h:inputSecret value="#{connetcionController.newDesignation}"  /></td>
+                </tr>
+                <tr>
+                    <td class="pdLabel" align="right">Institute</td>
+                    <td align="left"><h:inputSecret value="#{connetcionController.newInstitution}"  /></td>
+                </tr>
+                <tr>
+                    <td class="pdLabel" align="right">Username</td>
+                    <td align="left"><h:inputSecret value="#{connetcionController.newUserName}"  /></td>
+                </tr>                
+                <tr>
+                    <td class="pdLabel" align="right">Password</td>
+                    <td align="left"><h:inputSecret value="#{connetcionController.newPassword}"  /></td>
+                </tr>                
+                <tr>
+                    <td class="pdLabel" align="right">Reenter Password</td>
+                    <td align="left"><h:inputSecret value="#{connetcionController.newPasswordConfirm}"  /></td>
+                </tr>                
+                <tr>
+                    <td class="pdLabel" align="right">Password Hint</td>
+                    <td align="left"><h:inputSecret value="#{connetcionController.newPasswordHint}"  /></td>
+                </tr>                
+
+                <tr>
+                    <td align="left"></td>
+                    <td align="left">
+                        <h:commandButton id="btnReg" class="pdButton" type="submit" value="Register" action="registered" /> 
+                    </td>
+                </tr>                  
+                <tr>
+                    <td colspan="2" class="pdLabel">&nbsp;</td>
+                </tr>
+                <tr>
+                    <td colspan="2"  class="pdTableHighlightRow">&nbsp;
+                        <p:messages globalOnly="true"  ></p:messages>
+                    </td>
+                </tr>
+
+
+            </table>
         </h:form>
+
     </ui:define>
 
 

@@ -1,10 +1,3 @@
-/*
- * MSc(Biomedical Informatics) Project
- * 
- * Development and Implementation of a Web-based Combined Data Repository of Genealogical, Clinical, Laboratory and Genetic Data 
- * and
- * a Set of Related Tools
- */
 package gov.sp.health.bean;
 
 import gov.sp.health.autobean.DPDHSAreaFacade;
@@ -72,7 +65,7 @@ public class AreaController {
     Long gnID;
 
     /**
-     *
+     * Get MOH Area
      * @return
      */
     public Long getMohID() {
@@ -80,7 +73,7 @@ public class AreaController {
     }
 
     /**
-     *
+     * Set MOH Area
      * @param mohID
      */
     public void setMohID(Long mohID) {
@@ -89,7 +82,7 @@ public class AreaController {
     }
 
     /**
-     *
+     * Get DPDHS area
      * @return
      */
     public Long getDpdhsID() {
@@ -97,7 +90,7 @@ public class AreaController {
     }
 
     /**
-     *
+     * Set DPDHS Area
      * @param dpdhsID
      */
     public void setDpdhsID(Long dpdhsID) {
@@ -106,7 +99,7 @@ public class AreaController {
     }
 
     /**
-     *
+     * Get PHI Area
      * @return
      */
     public Long getPhiID() {
@@ -114,7 +107,7 @@ public class AreaController {
     }
 
     /**
-     *
+     * Set PHI Area
      * @param phiID
      */
     public void setPhiID(Long phiID) {
@@ -123,7 +116,7 @@ public class AreaController {
     }
 
     /**
-     *
+     * Get PHM Area
      * @return
      */
     public Long getPhmID() {
@@ -131,7 +124,7 @@ public class AreaController {
     }
 
     /**
-     *
+     * Set PHM Area
      * @param phmID
      */
     public void setPhmID(Long phmID) {
@@ -140,7 +133,7 @@ public class AreaController {
     }
 
     /**
-     *
+     * Get Grama Niladhari Area
      * @return
      */
     public Long getGnID() {
@@ -148,7 +141,7 @@ public class AreaController {
     }
 
     /**
-     *
+     * Set Grama Niladhari Area
      * @param gnID
      */
     public void setGnID(Long gnID) {
@@ -157,7 +150,7 @@ public class AreaController {
     }
 
     /**
-     *
+     * Initiate Area Controller
      */
     public AreaController() {
         dPDHSArea = new DPDHSArea();
@@ -174,7 +167,7 @@ public class AreaController {
     }
 
     /**
-     *
+     * Get DPDHS Area Facade
      * @return
      */
     public DPDHSAreaFacade getdPDHSFacade() {
@@ -182,7 +175,7 @@ public class AreaController {
     }
 
     /**
-     *
+     * Get Grama Niladhari Area Facade
      * @return
      */
     public GNAreaFacade getGnFacade() {
@@ -190,7 +183,7 @@ public class AreaController {
     }
 
     /**
-     *
+     * Get MOH Area Facade
      * @return
      */
     public MOHAreaFacade getMohFacade() {
@@ -198,7 +191,7 @@ public class AreaController {
     }
 
     /**
-     *
+     * Get PHI Area Facade
      * @return
      */
     public PHIAreaFacade getPhiFacade() {
@@ -206,7 +199,7 @@ public class AreaController {
     }
 
     /**
-     *
+     * Get PHM Area Facade
      * @return
      */
     public PHMAreaFacade getPhmFacade() {
@@ -214,7 +207,7 @@ public class AreaController {
     }
 
     /**
-     *
+     * Get All DPDHS Areas
      * @return
      */
     public List<DPDHSArea> getdPDHSAreas() {
@@ -224,7 +217,7 @@ public class AreaController {
     }
 
     /**
-     *
+     * Get All Grama Niladhari Areas
      * @return
      */
     public List<GNArea> getgNAreas() {
@@ -234,7 +227,7 @@ public class AreaController {
     }
 
     /**
-     *
+     * Get All MOH Areas
      * @return
      */
     public List<MOHArea> getmOHAreas() {
@@ -243,7 +236,7 @@ public class AreaController {
     }
 
     /**
-     *
+     * Get all PHI Areas
      * @return
      */
     public List<PHIArea> getpHIAreas() {
@@ -252,7 +245,7 @@ public class AreaController {
     }
 
     /**
-     *
+     * Get All PHM Areas
      * @return
      */
     public List<PHMArea> getpHMAreas() {
@@ -319,7 +312,7 @@ public class AreaController {
 
 
     /**
-     *
+     * Get current DPDHS Area
      * @return
      */
     public DPDHSArea getdPDHSArea() {
@@ -327,7 +320,7 @@ public class AreaController {
     }
 
     /**
-     *
+     * Set current DPDHS Area
      * @param dPDHSArea
      */
     public void setdPDHSArea(DPDHSArea dPDHSArea) {
@@ -335,7 +328,7 @@ public class AreaController {
     }
 
     /**
-     *
+     * Get current Grama Niladhari Area
      * @return
      */
     public GNArea getgNArea() {
@@ -343,7 +336,7 @@ public class AreaController {
     }
 
     /**
-     *
+     * Set current Grama Niladhari Area
      * @param gNArea
      */
     public void setgNArea(GNArea gNArea) {
@@ -351,7 +344,7 @@ public class AreaController {
     }
 
     /**
-     *
+     * Get current MOH Area
      * @return
      */
     public MOHArea getmOHArea() {
@@ -359,7 +352,7 @@ public class AreaController {
     }
 
     /**
-     *
+     * Set current MOH area
      * @param mOHArea
      */
     public void setmOHArea(MOHArea mOHArea) {
@@ -367,7 +360,7 @@ public class AreaController {
     }
 
     /**
-     *
+     * Get Current PHI Area
      * @return
      */
     public PHIArea getpHIArea() {
@@ -375,7 +368,7 @@ public class AreaController {
     }
 
     /**
-     *
+     * Set current PHI Area
      * @param pHIArea
      */
     public void setpHIArea(PHIArea pHIArea) {
@@ -383,7 +376,7 @@ public class AreaController {
     }
 
     /**
-     *
+     * Get current PHM area
      * @return
      */
     public PHMArea getpHMArea() {
@@ -391,7 +384,7 @@ public class AreaController {
     }
 
     /**
-     *
+     * Set current PHM Area
      * @param pHMArea
      */
     public void setpHMArea(PHMArea pHMArea) {

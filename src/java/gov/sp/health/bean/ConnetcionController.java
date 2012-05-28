@@ -15,6 +15,7 @@ import java.util.List;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
+import org.omg.PortableInterceptor.ACTIVE;
 
 /**
  *
@@ -33,6 +34,21 @@ public class ConnetcionController {
     String userName;
     String passord;
 
+    
+    String newPassword;
+    String newPasswordConfirm;
+    String newPersonName;
+    String newUserName;
+    String newDesignation;
+    String newInstitution;
+    String newPasswordHint;
+    
+    
+    boolean logged;
+    boolean activated;
+    
+    
+    
     /**
      * Creates a new instance of ConnetcionController
      */
@@ -70,10 +86,28 @@ public class ConnetcionController {
         user.setName(HOSecurity.encrypt(userName));
         user.setWebUserPassword(HOSecurity.hash(passord));
         user.setWebUserPerson(person);
+        user.setActivated(true);
         uFacade.create(user);
 //        JsfUtil.addSuccessMessage("New User Added");
     }
 
+    private void registeUser() {
+        WebUser user = new WebUser();
+        Person person = new Person();
+        person.setName(newPersonName);
+        pFacade.create(person);
+        user.setName(HOSecurity.encrypt(newUserName));
+        user.setWebUserPassword(HOSecurity.hash(newPassword));
+        user.setWebUserPerson(person);
+        user.setActivated(false);
+        uFacade.create(user);
+        JsfUtil.addSuccessMessage("New User Registered. You will be able to access the system when the administrater activate your account.");
+        SessionController.setLoggedUser(user);
+        SessionController.setLogged(Boolean.TRUE);
+        SessionController.setActivated(true);
+        
+    }
+    
     private boolean isFirstVisit() {
         if (getFacede().count() <= 0) {
 //            JsfUtil.addSuccessMessage("First Visit");
@@ -87,13 +121,17 @@ public class ConnetcionController {
 
     private boolean checkUsers() {
         JsfUtil.addSuccessMessage("Going to check users");
-        List<WebUser> allUsers = getFacede().findAll();
+        String temSQL ;
+        temSQL = "SELECT u FROM WebUser u WHERE u.retired = false";
+        List<WebUser> allUsers = getFacede().findBySQL(temSQL);
         for (WebUser u : allUsers) {
             if (HOSecurity.decrypt(u.getName()).equalsIgnoreCase(userName)) {
 //                JsfUtil.addSuccessMessage("A user found");
                 
                 if (HOSecurity.matchPassword(passord, u.getWebUserPassword())) {
                     SessionController.setLoggedUser(u);
+                    SessionController.setLogged(Boolean.TRUE);
+                    SessionController.setActivated(u.isActivated());
 //                    JsfUtil.addSuccessMessage("Logged successfully");
                     return true;
                 }
@@ -102,6 +140,14 @@ public class ConnetcionController {
         return false;
     }
 
+    
+    public void logout(){
+                    SessionController.setLoggedUser(null);
+                    SessionController.setLogged(Boolean.FALSE);
+                    SessionController.setActivated(false);
+        
+    }
+    
     public WebUser getCurrent() {
         return current;
     }
@@ -133,4 +179,100 @@ public class ConnetcionController {
     public void setUserName(String userName) {
         this.userName = userName;
     }
+
+    public String getNewDesignation() {
+        return newDesignation;
+    }
+
+    public void setNewDesignation(String newDesignation) {
+        this.newDesignation = newDesignation;
+    }
+
+    public String getNewInstitution() {
+        return newInstitution;
+    }
+
+    public void setNewInstitution(String newInstitution) {
+        this.newInstitution = newInstitution;
+    }
+
+    public String getNewPassword() {
+        return newPassword;
+    }
+
+    public void setNewPassword(String newPassword) {
+        this.newPassword = newPassword;
+    }
+
+    public String getNewPasswordConfirm() {
+        return newPasswordConfirm;
+    }
+
+    public void setNewPasswordConfirm(String newPasswordConfirm) {
+        this.newPasswordConfirm = newPasswordConfirm;
+    }
+
+    public String getNewPasswordHint() {
+        return newPasswordHint;
+    }
+
+    public void setNewPasswordHint(String newPasswordHint) {
+        this.newPasswordHint = newPasswordHint;
+    }
+
+    public String getNewPersonName() {
+        return newPersonName;
+    }
+
+    public void setNewPersonName(String newPersonName) {
+        this.newPersonName = newPersonName;
+    }
+
+    public PersonFacade getpFacade() {
+        return pFacade;
+    }
+
+    public void setpFacade(PersonFacade pFacade) {
+        this.pFacade = pFacade;
+    }
+
+    public WebUserFacade getuFacade() {
+        return uFacade;
+    }
+
+    public void setuFacade(WebUserFacade uFacade) {
+        this.uFacade = uFacade;
+    }
+
+    public String getNewUserName() {
+        return newUserName;
+    }
+
+    public void setNewUserName(String newUserName) {
+        this.newUserName = newUserName;
+    }
+
+    public boolean isActivated() {
+        return SessionController.activated;
+    }
+
+    public void setActivated(boolean activated) {
+        this.activated = activated;
+        SessionController.setLogged(activated);
+    }
+
+    public boolean isLogged() {
+        return SessionController.logged;
+    }
+
+    public void setLogged(boolean logged) {
+        SessionController.setLogged(logged);
+        this.logged = logged;
+    }
+    
+    
+    
+    
+    
+    
 }

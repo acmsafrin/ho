@@ -52,7 +52,17 @@ public class WebUser implements Serializable {
     @Temporal(javax.persistence.TemporalType.TIMESTAMP)
     Date retiredAt;
     String retireComments;
-
+    //Activation properties
+    boolean activated;
+    @ManyToOne
+    WebUser activator;
+    @Temporal(javax.persistence.TemporalType.TIMESTAMP)
+    Date activatedAt;
+    String activateComments;
+    
+    
+    
+    
     public Date getCreatedAt() {
         return createdAt;
     }
@@ -151,6 +161,42 @@ public class WebUser implements Serializable {
         this.userWebTheme = userWebTheme;
     }
 
+    public String getActivateComments() {
+        return activateComments;
+    }
+
+    public void setActivateComments(String activateComments) {
+        this.activateComments = activateComments;
+    }
+
+    public boolean isActivated() {
+        return activated;
+    }
+
+    public void setActivated(boolean activated) {
+        this.activated = activated;
+    }
+
+    public Date getActivatedAt() {
+        return activatedAt;
+    }
+
+    public void setActivatedAt(Date activatedAt) {
+        this.activatedAt = activatedAt;
+    }
+
+    public WebUser getActivator() {
+        return activator;
+    }
+
+    public void setActivator(WebUser activator) {
+        this.activator = activator;
+    }
+
+    
+    
+    
+    
     @Override
     public int hashCode() {
         int hash = 0;
