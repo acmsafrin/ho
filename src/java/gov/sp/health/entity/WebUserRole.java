@@ -1,6 +1,9 @@
 /*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+ * MSc(Biomedical Informatics) Project
+ * 
+ * Development and Implementation of a Web-based Combined Data Repository of Genealogical, Clinical, Laboratory and Genetic Data 
+ * and
+ * a Set of Related Tools
  */
 package gov.sp.health.entity;
 
@@ -10,18 +13,18 @@ import javax.persistence.*;
 
 /**
  *
- * @author IT
+ * @author Dr. M. H. B. Ariyaratne, MBBS, PGIM Trainee for MSc(Biomedical
+ * Informatics)
  */
 @Entity
-public class PHIArea implements Serializable {
-
+public class WebUserRole implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+
     //Main Properties
     String name;
-    String code;
     String description;
     //Created Properties
     @ManyToOne
@@ -35,10 +38,15 @@ public class PHIArea implements Serializable {
     @Temporal(javax.persistence.TemporalType.TIMESTAMP)
     Date retiredAt;
     String retireComments;
+    //Activation properties
+    boolean activated;
     @ManyToOne
-    DPDHSArea dPDHSArea;
-    @ManyToOne
-    MOHArea mOHArea;
+    WebUser activator;
+    @Temporal(javax.persistence.TemporalType.TIMESTAMP)
+    Date activatedAt;
+    String activateComments;
+    
+    
     
     public Long getId() {
         return id;
@@ -48,12 +56,36 @@ public class PHIArea implements Serializable {
         this.id = id;
     }
 
-    public String getCode() {
-        return code;
+    public String getActivateComments() {
+        return activateComments;
     }
 
-    public void setCode(String code) {
-        this.code = code;
+    public void setActivateComments(String activateComments) {
+        this.activateComments = activateComments;
+    }
+
+    public boolean isActivated() {
+        return activated;
+    }
+
+    public void setActivated(boolean activated) {
+        this.activated = activated;
+    }
+
+    public Date getActivatedAt() {
+        return activatedAt;
+    }
+
+    public void setActivatedAt(Date activatedAt) {
+        this.activatedAt = activatedAt;
+    }
+
+    public WebUser getActivator() {
+        return activator;
+    }
+
+    public void setActivator(WebUser activator) {
+        this.activator = activator;
     }
 
     public Date getCreatedAt() {
@@ -72,28 +104,12 @@ public class PHIArea implements Serializable {
         this.creater = creater;
     }
 
-    public DPDHSArea getdPDHSArea() {
-        return dPDHSArea;
-    }
-
-    public void setdPDHSArea(DPDHSArea dPDHSArea) {
-        this.dPDHSArea = dPDHSArea;
-    }
-
     public String getDescription() {
         return description;
     }
 
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    public MOHArea getmOHArea() {
-        return mOHArea;
-    }
-
-    public void setmOHArea(MOHArea mOHArea) {
-        this.mOHArea = mOHArea;
     }
 
     public String getName() {
@@ -138,6 +154,7 @@ public class PHIArea implements Serializable {
 
     
     
+    
     @Override
     public int hashCode() {
         int hash = 0;
@@ -148,10 +165,10 @@ public class PHIArea implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof PHIArea)) {
+        if (!(object instanceof WebUserRole)) {
             return false;
         }
-        PHIArea other = (PHIArea) object;
+        WebUserRole other = (WebUserRole) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -160,6 +177,7 @@ public class PHIArea implements Serializable {
 
     @Override
     public String toString() {
-        return "gov.sp.health.entity.PHIArea[ id=" + id + " ]";
+        return "gov.sp.health.entity.WebUserRole[ id=" + id + " ]";
     }
+    
 }

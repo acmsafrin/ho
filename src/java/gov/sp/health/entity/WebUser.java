@@ -60,6 +60,9 @@ public class WebUser implements Serializable {
     Date activatedAt;
     String activateComments;
     
+    @ManyToOne
+    WebUserRole role;
+    
     
     
     
@@ -191,6 +194,14 @@ public class WebUser implements Serializable {
 
     public void setActivator(WebUser activator) {
         this.activator = activator;
+    }
+
+    public WebUserRole getRole() {
+        return role;
+    }
+
+    public void setRole(WebUserRole role) {
+        this.role = role;
     }
 
     

@@ -9,8 +9,10 @@ package gov.sp.health.bean;
 
 import gov.sp.health.autobean.PersonFacade;
 import gov.sp.health.autobean.WebUserFacade;
+import gov.sp.health.autobean.WebUserRoleFacade;
 import gov.sp.health.entity.Person;
 import gov.sp.health.entity.WebUser;
+import gov.sp.health.entity.WebUserRole;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
@@ -30,6 +32,9 @@ public class ConnetcionController {
     WebUserFacade uFacade;
     @EJB
     PersonFacade pFacade;
+    @EJB
+    WebUserRoleFacade rFacade;
+    
     WebUser current;
     String userName;
     String passord;
@@ -83,10 +88,16 @@ public class ConnetcionController {
         Person person = new Person();
         person.setName(userName);
         pFacade.create(person);
+        
+        WebUserRole role = new WebUserRole();
+        role.setName("Administrator");
+        rFacade.create(role);
+        
         user.setName(HOSecurity.encrypt(userName));
         user.setWebUserPassword(HOSecurity.hash(passord));
         user.setWebUserPerson(person);
         user.setActivated(true);
+        user.setRole(role);
         uFacade.create(user);
 //        JsfUtil.addSuccessMessage("New User Added");
     }
