@@ -78,7 +78,7 @@ public class ConnetcionController {
             prepareFirstVisit();
             return true;
         } else {
-//            JsfUtil.addSuccessMessage("Checking Old Users");
+            JsfUtil.addSuccessMessage("Checking Old Users");
             return checkUsers();
         }
     }
@@ -102,7 +102,7 @@ public class ConnetcionController {
 //        JsfUtil.addSuccessMessage("New User Added");
     }
 
-    private void registeUser() {
+    public void registeUser() {
         WebUser user = new WebUser();
         Person person = new Person();
         person.setName(newPersonName);
@@ -115,7 +115,7 @@ public class ConnetcionController {
         JsfUtil.addSuccessMessage("New User Registered. You will be able to access the system when the administrater activate your account.");
         SessionController.setLoggedUser(user);
         SessionController.setLogged(Boolean.TRUE);
-        SessionController.setActivated(true);
+        SessionController.setActivated(false);
         
     }
     
@@ -137,13 +137,13 @@ public class ConnetcionController {
         List<WebUser> allUsers = getFacede().findBySQL(temSQL);
         for (WebUser u : allUsers) {
             if (HOSecurity.decrypt(u.getName()).equalsIgnoreCase(userName)) {
-//                JsfUtil.addSuccessMessage("A user found");
+                JsfUtil.addSuccessMessage("A user found");
                 
                 if (HOSecurity.matchPassword(passord, u.getWebUserPassword())) {
                     SessionController.setLoggedUser(u);
                     SessionController.setLogged(Boolean.TRUE);
                     SessionController.setActivated(u.isActivated());
-//                    JsfUtil.addSuccessMessage("Logged successfully");
+                    JsfUtil.addSuccessMessage("Logged successfully");
                     return true;
                 }
             }

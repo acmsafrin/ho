@@ -32,15 +32,15 @@
                 </tr>
                 <tr>
                     <td class="pdLabel" align="right">Designation</td>
-                    <td align="left"><h:inputSecret value="#{connetcionController.newDesignation}"  /></td>
+                    <td align="left"><h:inputText value="#{connetcionController.newDesignation}"  /></td>
                 </tr>
                 <tr>
                     <td class="pdLabel" align="right">Institute</td>
-                    <td align="left"><h:inputSecret value="#{connetcionController.newInstitution}"  /></td>
+                    <td align="left"><h:inputText value="#{connetcionController.newInstitution}"  /></td>
                 </tr>
                 <tr>
                     <td class="pdLabel" align="right">Username</td>
-                    <td align="left"><h:inputSecret value="#{connetcionController.newUserName}"  /></td>
+                    <td align="left"><h:inputText value="#{connetcionController.newUserName}"  /></td>
                 </tr>                
                 <tr>
                     <td class="pdLabel" align="right">Password</td>
@@ -52,13 +52,13 @@
                 </tr>                
                 <tr>
                     <td class="pdLabel" align="right">Password Hint</td>
-                    <td align="left"><h:inputSecret value="#{connetcionController.newPasswordHint}"  /></td>
+                    <td align="left"><h:inputText value="#{connetcionController.newPasswordHint}"  /></td>
                 </tr>                
 
                 <tr>
                     <td align="left"></td>
                     <td align="left">
-                        <h:commandButton id="btnReg" class="pdButton" type="submit" value="Register" action="registered" /> 
+                        <h:commandButton id="btnReg" class="pdButton" type="submit" value="Register" action="#{connetcionController.registeUser}" /> 
                     </td>
                 </tr>                  
                 <tr>
