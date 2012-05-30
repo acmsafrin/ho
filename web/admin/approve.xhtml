@@ -8,74 +8,19 @@
                 xmlns:pou="http://primefaces.org/ui">
 
 
-
-    <ui:define name="content">
-
-
-        <h:panelGroup id="divLoggin" rendered="#{!connetcionController.logged}"  >
-            <h:form>
-                <table render="false"  width="400px" class="pdTable" align="center">
-                    <tr>
-                        <td colspan="2" class="pdTableHighlightRow">&nbsp;</td>
-                    </tr>
-                    <tr>
-                        <td colspan="2" class="pdLabel">&nbsp;</td>
-                    </tr>
-
-                    <tr>
-                        <td align="center" colspan="2">
-
-                            <span class="pdHeading1">Login to the Admin Panel</span>
-                        </td>
-                    </tr>                  
-                    <tr>
-                        <td colspan="2" class="pdLabel">&nbsp;</td>
-                    </tr>
-                    <tr>
-                        <td class="pdLabel" align="right" width="40%">Username:</td>
-                        <td align="left" width="60%"><h:inputText value="#{connetcionController.userName}"/></td>
-                    </tr>
-                    <tr>
-                        <td class="pdLabel" align="right">Password:</td>
-                        <td align="left"><h:inputSecret value="#{connetcionController.passord}"  /></td>
-                    </tr>
-                    <tr>
-                        <td align="left"></td>
-                        <td align="left">
-                            <h:commandButton id="btnLogin" class="pdButton" type="submit" value="Login" action="#{connetcionController.loginAction()}"/>
-                            <h:commandButton id="btnReg" class="pdButton" type="submit" value="Register" action="register" /> 
-                        </td>
-                    </tr>                  
-                    <tr>
-                        <td colspan="2" class="pdLabel">&nbsp;</td>
-                    </tr>
-                    <tr>
-                        <td colspan="2"  class="pdTableHighlightRow">&nbsp;
-                            <pou:messages globalOnly="true" ></pou:messages>
-                        </td>
-                    </tr>
-
-                </table>
-            </h:form>
+    <h:panelGroup>
+        <ui:define name="content">
 
 
-        </h:panelGroup>
+            <h:panelGroup id="divLoggin" rendered="#{!connetcionController.logged}"  >
+                <h:outputLabel value="You are lot logged"/>
+                <h:panelGroup id="divPrivilagedView" rendered="#{connetcionController.privilege.activateAccounts}" >
 
-        <h:panelGroup id="divLogged" rendered="#{connetcionController.logged}" >
-
-            <h:form>
-                <h:panelGroup id="divActivated" rendered="#{connetcionController.activated}" >
-                    Welcome to Health Office.
-                    <h:commandButton value="Logout" class="pdButton" action="#{connetcionController.logout()}"></h:commandButton>
                 </h:panelGroup>
-                <h:panelGroup id="divNotActivated" rendered="#{!connetcionController.activated}" >
-                    Welcome to Health Office. Your account is yet to activate. Please contact administrator.
-                </h:panelGroup>
-            </h:form>
-            
-        </h:panelGroup>
 
-    </ui:define>
+            </h:panelGroup>
 
+        </ui:define>
+    </h:panelGroup>
 
 </ui:composition>

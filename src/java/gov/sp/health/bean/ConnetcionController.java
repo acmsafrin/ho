@@ -101,6 +101,8 @@ public class ConnetcionController {
         uFacade.create(user);
 
         Privilege p = new Privilege();
+        //
+        p.setName("user Previlage");
         //Cadre
         p.setCaderAdd(true);
         p.setCaderEdit(true);
@@ -143,6 +145,8 @@ public class ConnetcionController {
         //
         //Privilege for Administrator Role
         p = new Privilege();
+        //
+        p.setName("Role Previlage");
         //Cadre
         p.setCaderAdd(true);
         p.setCaderEdit(true);
@@ -188,7 +192,7 @@ public class ConnetcionController {
 
     }
 
-    public void registeUser() {
+    public String registeUser() {
         WebUser user = new WebUser();
         Person person = new Person();
         person.setName(newPersonName);
@@ -202,7 +206,7 @@ public class ConnetcionController {
         SessionController.setLoggedUser(user);
         SessionController.setLogged(Boolean.TRUE);
         SessionController.setActivated(false);
-
+        return "index";
     }
 
     private boolean isFirstVisit() {
@@ -342,9 +346,9 @@ public class ConnetcionController {
 
     public void logout() {
         SessionController.setLoggedUser(null);
-        SessionController.setLogged(Boolean.FALSE);
+        SessionController.setLogged(false);
         SessionController.setActivated(false);
-
+        SessionController.setPrivilege(null);
     }
 
     public WebUser getCurrent() {
