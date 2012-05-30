@@ -7,6 +7,7 @@
  */
 package gov.sp.health.bean;
 
+import gov.sp.health.entity.Privilege;
 import gov.sp.health.entity.WebUser;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
@@ -24,6 +25,9 @@ public class SessionController {
     static boolean logged = false;
     
     static boolean activated = false;
+    
+    
+    static Privilege privilege = null;
     
     /** Creates a new instance of SessionController */
     public SessionController() {
@@ -75,6 +79,14 @@ public class SessionController {
      */
     public static void setActivated(boolean activated) {
         SessionController.activated = activated;
+    }
+
+    public static Privilege getPrivilege() {
+        return privilege;
+    }
+
+    public static void setPrivilege(Privilege privilege) {
+        SessionController.privilege = privilege;
     }
     
     
