@@ -53,6 +53,8 @@ public class ConnetcionController {
     boolean logged;
     boolean activated;
     Privilege privilege;
+    String displayName;
+    
 
     /**
      * Creates a new instance of ConnetcionController
@@ -497,4 +499,12 @@ public class ConnetcionController {
         this.privilege = privilege;
         SessionController.setPrivilege(privilege);
     }
+
+    public String getDisplayName() {
+        return HOSecurity.decrypt(SessionController.getLoggedUser().getName());
+    }
+
+     
+    
+    
 }

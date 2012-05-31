@@ -140,3 +140,10 @@
 .pdTableHighlightRow{
     background: #0066FF;
 }
+
+
+
+.pdListAll{
+    height: 300px;
+    width: 200px;
+}

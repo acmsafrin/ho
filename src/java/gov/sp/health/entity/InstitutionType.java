@@ -25,6 +25,7 @@ public class InstitutionType implements Serializable {
     //Main Properties
     String name;
     String description;
+    int orderNo;
     //Created Properties
     @ManyToOne
     WebUser creater;
@@ -108,6 +109,14 @@ public class InstitutionType implements Serializable {
 
     public void setRetirer(WebUser retirer) {
         this.retirer = retirer;
+    }
+
+    public int getOrderNo() {
+        return orderNo;
+    }
+
+    public void setOrderNo(int orderNo) {
+        this.orderNo = orderNo;
     }
 
     

@@ -25,6 +25,7 @@ public class Designation implements Serializable {
     //Main Properties
     String name;
     String description;
+    int orderNo;
     //Created Properties
     @ManyToOne
     WebUser creater;
@@ -117,6 +118,38 @@ public class Designation implements Serializable {
 
     public void setRetirer(WebUser retirer) {
         this.retirer = retirer;
+    }
+
+    public DesignationCategory getCategory() {
+        return category;
+    }
+
+    public void setCategory(DesignationCategory category) {
+        this.category = category;
+    }
+
+    public DesignationLevel getLevel() {
+        return level;
+    }
+
+    public void setLevel(DesignationLevel level) {
+        this.level = level;
+    }
+
+    public int getOrderNo() {
+        return orderNo;
+    }
+
+    public void setOrderNo(int orderNo) {
+        this.orderNo = orderNo;
+    }
+
+    public SalaryCode getSalaryCode() {
+        return salaryCode;
+    }
+
+    public void setSalaryCode(SalaryCode salaryCode) {
+        this.salaryCode = salaryCode;
     }
 
     

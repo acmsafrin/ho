@@ -7,24 +7,8 @@
                 xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:pou="http://primefaces.org/ui">
 
-    <h:panelGroup rendered="true">
-        <ui:define name="leftlogged" >
-            1
-        </ui:define>
-    </h:panelGroup>
-
-    <h:panelGroup rendered="false">
-        <ui:define name="leftnotlogged" >
-            2
-        </ui:define>
-    </h:panelGroup>
-
-
-
-
+  
     <ui:define name="content">
-
-
         <h:panelGroup id="divLoggin" rendered="#{!connetcionController.logged}"  >
             <h:form>
                 <table render="false"  width="400px" class="pdTable" align="center">
@@ -90,8 +74,4 @@
 
     </ui:define>
 
-    <ui:define name="right">
-
-    </ui:define>
-
-</ui:composition>
+ </ui:composition>

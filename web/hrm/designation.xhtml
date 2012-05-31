@@ -1,0 +1,113 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="./../resources/template/pdhs_template_1.xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:pou="http://primefaces.org/ui">
+
+
+    <ui:define name="content">
+        <h:form>
+            <h:panelGroup id="divLoggin" rendered="#{!connetcionController.logged}"  >
+                <h:panelGroup id="divView" rendered="#{!connetcionController.privilege.caderView}"  >
+
+                    <table width="100%">
+                        <tr>
+                            <td width="40%">
+
+                                <table width="100%">
+                                    <tr>
+                                        <td width="80%">
+                                        </td>
+                                        <td width="20%">
+                                        </td>
+                                    </tr>
+                                </table>
+
+                                <table width="100%" >
+                                    <tr>
+                                        <td width="33%" >
+                                            <h:commandButton value="Add" class="pdButton" action="#{DesignationController.prepareAdd}" >
+                                            </h:commandButton>
+
+                                        </td>
+                                        <td width="33%" >
+                                            <h:commandButton value="Edit" class="pdButton" action="#{DesignationController.prepareEdit}" >
+                                            </h:commandButton>
+
+                                        </td>
+                                        <td width="33%" >
+                                            <h:commandButton value="Delete" class="pdButton" action="#{DesignationController.delete}" >
+                                            </h:commandButton>
+                                        </td>
+                                    </tr>
+                                </table>
+
+                            </td>
+                            <td width="60%">
+
+                                <table >
+                                    <tr>
+                                        <td>
+
+                                            <table width="100%" >
+                                                
+                                                <tr>
+                                                    <td>
+                                                        Designation
+                                                    </td>
+                                                    <td>
+                                                        <h:inputText value="#{DesignationController.current.name}" />
+                                                    </td>
+                                                </tr>
+                                                
+                                                <tr>
+                                                    <td>
+                                                        Description
+                                                    </td>
+                                                    <td>
+                                                        <h:inputText value="#{DesignationController.current.description}" />
+                                                    </td>
+                                                </tr>
+
+
+                                            </table>
+
+
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <table>
+                                                <tr>
+                                                    <td width="50%" >
+                                                        <h:commandButton value="Save" class="pdButton" action="#{DesignationController.saveSelected}" >
+                                                        </h:commandButton>
+
+                                                    </td>
+                                                    <td width="50%" >
+                                                        <h:commandButton value="Cancel" class="pdButton" action="#{DesignationController.prepareSelect}" >
+                                                        </h:commandButton>
+
+                                                    </td>
+
+                                                </tr>
+                                            </table>
+                                        </td>
+                                    </tr>
+
+                                </table>
+
+
+                            </td>
+                        </tr>
+                    </table>
+
+                </h:panelGroup>
+            </h:panelGroup>
+        </h:form>
+    </ui:define>
+
+</ui:composition>

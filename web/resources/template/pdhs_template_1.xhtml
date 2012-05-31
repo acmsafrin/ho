@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:h="http://java.sun.com/jsf/html"
-      >
+      
+      xmlns:pou="http://primefaces.org/ui">
 
     <h:head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -83,42 +84,64 @@
 
                             <h:panelGroup rendered="#{connetcionController.logged}">
                                 <h:form>
-                                    <h:commandLink value="Link1" ></h:commandLink>
-                                    <h:commandLink value="Link2" ></h:commandLink>
-                                    <h:commandLink value="Link3" ></h:commandLink>
-                                    <h:commandLink value="Link4" ></h:commandLink>
+                                    
+                                    
+                                    <pou:menu model="#{menu.model}"   />
+                                    
+                                    
+                                    
+                                        
                                 </h:form>
                             </h:panelGroup>
 
                         </ui:insert>
                     </td>
                     <td id="content" valign="top" align="left">
-                        
-                        
+
+
                         <ui:insert name="content" >
 
                             <p class="pdhede">Welcome to Department of Health Services - Southern Province</p>
                             <h:graphicImage  class="pdPotraitImage" library="image" name="minister.jpg" ></h:graphicImage> 
                             <h:outputLabel class="pdname">Hon.Chief Minister Southern Province</h:outputLabel>
                         </ui:insert>
-                        
-                        
-                        
+
+
+
                     </td>
                     <td id="right" width="50px">
-                        <ui:insert name="right" ></ui:insert>
+                        <ui:insert name="right" >
 
-                        <h:graphicImage  class="pdRightImage" library="image" name="flag.jpg" ></h:graphicImage>
-                        <h:graphicImage  class="pdRightImage" library="image" name="flower.jpg" ></h:graphicImage>
-                        <h:outputLabel> ........................................................<br/>
-
-                            Helping Hand for Health Care: <br/>
-                            Donations for Department of<br/>
-                            Health Services<br/>
-                            ........................................................</h:outputLabel>
+                            <h:panelGroup rendered="#{!connetcionController.logged}" >
 
 
+                                <h:graphicImage  class="pdRightImage" library="image" name="flag.jpg" ></h:graphicImage>
+                                <h:graphicImage  class="pdRightImage" library="image" name="flower.jpg" ></h:graphicImage>
+                                <h:outputLabel> ........................................................<br/>
 
+                                    Helping Hand for Health Care: <br/>
+                                    Donations for Department of<br/>
+                                    Health Services<br/>
+                                    ........................................................</h:outputLabel>
+                            </h:panelGroup>
+
+                            <h:panelGroup rendered="#{connetcionController.logged}" >
+
+                                <h:form>
+                                    <h:panelGroup id="divActivated" rendered="#{connetcionController.activated}" >
+                                        You are logged as #{connetcionController.displayName}
+                                        <br/>
+                                        <h:commandButton value="Logout" class="pdButton" action="#{connetcionController.logout}"></h:commandButton>
+                                    </h:panelGroup>
+                                    <h:panelGroup id="divNotActivated" rendered="#{!connetcionController.activated}" >
+                                        Welcome to Health Office. Your account is yet to activate. Please contact administrator.
+                                    </h:panelGroup>
+                                </h:form>
+
+                            </h:panelGroup>
+
+
+                        </ui:insert>
                     </td>
                 </tr>
                 <tr>
