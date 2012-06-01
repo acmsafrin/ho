@@ -18,6 +18,7 @@ import gov.sp.health.entity.WebUserRole;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
 import org.omg.PortableInterceptor.ACTIVE;
 
@@ -38,6 +39,10 @@ public class ConnetcionController {
     WebUserRoleFacade rFacade;
     @EJB
     PrivilegeFacade vFacade;
+    @ManagedProperty(value = "#{sessionController}")
+    private SessionController sessionController;
+    @ManagedProperty(value = "#{menu}")
+    private Menu menu;    
     //
     WebUser current;
     String userName;
@@ -54,7 +59,6 @@ public class ConnetcionController {
     boolean activated;
     Privilege privilege;
     String displayName;
-    
 
     /**
      * Creates a new instance of ConnetcionController
@@ -62,13 +66,24 @@ public class ConnetcionController {
     public ConnetcionController() {
     }
 
+    public SessionController getSessionController() {
+        return sessionController;
+    }
+
+    public void setSessionController(SessionController sessionController) {
+        this.sessionController = sessionController;
+    }
+
+    
+    
     private WebUserFacade getFacede() {
         return uFacade;
     }
 
     public String loginAction() {
         if (login()) {
-            return "registered";
+            menu.createMenu();
+            return "";
         } else {
             JsfUtil.addErrorMessage("Login Failure. Please try again");
             return "";
@@ -190,7 +205,7 @@ public class ConnetcionController {
 
 //        JsfUtil.addSuccessMessage("New User Added");
 
-
+        sessionController.setPrivilege(allUserPrivilege(user));
 
     }
 
@@ -205,9 +220,9 @@ public class ConnetcionController {
         user.setActivated(false);
         uFacade.create(user);
         JsfUtil.addSuccessMessage("New User Registered. You will be able to access the system when the administrater activate your account.");
-        SessionController.setLoggedUser(user);
-        SessionController.setLogged(Boolean.TRUE);
-        SessionController.setActivated(false);
+        sessionController.setLoggedUser(user);
+        sessionController.setLogged(Boolean.TRUE);
+        sessionController.setActivated(false);
         return "index";
     }
 
@@ -232,10 +247,10 @@ public class ConnetcionController {
 //                JsfUtil.addSuccessMessage("A user found");
 
                 if (HOSecurity.matchPassword(passord, u.getWebUserPassword())) {
-                    SessionController.setLoggedUser(u);
-                    SessionController.setLogged(Boolean.TRUE);
-                    SessionController.setActivated(u.isActivated());
-                    SessionController.setPrivilege(allUserPrivilege(u));
+                    sessionController.setLoggedUser(u);
+                    sessionController.setLogged(Boolean.TRUE);
+                    sessionController.setActivated(u.isActivated());
+                    sessionController.setPrivilege(allUserPrivilege(u));
                     JsfUtil.addSuccessMessage("Logged successfully");
                     return true;
                 }
@@ -347,10 +362,10 @@ public class ConnetcionController {
     }
 
     public void logout() {
-        SessionController.setLoggedUser(null);
-        SessionController.setLogged(false);
-        SessionController.setActivated(false);
-        SessionController.setPrivilege(null);
+        sessionController.setLoggedUser(null);
+        sessionController.setLogged(false);
+        sessionController.setActivated(false);
+        sessionController.setPrivilege(null);
     }
 
     public WebUser getCurrent() {
@@ -458,20 +473,20 @@ public class ConnetcionController {
     }
 
     public boolean isActivated() {
-        return SessionController.activated;
+        return sessionController.activated;
     }
 
     public void setActivated(boolean activated) {
         this.activated = activated;
-        SessionController.setLogged(activated);
+        sessionController.setLogged(activated);
     }
 
     public boolean isLogged() {
-        return SessionController.logged;
+        return sessionController.logged;
     }
 
     public void setLogged(boolean logged) {
-        SessionController.setLogged(logged);
+        sessionController.setLogged(logged);
         this.logged = logged;
     }
 
@@ -492,19 +507,26 @@ public class ConnetcionController {
     }
 
     public Privilege getPrivilege() {
-        return SessionController.getPrivilege();
+        return sessionController.getPrivilege();
     }
 
     public void setPrivilege(Privilege privilege) {
         this.privilege = privilege;
-        SessionController.setPrivilege(privilege);
+        sessionController.setPrivilege(privilege);
     }
 
     public String getDisplayName() {
-        return HOSecurity.decrypt(SessionController.getLoggedUser().getName());
+        return HOSecurity.decrypt(sessionController.getLoggedUser().getName());
     }
 
-     
+    public Menu getMenu() {
+        return menu;
+    }
+
+    public void setMenu(Menu menu) {
+        this.menu = menu;
+    }
+    
     
     
 }

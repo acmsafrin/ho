@@ -1,3 +1,13 @@
+
+/*Prime Faces*/
+
+.ui-widget, .ui-widget .ui-widget {
+    font-size: 1em;
+    font-family: Verdana, Tahoma, Sans-Serif;
+}
+
+
+
 .pdBody{
     width: 94%;
     background-color: #ffdef8; 

@@ -14,6 +14,7 @@ import java.util.Calendar;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
@@ -27,7 +28,7 @@ import javax.faces.model.ListDataModel;
  * @author Dr. M. H. B. Ariyaratne, MBBS, PGIM Trainee for MSc(Biomedical
  * Informatics)
  */
-@ManagedBean(name = "dPDHSAreaController")
+@ManagedBean
 @SessionScoped
 public final class DPDHSAreaController {
 
@@ -36,17 +37,29 @@ public final class DPDHSAreaController {
     private DataModel items = null;
     @EJB
     private DPDHSAreaFacade ejbFacade;
+    @ManagedProperty(value = "#{sessionController}")
+    SessionController sessionController;
     private int selectedItemIndex;
     boolean selectControlDisable = false;
     boolean modifyControlDisable = true;
     String selectText = "";
 
+    public SessionController getSessionController() {
+        return sessionController;
+    }
+
+    public void setSessionController(SessionController sessionController) {
+        this.sessionController = sessionController;
+    }
+
+    
+    
     public DPDHSAreaController() {
     }
 
     public List<DPDHSArea> getAreas() {
 
-        areas =  (getFacade().findBySQL("Select d From DPDHSArea d"));
+        areas = (getFacade().findBySQL("Select d From DPDHSArea d"));
 
         return areas;
     }
@@ -134,7 +147,7 @@ public final class DPDHSAreaController {
             searchedItem = new DPDHSArea();
             searchedItem.setName(itemName);
             searchedItem.setCreatedAt(Calendar.getInstance().getTime());
-            searchedItem.setCreater(SessionController.loggedUser);
+            searchedItem.setCreater(sessionController.loggedUser);
             getFacade().create(searchedItem);
         }
         return searchedItem;
@@ -169,7 +182,7 @@ public final class DPDHSAreaController {
             JsfUtil.addSuccessMessage(new MessageProvider().getValue("savedOldSuccessfully"));
         } else {
             current.setCreatedAt(Calendar.getInstance().getTime());
-            current.setCreater(SessionController.loggedUser);
+            current.setCreater(sessionController.loggedUser);
             getFacade().create(current);
             JsfUtil.addSuccessMessage(new MessageProvider().getValue("savedNewSuccessfully"));
         }
@@ -185,7 +198,7 @@ public final class DPDHSAreaController {
         try {
 
             current.setCreatedAt(Calendar.getInstance().getTime());
-            current.setCreater(SessionController.loggedUser);
+            current.setCreater(sessionController.loggedUser);
 
             getFacade().create(current);
             JsfUtil.addSuccessMessage(new MessageProvider().getValue("savedNewSuccessfully"));
@@ -204,7 +217,7 @@ public final class DPDHSAreaController {
         if (current != null) {
             current.setRetired(true);
             current.setRetiredAt(Calendar.getInstance().getTime());
-            current.setRetirer(SessionController.loggedUser);
+            current.setRetirer(sessionController.loggedUser);
             getFacade().edit(current);
             JsfUtil.addSuccessMessage(new MessageProvider().getValue("deleteSuccessful"));
         } else {

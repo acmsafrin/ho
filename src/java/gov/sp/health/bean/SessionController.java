@@ -9,6 +9,7 @@ package gov.sp.health.bean;
 
 import gov.sp.health.entity.Privilege;
 import gov.sp.health.entity.WebUser;
+import javax.ejb.Stateless;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
@@ -18,16 +19,17 @@ import javax.faces.bean.SessionScoped;
  */
 @ManagedBean
 @SessionScoped
+@Stateless
 public class SessionController {
 
-    static WebUser loggedUser = null;
+     WebUser loggedUser = null;
     
-    static boolean logged = false;
+     boolean logged = false;
     
-    static boolean activated = false;
+     boolean activated = false;
     
     
-    static Privilege privilege = null;
+     Privilege privilege = null;
     
     /** Creates a new instance of SessionController */
     public SessionController() {
@@ -37,7 +39,7 @@ public class SessionController {
      * 
      * @return
      */
-    public static WebUser getLoggedUser() {
+    public  WebUser getLoggedUser() {
         return loggedUser;
     }
 
@@ -45,15 +47,15 @@ public class SessionController {
      * 
      * @param loggedUser
      */
-    public static void setLoggedUser(WebUser loggedUser) {
-        SessionController.loggedUser = loggedUser;
+    public  void setLoggedUser(WebUser loggedUser) {
+        this.loggedUser = loggedUser;
     }
 
     /**
      * 
      * @return
      */
-    public static boolean isLogged() {
+    public  boolean isLogged() {
         return logged;
     }
 
@@ -61,15 +63,15 @@ public class SessionController {
      * Set whether user 
      * @param logged
      */
-    public static void setLogged(boolean logged) {
-        SessionController.logged = logged;
+    public  void setLogged(boolean logged) {
+        this.logged = logged;
     }
 
     /**
      * Get whether user is activated
      * @return
      */
-    public static boolean isActivated() {
+    public  boolean isActivated() {
         return activated;
     }
 
@@ -77,16 +79,16 @@ public class SessionController {
      * Mark logged user as activated
      * @param activated
      */
-    public static void setActivated(boolean activated) {
-        SessionController.activated = activated;
+    public  void setActivated(boolean activated) {
+        this.activated = activated;
     }
 
-    public static Privilege getPrivilege() {
+    public  Privilege getPrivilege() {
         return privilege;
     }
 
-    public static void setPrivilege(Privilege privilege) {
-        SessionController.privilege = privilege;
+    public  void setPrivilege(Privilege privilege) {
+        this.privilege = privilege;
     }
     
     

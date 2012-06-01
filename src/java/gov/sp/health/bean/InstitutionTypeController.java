@@ -8,12 +8,13 @@
  */
 package gov.sp.health.bean;
 
-import gov.sp.health.autobean.DesignationFacade;
-import gov.sp.health.entity.Designation;
+import gov.sp.health.autobean.InstitutionTypeFacade;
+import gov.sp.health.entity.InstitutionType;
 import java.util.Calendar;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
@@ -29,27 +30,39 @@ import javax.faces.model.ListDataModel;
  */
 @ManagedBean
 @SessionScoped
-public final class DesignationController {
+public final class InstitutionTypeController {
 
     @EJB
-    private DesignationFacade ejbFacade;
-    SessionController sessionController = new SessionController();
-    List<Designation> lstItems;
-    private Designation current;
+    private InstitutionTypeFacade ejbFacade;
+        @ManagedProperty(value = "#{sessionController}")
+    SessionController sessionController;
+    List<InstitutionType> lstItems;
+    private InstitutionType current;
     private DataModel items = null;
     private int selectedItemIndex;
     boolean selectControlDisable = false;
     boolean modifyControlDisable = true;
     String selectText = "";
+    int temTotalCount;
 
-    public DesignationController() {
+    public InstitutionTypeController() {
     }
 
-    public List<Designation> getLstItems() {
-        return getFacade().findBySQL("Select d From Designation d");
+    public SessionController getSessionController() {
+        return sessionController;
     }
 
-    public void setLstItems(List<Designation> lstItems) {
+    public void setSessionController(SessionController sessionController) {
+        this.sessionController = sessionController;
+    }
+
+    
+    
+    public List<InstitutionType> getLstItems() {
+        return getFacade().findBySQL("Select d From InstitutionType d");
+    }
+
+    public void setLstItems(List<InstitutionType> lstItems) {
         this.lstItems = lstItems;
     }
 
@@ -61,23 +74,31 @@ public final class DesignationController {
         this.selectedItemIndex = selectedItemIndex;
     }
 
-    public Designation getCurrent() {
-        if (current == null) {
-            current = new Designation();
-        }
+    public InstitutionType getCurrent() {
+//        JsfUtil.addSuccessMessage("Got current");
+//        if (current == null) {
+//            current = new InstitutionType();
+//        }
         return current;
     }
 
-    public void setCurrent(Designation current) {
+    public void setCurrent(InstitutionType current) {
+//        JsfUtil.addSuccessMessage("Setted current");
         this.current = current;
     }
 
-    private DesignationFacade getFacade() {
+    private InstitutionTypeFacade getFacade() {
         return ejbFacade;
     }
 
     public DataModel getItems() {
-        items = new ListDataModel(getFacade().findAll("name", true));
+        String temSQL;
+        temSQL = "SELECT i FROM InstitutionType i WHERE i.retired = false ORDER BY i.orderNo";
+//        items = new ListDataModel(getFacade().findAll("name", true));
+        items = new ListDataModel(getFacade().findBySQL(temSQL));
+        temTotalCount = items.getRowCount();
+//        JsfUtil.addSuccessMessage( "Total Records " +  items.getRowCount() );
+//        JsfUtil.addSuccessMessage(items.toString());
         return items;
     }
 
@@ -90,6 +111,21 @@ public final class DesignationController {
         return valueInt;
     }
 
+    public void moveUp(){
+        if (current.getOrderNo()<=0) return;
+        int temNo = current.getOrderNo();
+        String temSQL;
+        temSQL = "SELECT i FROM InstitutionType i WHERE i.retired = false AND i.orderNo < " + temNo + " ORDER BY i.orderNo DESC";
+        List<InstitutionType> lst = getFacade().findBySQL(temSQL);
+        InstitutionType temI = lst.get(0);
+        temI.setOrderNo(temNo);
+        getFacade().edit(temI);
+        current.setOrderNo(current.getOrderNo() -1);
+        getFacade().edit(current);        
+    }
+    
+    
+    
     public DataModel searchItems() {
         recreateModel();
         if (items == null) {
@@ -100,7 +136,7 @@ public final class DesignationController {
                         true));
                 if (items.getRowCount() > 0) {
                     items.setRowIndex(0);
-                    current = (Designation) items.getRowData();
+                    current = (InstitutionType) items.getRowData();
                     Long temLong = current.getId();
                     selectedItemIndex = intValue(temLong);
                 } else {
@@ -113,14 +149,14 @@ public final class DesignationController {
 
     }
 
-    public Designation searchItem(String itemName, boolean createNewIfNotPresent) {
-        Designation searchedItem = null;
+    public InstitutionType searchItem(String itemName, boolean createNewIfNotPresent) {
+        InstitutionType searchedItem = null;
         items = new ListDataModel(getFacade().findAll("name", itemName, true));
         if (items.getRowCount() > 0) {
             items.setRowIndex(0);
-            searchedItem = (Designation) items.getRowData();
+            searchedItem = (InstitutionType) items.getRowData();
         } else if (createNewIfNotPresent) {
-            searchedItem = new Designation();
+            searchedItem = new InstitutionType();
             searchedItem.setName(itemName);
             searchedItem.setCreatedAt(Calendar.getInstance().getTime());
             searchedItem.setCreater(sessionController.loggedUser);
@@ -148,7 +184,7 @@ public final class DesignationController {
 
     public void prepareAdd() {
         selectedItemIndex = -1;
-        current = new Designation();
+        current = new InstitutionType();
         this.prepareSelectControlDisable();
     }
 
@@ -159,6 +195,7 @@ public final class DesignationController {
         } else {
             current.setCreatedAt(Calendar.getInstance().getTime());
             current.setCreater(sessionController.loggedUser);
+            current.setOrderNo(temTotalCount+1);
             getFacade().create(current);
             JsfUtil.addSuccessMessage(new MessageProvider().getValue("savedNewSuccessfully"));
         }
@@ -178,7 +215,7 @@ public final class DesignationController {
 
             getFacade().create(current);
             JsfUtil.addSuccessMessage(new MessageProvider().getValue("savedNewSuccessfully"));
-            current = new Designation();
+            current = new InstitutionType();
         } catch (Exception e) {
             JsfUtil.addErrorMessage(e, "Error");
         }
@@ -242,15 +279,15 @@ public final class DesignationController {
         modifyControlDisable = true;
     }
 
-    @FacesConverter(forClass = Designation.class)
-    public static class DesignationControllerConverter implements Converter {
+    @FacesConverter(forClass = InstitutionType.class)
+    public static class InstitutionTypeControllerConverter implements Converter {
 
         public Object getAsObject(FacesContext facesContext, UIComponent component, String value) {
             if (value == null || value.length() == 0) {
                 return null;
             }
-            DesignationController controller = (DesignationController) facesContext.getApplication().getELResolver().
-                    getValue(facesContext.getELContext(), null, "designationController");
+            InstitutionTypeController controller = (InstitutionTypeController) facesContext.getApplication().getELResolver().
+                    getValue(facesContext.getELContext(), null, "institutionTypeController");
             return controller.ejbFacade.find(getKey(value));
         }
 
@@ -270,12 +307,12 @@ public final class DesignationController {
             if (object == null) {
                 return null;
             }
-            if (object instanceof Designation) {
-                Designation o = (Designation) object;
+            if (object instanceof InstitutionType) {
+                InstitutionType o = (InstitutionType) object;
                 return getStringKey(o.getId());
             } else {
                 throw new IllegalArgumentException("object " + object + " is of type "
-                        + object.getClass().getName() + "; expected type: " + DesignationController.class.getName());
+                        + object.getClass().getName() + "; expected type: " + InstitutionTypeController.class.getName());
             }
         }
     }
