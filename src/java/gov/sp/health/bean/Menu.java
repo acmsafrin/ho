@@ -53,10 +53,11 @@ public class Menu {
 
     public void createMenu() {
         model = new DefaultMenuModel();
+
         if (sessionController.getPrivilege().isCaderView()) {
             model.addSubmenu(cadreSubmenu());
         }
-        model.addSubmenu(editSubmenu());
+
 
     }
 
@@ -69,105 +70,118 @@ public class Menu {
         submenu.setLabel("Cadre");
 
         item = new MenuItem();
-        item.setValue("Designations");
-        item.setUrl("designation.xhtml");
-        submenu.getChildren().add(item);
-
-        item = new MenuItem();
         item.setValue("Institution Types");
         item.setUrl("institution_type.xhtml");
         submenu.getChildren().add(item);
 
         item = new MenuItem();
         item.setValue("Institutions");
-        item.setUrl("designation");
+        item.setUrl("institutions.xhtml");
         submenu.getChildren().add(item);
 
         item = new MenuItem();
-        item.setValue("Carder");
-        item.setUrl("/faces/ix_category.xhtml");
+        item.setValue("Designations Category");
+        item.setUrl("designation_category.xhtml");
         submenu.getChildren().add(item);
 
         item = new MenuItem();
-        item.setValue("In Positions");
-        item.setUrl("/faces/ix_category.xhtml");
+        item.setValue("Designations");
+        item.setUrl("designation_level.xhtml");
         submenu.getChildren().add(item);
 
+        item = new MenuItem();
+        item.setValue("Designations");
+        item.setUrl("designation.xhtml");
+        submenu.getChildren().add(item);
 
-        return submenu;
+        item = new MenuItem();
+        item.setValue("Institution Designations");
+        item.setUrl("institution_designation.xhtml");
+        submenu.getChildren().add(item);
+
+        item = new MenuItem();
+        item.setValue("Cadre Positions");
+        item.setUrl("cadre_positions.xhtml");
+        submenu.getChildren().add(item);
+
+        item = new MenuItem();
+        item.setValue("Reports");
+        item.setUrl("reports.xhtml");
+        submenu.getChildren().add(item);
+
+      return submenu;
     }
 
-    private Submenu editSubmenu() {
-        Submenu submenu;
-        Submenu childSubmenu;
-        MenuItem item;
-
-        submenu = new Submenu();
-        submenu.setLabel(getLabel("editMenu"));
-
-        childSubmenu = new Submenu();
-        childSubmenu.setLabel(getLabel("investigationMenu"));
-
-        item = new MenuItem();
-        item.setValue(getLabel("investigationCategoriesMenu"));
-        item.setUrl("/faces/ix_category.xhtml");
-        childSubmenu.getChildren().add(item);
-
-        submenu.getChildren().add(childSubmenu);
-
-        childSubmenu = new Submenu();
-        childSubmenu.setLabel(getLabel("institutionsMenu"));
-
-        item = new MenuItem();
-        item.setValue(getLabel("institutionMenu"));
-        item.setUrl("/faces/institution.xhtml");
-        childSubmenu.getChildren().add(item);
-
-        submenu.getChildren().add(childSubmenu);
-
-
-        childSubmenu = new Submenu();
-        childSubmenu.setLabel(getLabel("financeMenu"));
-
-        item = new MenuItem();
-        item.setValue(getLabel("expenseMenu"));
-        item.setUrl("/faces/expense.xhtml");
-        childSubmenu.getChildren().add(item);
-
-        submenu.getChildren().add(childSubmenu);
-
-
-        childSubmenu = new Submenu();
-        childSubmenu.setLabel(getLabel("metadataMenu"));
-
-        item = new MenuItem();
-        item.setValue(getLabel("contactTypeMenu"));
-        item.setUrl("/faces/contact_type.xhtml");
-        childSubmenu.getChildren().add(item);
-
-        submenu.getChildren().add(childSubmenu);
-
-        return submenu;
-    }
-
-    private Submenu fileSubmenu() {
-        Submenu submenu;
-        Submenu childSubmenu;
-        MenuItem item;
-
-        submenu = new Submenu();
-        submenu.setLabel(getLabel("fileMenu"));
-
-        item = new MenuItem();
-        item.setValue(getLabel("saveMenu"));
-        item.setUrl(getLabel("#"));
-
-        submenu.getChildren().add(item);
-
-        return submenu;
-
-    }
-
+//    private Submenu editSubmenu() {
+//        Submenu submenu;
+//        Submenu childSubmenu;
+//        MenuItem item;
+//
+//        submenu = new Submenu();
+//        submenu.setLabel(getLabel("editMenu"));
+//
+//        childSubmenu = new Submenu();
+//        childSubmenu.setLabel(getLabel("investigationMenu"));
+//
+//        item = new MenuItem();
+//        item.setValue(getLabel("investigationCategoriesMenu"));
+//        item.setUrl("/faces/ix_category.xhtml");
+//        childSubmenu.getChildren().add(item);
+//
+//        submenu.getChildren().add(childSubmenu);
+//
+//        childSubmenu = new Submenu();
+//        childSubmenu.setLabel(getLabel("institutionsMenu"));
+//
+//        item = new MenuItem();
+//        item.setValue(getLabel("institutionMenu"));
+//        item.setUrl("/faces/institution.xhtml");
+//        childSubmenu.getChildren().add(item);
+//
+//        submenu.getChildren().add(childSubmenu);
+//
+//
+//        childSubmenu = new Submenu();
+//        childSubmenu.setLabel(getLabel("financeMenu"));
+//
+//        item = new MenuItem();
+//        item.setValue(getLabel("expenseMenu"));
+//        item.setUrl("/faces/expense.xhtml");
+//        childSubmenu.getChildren().add(item);
+//
+//        submenu.getChildren().add(childSubmenu);
+//
+//
+//        childSubmenu = new Submenu();
+//        childSubmenu.setLabel(getLabel("metadataMenu"));
+//
+//        item = new MenuItem();
+//        item.setValue(getLabel("contactTypeMenu"));
+//        item.setUrl("/faces/contact_type.xhtml");
+//        childSubmenu.getChildren().add(item);
+//
+//        submenu.getChildren().add(childSubmenu);
+//
+//        return submenu;
+//    }
+//
+//    private Submenu fileSubmenu() {
+//        Submenu submenu;
+//        Submenu childSubmenu;
+//        MenuItem item;
+//
+//        submenu = new Submenu();
+//        submenu.setLabel(getLabel("fileMenu"));
+//
+//        item = new MenuItem();
+//        item.setValue(getLabel("saveMenu"));
+//        item.setUrl(getLabel("#"));
+//
+//        submenu.getChildren().add(item);
+//
+//        return submenu;
+//
+//    }
     public MenuModel getModel() {
         return model;
     }
