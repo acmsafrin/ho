@@ -27,14 +27,14 @@ public class Privilege implements Serializable {
     boolean demographyEdit;
     boolean demographyDelete;
     boolean demographyView;
-    boolean inventaryAdd;
-    boolean inventaryEdit;
-    boolean inventaryDelete;
-    boolean inventaryView;
-    boolean MSAdd;
-    boolean MSEdit;
-    boolean MSDelete;
-    boolean MSView;
+    boolean inventoryAdd;
+    boolean inventoryEdit;
+    boolean inventoryDelete;
+    boolean inventoryView;
+    boolean msAdd;
+    boolean msEdit;
+    boolean msDelete;
+    boolean msView;
     boolean caderAdd;
     boolean caderEdit;
     boolean caderDelete;
@@ -51,6 +51,17 @@ public class Privilege implements Serializable {
     boolean dectivateAccounts;
     boolean deleteAccounts;
     boolean manageAccounts;
+    boolean bmeAdd;
+    boolean bmeEdit;
+    boolean bmeDelete;
+    boolean bmeView;
+    boolean financeAdd;
+    boolean financeEdit;
+    boolean financeDelete;
+    boolean financeView;    
+    
+    
+    
     
     @ManyToOne
     Province restrictedProvince;
@@ -67,8 +78,16 @@ public class Privilege implements Serializable {
     @ManyToOne
     PHMArea restrictedPHMArea;
     
+    
+    @ManyToOne
+    Institution restrictedInstitution;
+    
+    @ManyToOne
+    Unit restrictedUnit;
+    
+    
     //Main Properties
-    @Column(unique = true, nullable = false)
+    @Column(unique = true)
     String name;
     String description;
     //Created Properties
@@ -97,47 +116,6 @@ public class Privilege implements Serializable {
     
     @OneToOne
     WebUserRole webUserRole;
-    
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public boolean isMSAdd() {
-        return MSAdd;
-    }
-
-    public void setMSAdd(boolean MSAdd) {
-        this.MSAdd = MSAdd;
-    }
-
-    public boolean isMSDelete() {
-        return MSDelete;
-    }
-
-    public void setMSDelete(boolean MSDelete) {
-        this.MSDelete = MSDelete;
-    }
-
-    public boolean isMSEdit() {
-        return MSEdit;
-    }
-
-    public void setMSEdit(boolean MSEdit) {
-        this.MSEdit = MSEdit;
-    }
-
-    public boolean isMSView() {
-        return MSView;
-    }
-
-    public void setMSView(boolean MSView) {
-        this.MSView = MSView;
-    }
 
     public boolean isActivateAccounts() {
         return activateAccounts;
@@ -145,6 +123,70 @@ public class Privilege implements Serializable {
 
     public void setActivateAccounts(boolean activateAccounts) {
         this.activateAccounts = activateAccounts;
+    }
+
+    public String getActivateComments() {
+        return activateComments;
+    }
+
+    public void setActivateComments(String activateComments) {
+        this.activateComments = activateComments;
+    }
+
+    public boolean isActivated() {
+        return activated;
+    }
+
+    public void setActivated(boolean activated) {
+        this.activated = activated;
+    }
+
+    public Date getActivatedAt() {
+        return activatedAt;
+    }
+
+    public void setActivatedAt(Date activatedAt) {
+        this.activatedAt = activatedAt;
+    }
+
+    public WebUser getActivator() {
+        return activator;
+    }
+
+    public void setActivator(WebUser activator) {
+        this.activator = activator;
+    }
+
+    public boolean isBmeAdd() {
+        return bmeAdd;
+    }
+
+    public void setBmeAdd(boolean bmeAdd) {
+        this.bmeAdd = bmeAdd;
+    }
+
+    public boolean isBmeDelete() {
+        return bmeDelete;
+    }
+
+    public void setBmeDelete(boolean bmeDelete) {
+        this.bmeDelete = bmeDelete;
+    }
+
+    public boolean isBmeEdit() {
+        return bmeEdit;
+    }
+
+    public void setBmeEdit(boolean bmeEdit) {
+        this.bmeEdit = bmeEdit;
+    }
+
+    public boolean isBmeView() {
+        return bmeView;
+    }
+
+    public void setBmeView(boolean bmeView) {
+        this.bmeView = bmeView;
     }
 
     public boolean isCaderAdd() {
@@ -177,6 +219,22 @@ public class Privilege implements Serializable {
 
     public void setCaderView(boolean caderView) {
         this.caderView = caderView;
+    }
+
+    public Date getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public WebUser getCreater() {
+        return creater;
+    }
+
+    public void setCreater(WebUser creater) {
+        this.creater = creater;
     }
 
     public boolean isDectivateAccounts() {
@@ -227,36 +285,84 @@ public class Privilege implements Serializable {
         this.demographyView = demographyView;
     }
 
-    public boolean isInventaryAdd() {
-        return inventaryAdd;
+    public String getDescription() {
+        return description;
     }
 
-    public void setInventaryAdd(boolean inventaryAdd) {
-        this.inventaryAdd = inventaryAdd;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
-    public boolean isInventaryDelete() {
-        return inventaryDelete;
+    public boolean isFinanceAdd() {
+        return financeAdd;
     }
 
-    public void setInventaryDelete(boolean inventaryDelete) {
-        this.inventaryDelete = inventaryDelete;
+    public void setFinanceAdd(boolean financeAdd) {
+        this.financeAdd = financeAdd;
     }
 
-    public boolean isInventaryEdit() {
-        return inventaryEdit;
+    public boolean isFinanceDelete() {
+        return financeDelete;
     }
 
-    public void setInventaryEdit(boolean inventaryEdit) {
-        this.inventaryEdit = inventaryEdit;
+    public void setFinanceDelete(boolean financeDelete) {
+        this.financeDelete = financeDelete;
     }
 
-    public boolean isInventaryView() {
-        return inventaryView;
+    public boolean isFinanceEdit() {
+        return financeEdit;
     }
 
-    public void setInventaryView(boolean inventaryView) {
-        this.inventaryView = inventaryView;
+    public void setFinanceEdit(boolean financeEdit) {
+        this.financeEdit = financeEdit;
+    }
+
+    public boolean isFinanceView() {
+        return financeView;
+    }
+
+    public void setFinanceView(boolean financeView) {
+        this.financeView = financeView;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public boolean isInventoryAdd() {
+        return inventoryAdd;
+    }
+
+    public void setInventoryAdd(boolean inventoryAdd) {
+        this.inventoryAdd = inventoryAdd;
+    }
+
+    public boolean isInventoryDelete() {
+        return inventoryDelete;
+    }
+
+    public void setInventoryDelete(boolean inventoryDelete) {
+        this.inventoryDelete = inventoryDelete;
+    }
+
+    public boolean isInventoryEdit() {
+        return inventoryEdit;
+    }
+
+    public void setInventoryEdit(boolean inventoryEdit) {
+        this.inventoryEdit = inventoryEdit;
+    }
+
+    public boolean isInventoryView() {
+        return inventoryView;
+    }
+
+    public void setInventoryView(boolean inventoryView) {
+        this.inventoryView = inventoryView;
     }
 
     public boolean isLibraryAdd() {
@@ -299,12 +405,60 @@ public class Privilege implements Serializable {
         this.manageAccounts = manageAccounts;
     }
 
+    public boolean isMsAdd() {
+        return msAdd;
+    }
+
+    public void setMsAdd(boolean msAdd) {
+        this.msAdd = msAdd;
+    }
+
+    public boolean isMsDelete() {
+        return msDelete;
+    }
+
+    public void setMsDelete(boolean msDelete) {
+        this.msDelete = msDelete;
+    }
+
+    public boolean isMsEdit() {
+        return msEdit;
+    }
+
+    public void setMsEdit(boolean msEdit) {
+        this.msEdit = msEdit;
+    }
+
+    public boolean isMsView() {
+        return msView;
+    }
+
+    public void setMsView(boolean msView) {
+        this.msView = msView;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public DPDHSArea getRestrictedDPDHSArea() {
         return restrictedDPDHSArea;
     }
 
     public void setRestrictedDPDHSArea(DPDHSArea restrictedDPDHSArea) {
         this.restrictedDPDHSArea = restrictedDPDHSArea;
+    }
+
+    public Institution getRestrictedInstitution() {
+        return restrictedInstitution;
+    }
+
+    public void setRestrictedInstitution(Institution restrictedInstitution) {
+        this.restrictedInstitution = restrictedInstitution;
     }
 
     public MOHArea getRestrictedMOHArea() {
@@ -339,100 +493,12 @@ public class Privilege implements Serializable {
         this.restrictedProvince = restrictedProvince;
     }
 
-    public boolean isVehicleAdd() {
-        return vehicleAdd;
+    public Unit getRestrictedUnit() {
+        return restrictedUnit;
     }
 
-    public void setVehicleAdd(boolean vehicleAdd) {
-        this.vehicleAdd = vehicleAdd;
-    }
-
-    public boolean isVehicleDelete() {
-        return vehicleDelete;
-    }
-
-    public void setVehicleDelete(boolean vehicleDelete) {
-        this.vehicleDelete = vehicleDelete;
-    }
-
-    public boolean isVehicleEdit() {
-        return vehicleEdit;
-    }
-
-    public void setVehicleEdit(boolean vehicleEdit) {
-        this.vehicleEdit = vehicleEdit;
-    }
-
-    public boolean isVehicleView() {
-        return vehicleView;
-    }
-
-    public void setVehicleView(boolean vehicleView) {
-        this.vehicleView = vehicleView;
-    }
-
-    public String getActivateComments() {
-        return activateComments;
-    }
-
-    public void setActivateComments(String activateComments) {
-        this.activateComments = activateComments;
-    }
-
-    public boolean isActivated() {
-        return activated;
-    }
-
-    public void setActivated(boolean activated) {
-        this.activated = activated;
-    }
-
-    public Date getActivatedAt() {
-        return activatedAt;
-    }
-
-    public void setActivatedAt(Date activatedAt) {
-        this.activatedAt = activatedAt;
-    }
-
-    public WebUser getActivator() {
-        return activator;
-    }
-
-    public void setActivator(WebUser activator) {
-        this.activator = activator;
-    }
-
-    public Date getCreatedAt() {
-        return createdAt;
-    }
-
-    public void setCreatedAt(Date createdAt) {
-        this.createdAt = createdAt;
-    }
-
-    public WebUser getCreater() {
-        return creater;
-    }
-
-    public void setCreater(WebUser creater) {
-        this.creater = creater;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
+    public void setRestrictedUnit(Unit restrictedUnit) {
+        this.restrictedUnit = restrictedUnit;
     }
 
     public String getRetireComments() {
@@ -467,6 +533,38 @@ public class Privilege implements Serializable {
         this.retirer = retirer;
     }
 
+    public boolean isVehicleAdd() {
+        return vehicleAdd;
+    }
+
+    public void setVehicleAdd(boolean vehicleAdd) {
+        this.vehicleAdd = vehicleAdd;
+    }
+
+    public boolean isVehicleDelete() {
+        return vehicleDelete;
+    }
+
+    public void setVehicleDelete(boolean vehicleDelete) {
+        this.vehicleDelete = vehicleDelete;
+    }
+
+    public boolean isVehicleEdit() {
+        return vehicleEdit;
+    }
+
+    public void setVehicleEdit(boolean vehicleEdit) {
+        this.vehicleEdit = vehicleEdit;
+    }
+
+    public boolean isVehicleView() {
+        return vehicleView;
+    }
+
+    public void setVehicleView(boolean vehicleView) {
+        this.vehicleView = vehicleView;
+    }
+
     public WebUser getWebUser() {
         return webUser;
     }
@@ -483,6 +581,10 @@ public class Privilege implements Serializable {
         this.webUserRole = webUserRole;
     }
 
+
+    
+    
+    
     
     @Override
     public int hashCode() {

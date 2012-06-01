@@ -131,20 +131,20 @@ public class ConnetcionController {
         p.setDemographyDelete(true);
         p.setDemographyView(true);
         //
-        p.setInventaryAdd(true);
-        p.setInventaryEdit(true);
-        p.setInventaryDelete(true);
-        p.setInventaryView(true);
+        p.setInventoryAdd(true);
+        p.setInventoryEdit(true);
+        p.setInventoryDelete(true);
+        p.setInventoryView(true);
         //
         p.setLibraryAdd(true);
         p.setLibraryEdit(true);
         p.setLibraryDelete(true);
         p.setLibraryView(true);
         //
-        p.setMSAdd(true);
-        p.setMSEdit(true);
-        p.setMSDelete(true);
-        p.setMSView(true);
+        p.setMsAdd(true);
+        p.setMsEdit(true);
+        p.setMsDelete(true);
+        p.setMsView(true);
         //
         p.setVehicleAdd(true);
         p.setVehicleEdit(true);
@@ -154,6 +154,17 @@ public class ConnetcionController {
         p.setActivateAccounts(true);
         p.setDectivateAccounts(true);
         p.setManageAccounts(true);
+        p.setDeleteAccounts(true);
+        //
+        p.setBmeAdd(true);
+        p.setBmeEdit(true);
+        p.setBmeDelete(true);
+        p.setBmeView(true);
+        //
+        p.setFinanceAdd(true);
+        p.setFinanceEdit(true);
+        p.setFinanceDelete(true);
+        p.setFinanceView(true);
         //
         p.setWebUser(user);
         //
@@ -175,20 +186,20 @@ public class ConnetcionController {
         p.setDemographyDelete(true);
         p.setDemographyView(true);
         //
-        p.setInventaryAdd(true);
-        p.setInventaryEdit(true);
-        p.setInventaryDelete(true);
-        p.setInventaryView(true);
+        p.setInventoryAdd(true);
+        p.setInventoryEdit(true);
+        p.setInventoryDelete(true);
+        p.setInventoryView(true);
         //
         p.setLibraryAdd(true);
         p.setLibraryEdit(true);
         p.setLibraryDelete(true);
         p.setLibraryView(true);
         //
-        p.setMSAdd(true);
-        p.setMSEdit(true);
-        p.setMSDelete(true);
-        p.setMSView(true);
+        p.setMsAdd(true);
+        p.setMsEdit(true);
+        p.setMsDelete(true);
+        p.setMsView(true);
         //
         p.setVehicleAdd(true);
         p.setVehicleEdit(true);
@@ -198,6 +209,17 @@ public class ConnetcionController {
         p.setActivateAccounts(true);
         p.setDectivateAccounts(true);
         p.setManageAccounts(true);
+        p.setDeleteAccounts(true);
+        //
+        p.setBmeAdd(true);
+        p.setBmeEdit(true);
+        p.setBmeDelete(true);
+        p.setBmeView(true);
+        //
+        p.setFinanceAdd(true);
+        p.setFinanceEdit(true);
+        p.setFinanceDelete(true);
+        p.setFinanceView(true);
         //
         p.setWebUserRole(role);
         //
@@ -293,17 +315,17 @@ public class ConnetcionController {
                 p.setDemographyView(true);
             }
             //
-            if (pv.isInventaryAdd() == true) {
-                p.setInventaryAdd(true);
+            if (pv.isInventoryAdd() == true) {
+                p.setInventoryAdd(true);
             }
-            if (pv.isInventaryEdit() == true) {
-                p.setInventaryEdit(true);
+            if (pv.isInventoryEdit() == true) {
+                p.setInventoryEdit(true);
             }
-            if (pv.isInventaryDelete() == true) {
-                p.setInventaryDelete(true);
+            if (pv.isInventoryDelete() == true) {
+                p.setInventoryDelete(true);
             }
-            if (pv.isInventaryView() == true) {
-                p.setInventaryView(true);
+            if (pv.isInventoryView() == true) {
+                p.setInventoryView(true);
             }
             //
             if (pv.isLibraryAdd() == true) {
@@ -319,17 +341,17 @@ public class ConnetcionController {
                 p.setLibraryView(true);
             }
             //
-            if (pv.isMSAdd() == true) {
-                p.setMSAdd(true);
+            if (pv.isMsAdd() == true) {
+                p.setMsAdd(true);
             }
-            if (pv.isMSEdit() == true) {
-                p.setMSEdit(true);
+            if (pv.isMsEdit() == true) {
+                p.setMsEdit(true);
             }
-            if (pv.isMSDelete() == true) {
-                p.setMSDelete(true);
+            if (pv.isMsDelete() == true) {
+                p.setMsDelete(true);
             }
-            if (pv.isMSView() == true) {
-                p.setMSView(true);
+            if (pv.isMsView() == true) {
+                p.setMsView(true);
             }
             //
             if (pv.isVehicleAdd() == true) {
@@ -369,6 +391,7 @@ public class ConnetcionController {
     }
 
     public WebUser getCurrent() {
+        
         return current;
     }
 
