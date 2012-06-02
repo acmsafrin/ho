@@ -51,7 +51,20 @@ public class Institution implements Serializable {
     @ManyToOne
     InstitutionType institutionType;
     
+    @ManyToOne
+    Province province;
     
+    @ManyToOne
+    DPDHSArea dPDHSArea;
+    
+    @ManyToOne
+    MOHArea mOHArea;
+    
+    @ManyToOne
+    PHIArea pHIArea;
+    
+    @ManyToOne
+    PHMArea pHMArea;
     
     
     private static final long serialVersionUID = 1L;
