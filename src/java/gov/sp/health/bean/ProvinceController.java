@@ -8,14 +8,12 @@
  */
 package gov.sp.health.bean;
 
-import gov.sp.health.autobean.DPDHSAreaFacade;
-import gov.sp.health.entity.DPDHSArea;
+import gov.sp.health.autobean.ProvinceFacade;
 import gov.sp.health.entity.Province;
 import java.util.Calendar;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
@@ -31,83 +29,28 @@ import javax.faces.model.ListDataModel;
  */
 @ManagedBean
 @SessionScoped
-public final class DPDHSAreaController {
+public final class ProvinceController {
 
-    List<DPDHSArea> areas;
-    private DPDHSArea current;
-    private DataModel items = null;
-    private DataModel provinces = null;
-    private Province province;
-    //
     @EJB
-    private DPDHSAreaFacade ejbFacade;
-    //
-    @ManagedProperty(value = "#{provinceController}")
-    ProvinceController provinceController;
-    @ManagedProperty(value = "#{sessionController}")
-    SessionController sessionController;
-    //
+    private ProvinceFacade ejbFacade;
+    SessionController sessionController = new SessionController();
+    List<Province> lstItems;
+    private Province current;
+    private DataModel items = null;
     private int selectedItemIndex;
     boolean selectControlDisable = false;
     boolean modifyControlDisable = true;
     String selectText = "";
 
-    public DPDHSAreaFacade getEjbFacade() {
-        return ejbFacade;
+    public ProvinceController() {
     }
 
-    public void setEjbFacade(DPDHSAreaFacade ejbFacade) {
-        this.ejbFacade = ejbFacade;
+    public List<Province> getLstItems() {
+        return getFacade().findBySQL("Select d From Province d");
     }
 
-    public Province getProvince() {
-        return province;
-    }
-
-    public void setProvince(Province province) {
-        this.province = province;
-    }
-
-    public ProvinceController getProvinceController() {
-        return provinceController;
-    }
-
-    public void setProvinceController(ProvinceController provinceController) {
-        this.provinceController = provinceController;
-    }
-
-    public SessionController getSessionController() {
-        return sessionController;
-    }
-
-    public void setSessionController(SessionController sessionController) {
-        this.sessionController = sessionController;
-    }
-
-    public DataModel getProvinces() {
-        if (provinces == null) {
-            provinces = provinceController.getItems();
-            JsfUtil.addSuccessMessage("Got Provinces");
-        }
-        return provinces;
-    }
-
-    public void setProvinces(DataModel provinces) {
-        this.provinces = provinces;
-    }
-
-    public DPDHSAreaController() {
-    }
-
-    public List<DPDHSArea> getAreas() {
-
-        areas = (getFacade().findBySQL("Select d From DPDHSArea d"));
-
-        return areas;
-    }
-
-    public void setAreas(List<DPDHSArea> areas) {
-        this.areas = areas;
+    public void setLstItems(List<Province> lstItems) {
+        this.lstItems = lstItems;
     }
 
     public int getSelectedItemIndex() {
@@ -118,30 +61,23 @@ public final class DPDHSAreaController {
         this.selectedItemIndex = selectedItemIndex;
     }
 
-    public DPDHSArea getCurrent() {
-        JsfUtil.addSuccessMessage("Got current");
+    public Province getCurrent() {
+        if (current == null) {
+            current = new Province();
+        }
         return current;
     }
 
-    public void setCurrent(DPDHSArea current) {
-        JsfUtil.addSuccessMessage("Setted current");
-        province = current.getProvince();
+    public void setCurrent(Province current) {
         this.current = current;
     }
 
-    public void testApp() {
-        JsfUtil.addSuccessMessage("Setted current");
-    }
-
-    private DPDHSAreaFacade getFacade() {
+    private ProvinceFacade getFacade() {
         return ejbFacade;
     }
 
     public DataModel getItems() {
-        if (items == null) {
-            items = new ListDataModel(getFacade().findBySQL("Select d From DPDHSArea d"));
-            JsfUtil.addSuccessMessage("Got Item");
-        }
+        items = new ListDataModel(getFacade().findAll("name", true));
         return items;
     }
 
@@ -164,7 +100,7 @@ public final class DPDHSAreaController {
                         true));
                 if (items.getRowCount() > 0) {
                     items.setRowIndex(0);
-                    current = (DPDHSArea) items.getRowData();
+                    current = (Province) items.getRowData();
                     Long temLong = current.getId();
                     selectedItemIndex = intValue(temLong);
                 } else {
@@ -177,14 +113,14 @@ public final class DPDHSAreaController {
 
     }
 
-    public DPDHSArea searchItem(String itemName, boolean createNewIfNotPresent) {
-        DPDHSArea searchedItem = null;
+    public Province searchItem(String itemName, boolean createNewIfNotPresent) {
+        Province searchedItem = null;
         items = new ListDataModel(getFacade().findAll("name", itemName, true));
         if (items.getRowCount() > 0) {
             items.setRowIndex(0);
-            searchedItem = (DPDHSArea) items.getRowData();
+            searchedItem = (Province) items.getRowData();
         } else if (createNewIfNotPresent) {
-            searchedItem = new DPDHSArea();
+            searchedItem = new Province();
             searchedItem.setName(itemName);
             searchedItem.setCreatedAt(Calendar.getInstance().getTime());
             searchedItem.setCreater(sessionController.loggedUser);
@@ -212,17 +148,15 @@ public final class DPDHSAreaController {
 
     public void prepareAdd() {
         selectedItemIndex = -1;
-        current = new DPDHSArea();
+        current = new Province();
         this.prepareSelectControlDisable();
     }
 
     public void saveSelected() {
         if (selectedItemIndex > 0) {
-            current.setProvince(province);
             getFacade().edit(current);
             JsfUtil.addSuccessMessage(new MessageProvider().getValue("savedOldSuccessfully"));
         } else {
-            current.setProvince(province);
             current.setCreatedAt(Calendar.getInstance().getTime());
             current.setCreater(sessionController.loggedUser);
             getFacade().create(current);
@@ -244,7 +178,7 @@ public final class DPDHSAreaController {
 
             getFacade().create(current);
             JsfUtil.addSuccessMessage(new MessageProvider().getValue("savedNewSuccessfully"));
-            current = new DPDHSArea();
+            current = new Province();
         } catch (Exception e) {
             JsfUtil.addErrorMessage(e, "Error");
         }
@@ -308,15 +242,15 @@ public final class DPDHSAreaController {
         modifyControlDisable = true;
     }
 
-    @FacesConverter(forClass = DPDHSArea.class)
-    public static class DPDHSAreaControllerConverter implements Converter {
+    @FacesConverter(forClass = Province.class)
+    public static class ProvinceControllerConverter implements Converter {
 
         public Object getAsObject(FacesContext facesContext, UIComponent component, String value) {
             if (value == null || value.length() == 0) {
                 return null;
             }
-            DPDHSAreaController controller = (DPDHSAreaController) facesContext.getApplication().getELResolver().
-                    getValue(facesContext.getELContext(), null, "dPDHSAreaController");
+            ProvinceController controller = (ProvinceController) facesContext.getApplication().getELResolver().
+                    getValue(facesContext.getELContext(), null, "provinceController");
             return controller.ejbFacade.find(getKey(value));
         }
 
@@ -336,12 +270,12 @@ public final class DPDHSAreaController {
             if (object == null) {
                 return null;
             }
-            if (object instanceof DPDHSArea) {
-                DPDHSArea o = (DPDHSArea) object;
+            if (object instanceof Province) {
+                Province o = (Province) object;
                 return getStringKey(o.getId());
             } else {
                 throw new IllegalArgumentException("object " + object + " is of type "
-                        + object.getClass().getName() + "; expected type: " + DPDHSAreaController.class.getName());
+                        + object.getClass().getName() + "; expected type: " + ProvinceController.class.getName());
             }
         }
     }

@@ -7,7 +7,7 @@
                 xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:pou="http://primefaces.org/ui">
 
-  
+
     <ui:define name="content">
         <h:panelGroup id="divLoggin" rendered="#{!connetcionController.logged}"  >
             <h:form>
@@ -64,6 +64,14 @@
                 <h:panelGroup id="divActivated" rendered="#{connetcionController.activated}" >
                     Welcome to Health Office.
                     <h:commandButton value="Logout" class="pdButton" action="#{connetcionController.logout()}"></h:commandButton>
+
+                    <h:panelGrid columns="1">
+                        <h:commandLink value="Provinces" action="province"/>
+                        <h:commandLink value="DPDHS Area" action="dpdhsarea"/>
+                    </h:panelGrid>
+
+
+
                 </h:panelGroup>
                 <h:panelGroup id="divNotActivated" rendered="#{!connetcionController.activated}" >
                     Welcome to Health Office. Your account is yet to activate. Please contact administrator.
@@ -72,6 +80,22 @@
 
         </h:panelGroup>
 
+
+        <h:form enctype="multipart/form-data">
+
+            <pou:messages showDetail="true"/>
+
+            <pou:fileUpload value="#{fileUploadController.file}" mode="simple"/>
+
+            <pou:commandButton value="Submit" ajax="false"
+                               actionListener="#{fileUploadController.toExcel}"/>
+
+        </h:form>
+
+
+
+
+
     </ui:define>
 
- </ui:composition>
+</ui:composition>
