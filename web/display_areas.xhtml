@@ -25,24 +25,12 @@
                 <h:outputLabel value="DPDHS Area"/>
                 <h:selectOneListbox id="lstDPDHS" value="#{demographyExcelManager.selectedArea}" size="1">
                     <f:selectItems value="#{demographyExcelManager.dmDPDHS}" var="dpdhs" itemValue="#{dpdhs}" itemLabel="#{dpdhs.name}"/>
-                    <f:ajax execute="lstDPDHS" render="lstMOH g" event="change"/>
+                    <f:ajax execute="lstDPDHS" render="tblArea g" event="change"/>
                 </h:selectOneListbox>
-
-
-                <h:outputLabel vavalue="MOH Area"></h:outputLabel>
-                <h:selectOneListbox id="lstMOH" value="#{demographyExcelManager.selectedMOHId}">
-                    <f:selectItems value="#{demographyExcelManager.dmMOH}" var="jMOH" itemLabel="#{jMOH.name}" itemValue="#{jMOH.id}"/>
-                    <f:ajax execute="lstMOH" render="g" event="change"/>
-                </h:selectOneListbox>
-
-
             </h:panelGrid>
 
-            <h:outputLabel id="lbl1" value="#{demographyExcelManager.selectedMOH.name}"/>
-            <h:outputLabel id="lbl2"  value="#{demographyExcelManager.selectedPHI.name}"/>
-            <h:outputLabel id="lbl3"  value="#{demographyExcelManager.selectedArea.name}"/>
 
-            <pou:dataTable rendered="false" id="tblArea"  var="demo" value="#{demographyExcelManager.lstAllColRows}" paginator="true" rows="20"  
+            <pou:dataTable id="tblArea"  var="demo" value="#{demographyExcelManager.lstAllColRows}" paginator="true" rows="20"  
                            paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"  
                            rowsPerPageTemplate="10,20,30,40,50" >
 
