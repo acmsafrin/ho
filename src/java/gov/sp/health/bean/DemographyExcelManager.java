@@ -426,6 +426,7 @@ public class DemographyExcelManager {
         List<DemoTblRow> lst = new ArrayList<DemoTblRow>();
         if (selectedArea == null) {
             temSQL = "SELECT i FROM MOHArea i WHERE i.retired = false ";
+            return null;
         } else {
             temSQL = "SELECT i FROM MOHArea i WHERE i.retired = false AND i.dPDHSArea.id = " + selectedArea.getId();
         }
