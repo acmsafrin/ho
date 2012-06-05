@@ -49,6 +49,7 @@ public class Population implements Serializable {
     @ManyToOne
     GNArea gNArea;
     long populationNumber;
+    double area;
 
     public Long getId() {
         return id;
@@ -170,6 +171,17 @@ public class Population implements Serializable {
         this.populationNumber = populationNumber;
     }
 
+    public double getArea() {
+        return area;
+    }
+
+    public void setArea(double area) {
+        this.area = area;
+    }
+
+
+    
+    
     @Override
     public int hashCode() {
         int hash = 0;
