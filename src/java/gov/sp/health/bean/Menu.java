@@ -53,11 +53,13 @@ public class Menu {
 
     public void createMenu() {
         model = new DefaultMenuModel();
-
-        if (sessionController.getPrivilege().isCaderView()) {
-            model.addSubmenu(cadreSubmenu());
-        }
-
+        model.addSubmenu(cadreSubmenu());
+        model.addSubmenu(biomedSubmenu());
+        model.addSubmenu(transportSubmenu());
+        model.addSubmenu(demographySubmenu());
+        model.addSubmenu(humanSubmenu());
+        model.addSubmenu(medicalSubmenu());
+        model.addSubmenu(inventorySubmenu());
 
     }
 
@@ -67,7 +69,7 @@ public class Menu {
         MenuItem item;
 
         submenu = new Submenu();
-        submenu.setLabel("Cadre");
+        submenu.setLabel("Human Resource");
 
         item = new MenuItem();
         item.setValue("Institution Types");
@@ -109,9 +111,321 @@ public class Menu {
         item.setUrl("reports.xhtml");
         submenu.getChildren().add(item);
 
-      return submenu;
+        return submenu;
+    }
+    
+    
+        private Submenu biomedSubmenu() {
+        Submenu submenu;
+
+        MenuItem item;
+
+        submenu = new Submenu();
+        submenu.setLabel("Biomedical Information System");
+
+        item = new MenuItem();
+        item.setValue("Institution Types");
+        item.setUrl("institution_type.xhtml");
+        submenu.getChildren().add(item);
+
+        item = new MenuItem();
+        item.setValue("Institutions");
+        item.setUrl("institutions.xhtml");
+        submenu.getChildren().add(item);
+
+        item = new MenuItem();
+        item.setValue("Designations Category");
+        item.setUrl("designation_category.xhtml");
+        submenu.getChildren().add(item);
+
+        item = new MenuItem();
+        item.setValue("Designations");
+        item.setUrl("designation_level.xhtml");
+        submenu.getChildren().add(item);
+
+        item = new MenuItem();
+        item.setValue("Designations");
+        item.setUrl("designation.xhtml");
+        submenu.getChildren().add(item);
+
+        item = new MenuItem();
+        item.setValue("Institution Designations");
+        item.setUrl("institution_designation.xhtml");
+        submenu.getChildren().add(item);
+
+        item = new MenuItem();
+        item.setValue("Cadre Positions");
+        item.setUrl("cadre_positions.xhtml");
+        submenu.getChildren().add(item);
+
+        item = new MenuItem();
+        item.setValue("Reports");
+        item.setUrl("reports.xhtml");
+        submenu.getChildren().add(item);
+
+        return submenu;
     }
 
+        
+            private Submenu transportSubmenu() {
+        Submenu submenu;
+
+        MenuItem item;
+
+        submenu = new Submenu();
+        submenu.setLabel("Transport Management System");
+
+        item = new MenuItem();
+        item.setValue("Institution Types");
+        item.setUrl("institution_type.xhtml");
+        submenu.getChildren().add(item);
+
+        item = new MenuItem();
+        item.setValue("Institutions");
+        item.setUrl("institutions.xhtml");
+        submenu.getChildren().add(item);
+
+        item = new MenuItem();
+        item.setValue("Designations Category");
+        item.setUrl("designation_category.xhtml");
+        submenu.getChildren().add(item);
+
+        item = new MenuItem();
+        item.setValue("Designations");
+        item.setUrl("designation_level.xhtml");
+        submenu.getChildren().add(item);
+
+        item = new MenuItem();
+        item.setValue("Designations");
+        item.setUrl("designation.xhtml");
+        submenu.getChildren().add(item);
+
+        item = new MenuItem();
+        item.setValue("Institution Designations");
+        item.setUrl("institution_designation.xhtml");
+        submenu.getChildren().add(item);
+
+        item = new MenuItem();
+        item.setValue("Cadre Positions");
+        item.setUrl("cadre_positions.xhtml");
+        submenu.getChildren().add(item);
+
+        item = new MenuItem();
+        item.setValue("Reports");
+        item.setUrl("reports.xhtml");
+        submenu.getChildren().add(item);
+
+        return submenu;
+    }
+        
+             private Submenu demographySubmenu() {
+        Submenu submenu;
+
+        MenuItem item;
+
+        submenu = new Submenu();
+        submenu.setLabel("Demography");
+
+        item = new MenuItem();
+        item.setValue("Institution Types");
+        item.setUrl("institution_type.xhtml");
+        submenu.getChildren().add(item);
+
+        item = new MenuItem();
+        item.setValue("Institutions");
+        item.setUrl("institutions.xhtml");
+        submenu.getChildren().add(item);
+
+        item = new MenuItem();
+        item.setValue("Designations Category");
+        item.setUrl("designation_category.xhtml");
+        submenu.getChildren().add(item);
+
+        item = new MenuItem();
+        item.setValue("Designations");
+        item.setUrl("designation_level.xhtml");
+        submenu.getChildren().add(item);
+
+        item = new MenuItem();
+        item.setValue("Designations");
+        item.setUrl("designation.xhtml");
+        submenu.getChildren().add(item);
+
+        item = new MenuItem();
+        item.setValue("Institution Designations");
+        item.setUrl("institution_designation.xhtml");
+        submenu.getChildren().add(item);
+
+        item = new MenuItem();
+        item.setValue("Cadre Positions");
+        item.setUrl("cadre_positions.xhtml");
+        submenu.getChildren().add(item);
+
+        item = new MenuItem();
+        item.setValue("Reports");
+        item.setUrl("reports.xhtml");
+        submenu.getChildren().add(item);
+
+        return submenu;
+    }
+             
+              private Submenu humanSubmenu() {
+        Submenu submenu;
+
+        MenuItem item;
+
+        submenu = new Submenu();
+        submenu.setLabel("Human Resource");
+
+        item = new MenuItem();
+        item.setValue("Institution Types");
+        item.setUrl("institution_type.xhtml");
+        submenu.getChildren().add(item);
+
+        item = new MenuItem();
+        item.setValue("Institutions");
+        item.setUrl("institutions.xhtml");
+        submenu.getChildren().add(item);
+
+        item = new MenuItem();
+        item.setValue("Designations Category");
+        item.setUrl("designation_category.xhtml");
+        submenu.getChildren().add(item);
+
+        item = new MenuItem();
+        item.setValue("Designations");
+        item.setUrl("designation_level.xhtml");
+        submenu.getChildren().add(item);
+
+        item = new MenuItem();
+        item.setValue("Designations");
+        item.setUrl("designation.xhtml");
+        submenu.getChildren().add(item);
+
+        item = new MenuItem();
+        item.setValue("Institution Designations");
+        item.setUrl("institution_designation.xhtml");
+        submenu.getChildren().add(item);
+
+        item = new MenuItem();
+        item.setValue("Cadre Positions");
+        item.setUrl("cadre_positions.xhtml");
+        submenu.getChildren().add(item);
+
+        item = new MenuItem();
+        item.setValue("Reports");
+        item.setUrl("reports.xhtml");
+        submenu.getChildren().add(item);
+
+        return submenu;
+    }
+              
+               private Submenu medicalSubmenu() {
+        Submenu submenu;
+
+        MenuItem item;
+
+        submenu = new Submenu();
+        submenu.setLabel("Medical Supplies Information System");
+
+        item = new MenuItem();
+        item.setValue("Institution Types");
+        item.setUrl("institution_type.xhtml");
+        submenu.getChildren().add(item);
+
+        item = new MenuItem();
+        item.setValue("Institutions");
+        item.setUrl("institutions.xhtml");
+        submenu.getChildren().add(item);
+
+        item = new MenuItem();
+        item.setValue("Designations Category");
+        item.setUrl("designation_category.xhtml");
+        submenu.getChildren().add(item);
+
+        item = new MenuItem();
+        item.setValue("Designations");
+        item.setUrl("designation_level.xhtml");
+        submenu.getChildren().add(item);
+
+        item = new MenuItem();
+        item.setValue("Designations");
+        item.setUrl("designation.xhtml");
+        submenu.getChildren().add(item);
+
+        item = new MenuItem();
+        item.setValue("Institution Designations");
+        item.setUrl("institution_designation.xhtml");
+        submenu.getChildren().add(item);
+
+        item = new MenuItem();
+        item.setValue("Cadre Positions");
+        item.setUrl("cadre_positions.xhtml");
+        submenu.getChildren().add(item);
+
+        item = new MenuItem();
+        item.setValue("Reports");
+        item.setUrl("reports.xhtml");
+        submenu.getChildren().add(item);
+
+        return submenu;
+    }
+            
+                             
+               private Submenu inventorySubmenu() {
+        Submenu submenu;
+
+        MenuItem item;
+
+        submenu = new Submenu();
+        submenu.setLabel("Inventory Management System");
+
+        item = new MenuItem();
+        item.setValue("Institution Types");
+        item.setUrl("institution_type.xhtml");
+        submenu.getChildren().add(item);
+
+        item = new MenuItem();
+        item.setValue("Institutions");
+        item.setUrl("institutions.xhtml");
+        submenu.getChildren().add(item);
+
+        item = new MenuItem();
+        item.setValue("Designations Category");
+        item.setUrl("designation_category.xhtml");
+        submenu.getChildren().add(item);
+
+        item = new MenuItem();
+        item.setValue("Designations");
+        item.setUrl("designation_level.xhtml");
+        submenu.getChildren().add(item);
+
+        item = new MenuItem();
+        item.setValue("Designations");
+        item.setUrl("designation.xhtml");
+        submenu.getChildren().add(item);
+
+        item = new MenuItem();
+        item.setValue("Institution Designations");
+        item.setUrl("institution_designation.xhtml");
+        submenu.getChildren().add(item);
+
+        item = new MenuItem();
+        item.setValue("Cadre Positions");
+        item.setUrl("cadre_positions.xhtml");
+        submenu.getChildren().add(item);
+
+        item = new MenuItem();
+        item.setValue("Reports");
+        item.setUrl("reports.xhtml");
+        submenu.getChildren().add(item);
+
+        return submenu;
+    }
+            
+            
+            
+            
 //    private Submenu editSubmenu() {
 //        Submenu submenu;
 //        Submenu childSubmenu;
