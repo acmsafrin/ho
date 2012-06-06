@@ -66,6 +66,131 @@ public class Institution implements Serializable {
     @ManyToOne
     PHMArea pHMArea;
     
+    boolean outSide;
+    
+    String address;
+    String code;
+    String telephone;
+    String fax;
+    String mobile;
+    String email;
+    String website;
+    String comments;
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
+    }
+
+    public String getComments() {
+        return comments;
+    }
+
+    public void setComments(String comments) {
+        this.comments = comments;
+    }
+
+    public DPDHSArea getdPDHSArea() {
+        return dPDHSArea;
+    }
+
+    public void setdPDHSArea(DPDHSArea dPDHSArea) {
+        this.dPDHSArea = dPDHSArea;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getFax() {
+        return fax;
+    }
+
+    public void setFax(String fax) {
+        this.fax = fax;
+    }
+
+    public MOHArea getmOHArea() {
+        return mOHArea;
+    }
+
+    public void setmOHArea(MOHArea mOHArea) {
+        this.mOHArea = mOHArea;
+    }
+
+    public String getMobile() {
+        return mobile;
+    }
+
+    public void setMobile(String mobile) {
+        this.mobile = mobile;
+    }
+
+    public boolean isOutSide() {
+        return outSide;
+    }
+
+    public void setOutSide(boolean outSide) {
+        this.outSide = outSide;
+    }
+
+    public PHIArea getpHIArea() {
+        return pHIArea;
+    }
+
+    public void setpHIArea(PHIArea pHIArea) {
+        this.pHIArea = pHIArea;
+    }
+
+    public PHMArea getpHMArea() {
+        return pHMArea;
+    }
+
+    public void setpHMArea(PHMArea pHMArea) {
+        this.pHMArea = pHMArea;
+    }
+
+    public Province getProvince() {
+        return province;
+    }
+
+    public void setProvince(Province province) {
+        this.province = province;
+    }
+
+    public String getTelephone() {
+        return telephone;
+    }
+
+    public void setTelephone(String telephone) {
+        this.telephone = telephone;
+    }
+
+    public String getWebsite() {
+        return website;
+    }
+
+    public void setWebsite(String website) {
+        this.website = website;
+    }
+    
+   
+    
     
     private static final long serialVersionUID = 1L;
     @OneToMany(mappedBy = "institution")
