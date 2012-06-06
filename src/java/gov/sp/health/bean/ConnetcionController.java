@@ -376,6 +376,9 @@ public class ConnetcionController {
             if (pv.isManageAccounts() == true) {
                 p.setManageAccounts(true);
             }
+            if (pv.isDeleteAccounts()==true){
+                p.setDeleteAccounts(true);
+            }
             //
 
         }

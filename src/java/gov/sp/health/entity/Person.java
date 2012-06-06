@@ -19,7 +19,8 @@ import javax.persistence.Temporal;
 
 /**
  *
- * @author Dr. M. H. B. Ariyaratne, MBBS, PGIM Trainee for MSc(Biomedical Informatics)
+ * @author Dr. M. H. B. Ariyaratne, MBBS, PGIM Trainee for MSc(Biomedical
+ * Informatics)
  */
 @Entity
 public class Person implements Serializable {
@@ -49,7 +50,7 @@ public class Person implements Serializable {
     WebUser retirer;
     @Temporal(javax.persistence.TemporalType.TIMESTAMP)
     Date retiredAt;
-String retireComments;
+    String retireComments;
 
     public String getRetireComments() {
         return retireComments;
@@ -59,8 +60,6 @@ String retireComments;
         this.retireComments = retireComments;
     }
 
-
-    
     public Date getdOB() {
         return dOB;
     }
@@ -165,8 +164,6 @@ String retireComments;
         this.retirer = retirer;
     }
 
-    
-    
     @Override
     public int hashCode() {
         int hash = 0;
@@ -187,7 +184,7 @@ String retireComments;
         return true;
     }
 
-   @Override
+    @Override
     public String toString() {
         return name;
     }

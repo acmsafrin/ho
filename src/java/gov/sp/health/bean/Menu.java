@@ -53,13 +53,14 @@ public class Menu {
 
     public void createMenu() {
         model = new DefaultMenuModel();
-        model.addSubmenu(cadreSubmenu());
+//        model.addSubmenu(cadreSubmenu());
         model.addSubmenu(biomedSubmenu());
         model.addSubmenu(transportSubmenu());
         model.addSubmenu(demographySubmenu());
         model.addSubmenu(humanSubmenu());
         model.addSubmenu(medicalSubmenu());
         model.addSubmenu(inventorySubmenu());
+        model.addSubmenu(adminSubmenu());
 
     }
 
@@ -69,7 +70,7 @@ public class Menu {
         MenuItem item;
 
         submenu = new Submenu();
-        submenu.setLabel("Human Resource");
+        submenu.setLabel("HR");
 
         item = new MenuItem();
         item.setValue("Institution Types");
@@ -113,15 +114,14 @@ public class Menu {
 
         return submenu;
     }
-    
-    
-        private Submenu biomedSubmenu() {
+
+    private Submenu biomedSubmenu() {
         Submenu submenu;
 
         MenuItem item;
 
         submenu = new Submenu();
-        submenu.setLabel("Biomedical Information System");
+        submenu.setLabel("Biomedical");
 
         item = new MenuItem();
         item.setValue("Institution Types");
@@ -166,14 +166,13 @@ public class Menu {
         return submenu;
     }
 
-        
-            private Submenu transportSubmenu() {
+    private Submenu transportSubmenu() {
         Submenu submenu;
 
         MenuItem item;
 
         submenu = new Submenu();
-        submenu.setLabel("Transport Management System");
+        submenu.setLabel("Transport");
 
         item = new MenuItem();
         item.setValue("Institution Types");
@@ -217,8 +216,8 @@ public class Menu {
 
         return submenu;
     }
-        
-             private Submenu demographySubmenu() {
+
+    private Submenu demographySubmenu() {
         Submenu submenu;
 
         MenuItem item;
@@ -268,14 +267,14 @@ public class Menu {
 
         return submenu;
     }
-             
-              private Submenu humanSubmenu() {
+
+    private Submenu humanSubmenu() {
         Submenu submenu;
 
         MenuItem item;
 
         submenu = new Submenu();
-        submenu.setLabel("Human Resource");
+        submenu.setLabel("HR");
 
         item = new MenuItem();
         item.setValue("Institution Types");
@@ -319,14 +318,14 @@ public class Menu {
 
         return submenu;
     }
-              
-               private Submenu medicalSubmenu() {
+
+    private Submenu medicalSubmenu() {
         Submenu submenu;
 
         MenuItem item;
 
         submenu = new Submenu();
-        submenu.setLabel("Medical Supplies Information System");
+        submenu.setLabel("MSD");
 
         item = new MenuItem();
         item.setValue("Institution Types");
@@ -370,63 +369,67 @@ public class Menu {
 
         return submenu;
     }
-            
-                             
-               private Submenu inventorySubmenu() {
+
+    private Submenu inventorySubmenu() {
         Submenu submenu;
 
         MenuItem item;
 
         submenu = new Submenu();
-        submenu.setLabel("Inventory Management System");
+        submenu.setLabel("Inventory");
 
         item = new MenuItem();
-        item.setValue("Institution Types");
-        item.setUrl("institution_type.xhtml");
+        item.setValue("Edit Data");
+        item.setUrl("inventory_edit.xhtml");
         submenu.getChildren().add(item);
 
         item = new MenuItem();
-        item.setValue("Institutions");
+        item.setValue("Good Receive");
         item.setUrl("institutions.xhtml");
         submenu.getChildren().add(item);
 
         item = new MenuItem();
-        item.setValue("Designations Category");
+        item.setValue("Purchase");
+        item.setUrl("institutions.xhtml");
+        submenu.getChildren().add(item);
+        
+item = new MenuItem();
+        item.setValue("Distribution");
+        item.setUrl("designation_category.xhtml");
+        submenu.getChildren().add(item);
+
+        
+        item = new MenuItem();
+        item.setValue("Requests");
         item.setUrl("designation_category.xhtml");
         submenu.getChildren().add(item);
 
         item = new MenuItem();
-        item.setValue("Designations");
+        item.setValue("Estimates");
         item.setUrl("designation_level.xhtml");
         submenu.getChildren().add(item);
 
-        item = new MenuItem();
-        item.setValue("Designations");
-        item.setUrl("designation.xhtml");
-        submenu.getChildren().add(item);
+
+        return submenu;
+    }
+
+    private Submenu adminSubmenu() {
+        Submenu submenu;
+
+        MenuItem item;
+
+        submenu = new Submenu();
+        submenu.setLabel("Admin");
 
         item = new MenuItem();
-        item.setValue("Institution Designations");
-        item.setUrl("institution_designation.xhtml");
-        submenu.getChildren().add(item);
-
-        item = new MenuItem();
-        item.setValue("Cadre Positions");
-        item.setUrl("cadre_positions.xhtml");
-        submenu.getChildren().add(item);
-
-        item = new MenuItem();
-        item.setValue("Reports");
-        item.setUrl("reports.xhtml");
+        item.setValue("Activate Accounts");
+        item.setUrl("activate_users.xhtml");
         submenu.getChildren().add(item);
 
         return submenu;
     }
-            
-            
-            
-            
-//    private Submenu editSubmenu() {
+
+    //    private Submenu editSubmenu() {
 //        Submenu submenu;
 //        Submenu childSubmenu;
 //        MenuItem item;

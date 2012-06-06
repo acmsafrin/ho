@@ -55,7 +55,36 @@
     -webkit-border-bottom-right-radius: 15px;
 }
 
+.pdPageTitle{
+    font-family:Verdana, Arial, Helvetica, sans-serif;
+    font-size:16px;
+    font-weight:bold;
+    color:#990099;
+    text-align: center;
+}
 
+.pdPageSubTitle{
+    font-family:Verdana, Arial, Helvetica, sans-serif;
+    font-size:14px;
+    font-weight:bold;
+    color: #0033cc;
+    text-align: center;
+}
+
+.pdPageText{
+    font-family:Verdana, Arial, Helvetica, sans-serif;
+    font-size:12px;
+    color: #000066;
+    text-align: center;
+}
+
+.pdPageErrorText{
+    font-family:Verdana, Arial, Helvetica, sans-serif;
+    font-size:14px;
+    color: #ff0000;
+    text-align: center;
+    background: #ffff66;
+}
 
 .pdLogo{
     opacity: 0.4;
@@ -156,4 +185,9 @@
 .pdListAll{
     height: 300px;
     width: 200px;
+}
+
+.pdDropDownList{
+    width: 200px;
+    size: 1;
 }

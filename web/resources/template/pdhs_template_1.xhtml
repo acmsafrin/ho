@@ -86,7 +86,7 @@
                                 <h:form>
                                     
                                     
-                                    <pou:menu model="#{menu.model}"   />
+                                    <pou:slideMenu model="#{menu.model}" style="width:240px; text-align: left; overflow:hidden;"/>
                                     
                                     
                                     
@@ -135,6 +135,7 @@
                                     </h:panelGroup>
                                     <h:panelGroup id="divNotActivated" rendered="#{!connetcionController.activated}" >
                                         Welcome to Health Office. Your account is yet to activate. Please contact administrator.
+                                        <h:commandButton value="Logout" class="pdButton" action="#{connetcionController.logout}"></h:commandButton>
                                     </h:panelGroup>
                                 </h:form>
 

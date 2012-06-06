@@ -70,6 +70,8 @@
                         <h:commandLink value="DPDHS Area" action="dpdhsarea"/>
                         <h:commandLink value="Import Excel" action="import_areas"/>
                         <h:commandLink value="Display Area" action="display_areas"/>
+                        <h:commandLink value="Inventory Item" action="inventory_item"/>
+                        <h:commandLink value="Inventory Item Category" action="inventory_item_category"/>
                     </h:panelGrid>
 
 
@@ -81,22 +83,6 @@
             </h:form>
 
         </h:panelGroup>
-
-
-        <h:form enctype="multipart/form-data">
-
-            <pou:messages showDetail="true"/>
-
-            <pou:fileUpload value="#{fileUploadController.file}" mode="simple"/>
-
-            <pou:commandButton value="Submit" ajax="false"
-                               actionListener="#{fileUploadController.toExcel}"/>
-
-        </h:form>
-
-
-
-
 
     </ui:define>
 
