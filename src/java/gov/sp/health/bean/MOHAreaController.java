@@ -8,12 +8,15 @@
  */
 package gov.sp.health.bean;
 
-import gov.sp.health.autobean.SupplierFacade;
-import gov.sp.health.entity.Supplier;
+import gov.sp.health.autobean.DPDHSAreaFacade;
+import gov.sp.health.autobean.MOHAreaFacade;
+import gov.sp.health.entity.MOHArea;
+import gov.sp.health.entity.DPDHSArea;
 import java.util.Calendar;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
@@ -29,28 +32,48 @@ import javax.faces.model.ListDataModel;
  */
 @ManagedBean
 @SessionScoped
-public final class SupplierController {
+public final class MOHAreaController {
 
-    @EJB
-    private SupplierFacade ejbFacade;
-    SessionController sessionController = new SessionController();
-    List<Supplier> lstItems;
-    private Supplier current;
+    private MOHArea current;
     private DataModel items = null;
+    private DPDHSArea dPDHSArea;
+    //
+    @EJB
+    private MOHAreaFacade ejbFacade;
+    //
+    @ManagedProperty(value = "#{sessionController}")
+    SessionController sessionController;
+    //
     private int selectedItemIndex;
     boolean selectControlDisable = false;
     boolean modifyControlDisable = true;
     String selectText = "";
 
-    public SupplierController() {
+    public MOHAreaFacade getEjbFacade() {
+        return ejbFacade;
     }
 
-    public List<Supplier> getLstItems() {
-        return getFacade().findBySQL("Select d From Supplier d");
+    public void setEjbFacade(MOHAreaFacade ejbFacade) {
+        this.ejbFacade = ejbFacade;
     }
 
-    public void setLstItems(List<Supplier> lstItems) {
-        this.lstItems = lstItems;
+    public DPDHSArea getDPDHSArea() {
+        return dPDHSArea;
+    }
+
+    public void setDPDHSArea(DPDHSArea dPDHSArea) {
+        this.dPDHSArea = dPDHSArea;
+    }
+
+    public SessionController getSessionController() {
+        return sessionController;
+    }
+
+    public void setSessionController(SessionController sessionController) {
+        this.sessionController = sessionController;
+    }
+
+    public MOHAreaController() {
     }
 
     public int getSelectedItemIndex() {
@@ -61,23 +84,26 @@ public final class SupplierController {
         this.selectedItemIndex = selectedItemIndex;
     }
 
-    public Supplier getCurrent() {
-        if (current == null) {
-            current = new Supplier();
-        }
+    public MOHArea getCurrent() {
+        JsfUtil.addSuccessMessage("Got current");
         return current;
     }
 
-    public void setCurrent(Supplier current) {
+    public void setCurrent(MOHArea current) {
+        JsfUtil.addSuccessMessage("Setted current");
+        dPDHSArea = current.getdPDHSArea();
         this.current = current;
     }
 
-    private SupplierFacade getFacade() {
+    private MOHAreaFacade getFacade() {
         return ejbFacade;
     }
 
     public DataModel getItems() {
-        items = new ListDataModel(getFacade().findAll("name", true));
+        if (items == null) {
+            items = new ListDataModel(getFacade().findBySQL("Select d From MOHArea d WHERE d.retired=false ORDER BY d.name"));
+            JsfUtil.addSuccessMessage("Got Item");
+        }
         return items;
     }
 
@@ -100,7 +126,7 @@ public final class SupplierController {
                         true));
                 if (items.getRowCount() > 0) {
                     items.setRowIndex(0);
-                    current = (Supplier) items.getRowData();
+                    current = (MOHArea) items.getRowData();
                     Long temLong = current.getId();
                     selectedItemIndex = intValue(temLong);
                 } else {
@@ -113,14 +139,14 @@ public final class SupplierController {
 
     }
 
-    public Supplier searchItem(String itemName, boolean createNewIfNotPresent) {
-        Supplier searchedItem = null;
+    public MOHArea searchItem(String itemName, boolean createNewIfNotPresent) {
+        MOHArea searchedItem = null;
         items = new ListDataModel(getFacade().findAll("name", itemName, true));
         if (items.getRowCount() > 0) {
             items.setRowIndex(0);
-            searchedItem = (Supplier) items.getRowData();
+            searchedItem = (MOHArea) items.getRowData();
         } else if (createNewIfNotPresent) {
-            searchedItem = new Supplier();
+            searchedItem = new MOHArea();
             searchedItem.setName(itemName);
             searchedItem.setCreatedAt(Calendar.getInstance().getTime());
             searchedItem.setCreater(sessionController.loggedUser);
@@ -148,19 +174,19 @@ public final class SupplierController {
 
     public void prepareAdd() {
         selectedItemIndex = -1;
-        current = new Supplier();
+        current = new MOHArea();
         this.prepareSelectControlDisable();
     }
 
     public void saveSelected() {
         if (selectedItemIndex > 0) {
-            current.setOutSide(true);
+            current.setdPDHSArea(dPDHSArea);
             getFacade().edit(current);
             JsfUtil.addSuccessMessage(new MessageProvider().getValue("savedOldSuccessfully"));
         } else {
+            current.setdPDHSArea(dPDHSArea);
             current.setCreatedAt(Calendar.getInstance().getTime());
             current.setCreater(sessionController.loggedUser);
-            current.setOutSide(true);
             getFacade().create(current);
             JsfUtil.addSuccessMessage(new MessageProvider().getValue("savedNewSuccessfully"));
         }
@@ -180,7 +206,7 @@ public final class SupplierController {
 
             getFacade().create(current);
             JsfUtil.addSuccessMessage(new MessageProvider().getValue("savedNewSuccessfully"));
-            current = new Supplier();
+            current = new MOHArea();
         } catch (Exception e) {
             JsfUtil.addErrorMessage(e, "Error");
         }
@@ -244,15 +270,15 @@ public final class SupplierController {
         modifyControlDisable = true;
     }
 
-    @FacesConverter(forClass = Supplier.class)
-    public static class SupplierControllerConverter implements Converter {
+    @FacesConverter(forClass = MOHArea.class)
+    public static class MOHAreaControllerConverter implements Converter {
 
         public Object getAsObject(FacesContext facesContext, UIComponent component, String value) {
             if (value == null || value.length() == 0) {
                 return null;
             }
-            SupplierController controller = (SupplierController) facesContext.getApplication().getELResolver().
-                    getValue(facesContext.getELContext(), null, "supplierController");
+            MOHAreaController controller = (MOHAreaController) facesContext.getApplication().getELResolver().
+                    getValue(facesContext.getELContext(), null, "mOHAreaController");
             return controller.ejbFacade.find(getKey(value));
         }
 
@@ -272,12 +298,12 @@ public final class SupplierController {
             if (object == null) {
                 return null;
             }
-            if (object instanceof Supplier) {
-                Supplier o = (Supplier) object;
+            if (object instanceof MOHArea) {
+                MOHArea o = (MOHArea) object;
                 return getStringKey(o.getId());
             } else {
                 throw new IllegalArgumentException("object " + object + " is of type "
-                        + object.getClass().getName() + "; expected type: " + SupplierController.class.getName());
+                        + object.getClass().getName() + "; expected type: " + MOHAreaController.class.getName());
             }
         }
     }

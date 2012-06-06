@@ -11,6 +11,7 @@ package gov.sp.health.bean;
 import gov.sp.health.autobean.InventoryItemFacade;
 import gov.sp.health.entity.InventoryItem;
 import gov.sp.health.entity.InventoryItemCategory;
+import gov.sp.health.entity.ItemCategory;
 import java.util.Calendar;
 import java.util.List;
 import javax.ejb.EJB;
@@ -39,7 +40,7 @@ public final class InventoryItemController {
     SessionController sessionController;
     List<InventoryItem> lstItems;
     private InventoryItem current;
-    InventoryItemCategory currentCat;
+    ItemCategory currentCat;
     private DataModel items = null;
     private int selectedItemIndex;
     boolean selectControlDisable = false;
@@ -49,11 +50,11 @@ public final class InventoryItemController {
     public InventoryItemController() {
     }
 
-    public InventoryItemCategory getCurrentCat() {
+    public ItemCategory getCurrentCat() {
         return currentCat;
     }
 
-    public void setCurrentCat(InventoryItemCategory currentCat) {
+    public void setCurrentCat(ItemCategory currentCat) {
         this.currentCat = currentCat;
     }
 
@@ -77,7 +78,7 @@ public final class InventoryItemController {
 
     public InventoryItem getCurrent() {
         if (current != null) {
-            currentCat = current.getItemInventoryItemCategory();
+            currentCat = current.getCategory();
         }
         return current;
     }
@@ -85,7 +86,7 @@ public final class InventoryItemController {
     public void setCurrent(InventoryItem current) {
         this.current = current;
         if (current != null){
-            currentCat = current.getItemInventoryItemCategory();
+            currentCat = current.getCategory();
         }
     }
 
@@ -171,11 +172,11 @@ public final class InventoryItemController {
 
     public void saveSelected() {
         if (selectedItemIndex > 0) {
-            current.setItemInventoryItemCategory(currentCat);
+            current.setCategory(currentCat);
             getFacade().edit(current);
             JsfUtil.addSuccessMessage(new MessageProvider().getValue("savedOldSuccessfully"));
         } else {
-            current.setItemInventoryItemCategory(currentCat);
+            current.setCategory(currentCat);
             current.setCreatedAt(Calendar.getInstance().getTime());
             current.setCreater(sessionController.loggedUser);
             getFacade().create(current);
@@ -188,23 +189,7 @@ public final class InventoryItemController {
         selectedItemIndex = intValue(current.getId());
     }
 
-    public void addDirectly() {
-        JsfUtil.addSuccessMessage("1");
-        try {
-
-            current.setCreatedAt(Calendar.getInstance().getTime());
-            current.setCreater(sessionController.loggedUser);
-
-            getFacade().create(current);
-            JsfUtil.addSuccessMessage(new MessageProvider().getValue("savedNewSuccessfully"));
-            current = new InventoryItem();
-        } catch (Exception e) {
-            JsfUtil.addErrorMessage(e, "Error");
-        }
-
-    }
-
-    public void cancelSelect() {
+       public void cancelSelect() {
         this.prepareSelect();
     }
 

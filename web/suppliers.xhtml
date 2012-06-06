@@ -70,6 +70,35 @@
                             <h:panelGrid id="gpDetailText" columns="2">
                                 <h:outputText id="lblName" value="Supplier" ></h:outputText>
                                 <h:inputText id="txtName" value="#{supplierController.current.name}" disabled="#{supplierController.modifyControlDisable}" ></h:inputText>
+
+                                <h:outputText  value="Code" ></h:outputText>
+                                <h:inputText value="#{supplierController.current.code}" disabled="#{supplierController.modifyControlDisable}" ></h:inputText>
+                                
+                                <h:outputText  value="Address" ></h:outputText>
+                                <h:inputText  value="#{supplierController.current.address}" disabled="#{supplierController.modifyControlDisable}" ></h:inputText>
+
+                                <h:outputText  value="Telephone" ></h:outputText>
+                                <h:inputText value="#{supplierController.current.telephone}" disabled="#{supplierController.modifyControlDisable}" ></h:inputText>
+
+                                <h:outputText  value="Mobile" ></h:outputText>
+                                <h:inputText value="#{supplierController.current.mobile}" disabled="#{supplierController.modifyControlDisable}" ></h:inputText>
+
+                                <h:outputText  value="Telephone" ></h:outputText>
+                                <h:inputText value="#{supplierController.current.telephone}" disabled="#{supplierController.modifyControlDisable}" ></h:inputText>
+
+                                <h:outputText  value="Fax" ></h:outputText>
+                                <h:inputText value="#{supplierController.current.fax}" disabled="#{supplierController.modifyControlDisable}" ></h:inputText>
+
+                                <h:outputText  value="Email" ></h:outputText>
+                                <h:inputText  value="#{supplierController.current.email}" disabled="#{supplierController.modifyControlDisable}" ></h:inputText>
+
+                                <h:outputText  value="Website" ></h:outputText>
+                                <h:inputText value="#{supplierController.current.website}" disabled="#{supplierController.modifyControlDisable}" ></h:inputText>
+                                
+                                
+                                
+                                
+                                
                             </h:panelGrid>
                             <h:panelGrid id="gpDetailButtons" columns="2">
                                 <h:commandButton id="btnSave" value="Save" disabled="#{supplierController.modifyControlDisable}" action="#{supplierController.saveSelected()}" styleClass="buttons">

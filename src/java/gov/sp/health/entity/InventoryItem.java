@@ -20,16 +20,4 @@ import javax.persistence.Inheritance;
 public class InventoryItem extends Item implements Serializable {
 
     
-    InventoryItemCategory itemInventoryItemCategory;
-
-    public InventoryItemCategory getItemInventoryItemCategory() {
-        return itemInventoryItemCategory;
-    }
-
-    public void setItemInventoryItemCategory(InventoryItemCategory itemInventoryItemCategory) {
-        this.itemInventoryItemCategory = itemInventoryItemCategory;
-    }
-    
-    
-    
 }

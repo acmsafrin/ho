@@ -10,15 +10,20 @@
 
     <ui:define name="content">
 
-
+        <h:outputStylesheet library="css" name="pdhssp1.css"/>
 
 
         <h:form >
             <p:growl autoUpdate="true" />
-            <h:panelGrid columns="1" >
-            <h:commandLink value="Suppliers" action="suppliers"></h:commandLink>
-            <h:commandLink value="Item Categories" action="inventory_item_category"></h:commandLink>
-            <h:commandLink value="Items" action="inventory_item"></h:commandLink>
+            <h:outputLabel value="Demography Metadata Editing" class="pdPageTitle"/>
+            <br/>
+            <h:panelGrid columns="1">
+            <h:commandLink value="Province" action="demography_province"></h:commandLink>
+            <h:commandLink value="DPDHS Areas" action="demography_dpdhs"></h:commandLink>
+            <h:commandLink value="MOH Areas" action="demography_moh"></h:commandLink>
+            <h:commandLink value="PHI Areas" action="inventory_item"></h:commandLink>
+            <h:commandLink value="PHM Areas" action="inventory_item"></h:commandLink>
+            <h:commandLink value="Grama Niladhari Areas" action="inventory_item"></h:commandLink>
             </h:panelGrid>
             
             
