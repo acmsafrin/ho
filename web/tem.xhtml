@@ -11,97 +11,20 @@
 
 
 
-        <p:growl autoUpdate="true" />
-        <h:outputStylesheet library="css" name="pdhscss1.css"   />
-        <h:form rendered="#{sessionController.privilege.activateAccounts}">
-
-            <h:outputLabel class="pdPageTitle" value="Approve User Requests" />
-            <h:panelGroup id="gpSelect" >
-                <h:outputLabel class="pdPageText" value="Users Awaiting Acctivation" />
-                <h:selectOneListbox class="pdListAll" value="#{userApproveController.selectedUser}" >
-                    <f:selectItems value="#{userApproveController.toApproveUsers}" var="users" itemValue="#{users}" itemLabel="#{users.webUserPerson.name}" />
-
-                </h:selectOneListbox>
-            </h:panelGroup>
-            <h:panelGroup id="gpDetail" >
-                <h:panelGrid columns="5" >
-                    <h:outputLabel value="Privilege" />
-                    <h:outputLabel value="View" />
-                    <h:outputLabel value="Add" />
-                    <h:outputLabel value="Edit" />
-                    <h:outputLabel value="Delete" />
-
-                    <h:outputLabel value="Administration" />
-                    <h:selectBooleanCheckbox value="#{userApproveController.privilege.activateAccounts}"/>
-                    <h:selectBooleanCheckbox  value="#{userApproveController.privilege.dectivateAccounts}"/>
-                    <h:selectBooleanCheckbox  value="#{userApproveController.privilege.deleteAccounts}"/>
-                    <h:selectBooleanCheckbox  value="#{userApproveController.privilege.manageAccounts}"/>
-
-                    <h:outputLabel value="HR" />
-                    <h:selectBooleanCheckbox  value="#{userApproveController.privilege.caderView}"/>
-                    <h:selectBooleanCheckbox  value="#{userApproveController.privilege.caderAdd}"/>
-                    <h:selectBooleanCheckbox  value="#{userApproveController.privilege.caderEdit}"/>
-                    <h:selectBooleanCheckbox  value="#{userApproveController.privilege.caderDelete}"/>
-
-                    <h:outputLabel value="Finance" />
-                    <h:selectBooleanCheckbox  value="#{userApproveController.privilege.financeView}"/>
-                    <h:selectBooleanCheckbox  value="#{userApproveController.privilege.financeAdd}"/>
-                    <h:selectBooleanCheckbox  value="#{userApproveController.privilege.financeEdit}"/>
-                    <h:selectBooleanCheckbox  value="#{userApproveController.privilege.financeDelete}"/>
-
-                    <h:outputLabel value="Medical Supplies" />
-                    <h:selectBooleanCheckbox  value="#{userApproveController.privilege.msView}"/>
-                    <h:selectBooleanCheckbox  value="#{userApproveController.privilege.msAdd}"/>
-                    <h:selectBooleanCheckbox  value="#{userApproveController.privilege.msEdit}"/>
-                    <h:selectBooleanCheckbox  value="#{userApproveController.privilege.msDelete}"/>
-
-                    <h:outputLabel value="Biomedical" />
-                    <h:selectBooleanCheckbox  value="#{userApproveController.privilege.bmeView}"/>
-                    <h:selectBooleanCheckbox  value="#{userApproveController.privilege.bmeAdd}"/>
-                    <h:selectBooleanCheckbox  value="#{userApproveController.privilege.bmeEdit}"/>
-                    <h:selectBooleanCheckbox  value="#{userApproveController.privilege.bmeDelete}"/>
-
-
-                    <h:outputLabel value="Demography" />
-                    <h:selectBooleanCheckbox  value="#{userApproveController.privilege.demographyView}"/>
-                    <h:selectBooleanCheckbox  value="#{userApproveController.privilege.demographyAdd}"/>
-                    <h:selectBooleanCheckbox  value="#{userApproveController.privilege.demographyEdit}"/>
-                    <h:selectBooleanCheckbox  value="#{userApproveController.privilege.demographyDelete}"/>
-
-                    <h:outputLabel value="Inventory" />
-                    <h:selectBooleanCheckbox  value="#{userApproveController.privilege.inventaryView}"/>
-                    <h:selectBooleanCheckbox  value="#{userApproveController.privilege.inventaryAdd}"/>
-                    <h:selectBooleanCheckbox  value="#{userApproveController.privilege.inventaryEdit}"/>
-                    <h:selectBooleanCheckbox  value="#{userApproveController.privilege.inventaryDelete}"/>
-
-                    <h:outputLabel value="Library" />
-                    <h:selectBooleanCheckbox  value="#{userApproveController.privilege.libraryView}"/>
-                    <h:selectBooleanCheckbox  value="#{userApproveController.privilege.libraryAdd}"/>
-                    <h:selectBooleanCheckbox  value="#{userApproveController.privilege.libraryEdit}"/>
-                    <h:selectBooleanCheckbox  value="#{userApproveController.privilege.libraryDelete}"/>
-
-                    <h:outputLabel value="Vehicle" />
-                    <h:selectBooleanCheckbox  value="#{userApproveController.privilege.vehicleView}"/>
-                    <h:selectBooleanCheckbox  value="#{userApproveController.privilege.vehicleAdd}"/>
-                    <h:selectBooleanCheckbox  value="#{userApproveController.privilege.vehicleEdit}"/>
-                    <h:selectBooleanCheckbox  value="#{userApproveController.privilege.vehicleDelete}"/>
+        <h:form >
+            <p:growl autoUpdate="true" />
 
 
 
+            <h:selectOneListbox id="lstSelect"  disabled="#{mOHAreaController.selectControlDisable}" size="10" value="#{mOHAreaController.current}" style="min-width: 223px">
+                <f:selectItems value="#{mOHAreaController.items}" var="myItem" itemValue="#{myItem}" itemLabel="#{myItem.name}" ></f:selectItems>
+            </h:selectOneListbox>
 
-                </h:panelGrid>
-
-            </h:panelGroup>
-        </h:form>        
-        <h:form rendered="#{!sessionController.privilege.activateAccounts}">
-            <h:outputLabel class="pdPageErrorText" value="You are not autherized to view this page."/>
+            <h:outputLabel value="#{mOHAreaController.current.name}" />
+            
+            <h:commandButton value="Press" action="#{mOHAreaController.prepareAdd}" />
+            
         </h:form>
-
-
-
-
-
-
 
     </h:body>
 </html>

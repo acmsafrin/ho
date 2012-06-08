@@ -51,6 +51,18 @@ public class Population implements Serializable {
     long populationNumber;
     double area;
 
+    long estimatedPopulation;
+
+    public long getEstimatedPopulation() {
+        return estimatedPopulation;
+    }
+
+    public void setEstimatedPopulation(long estimatedPopulation) {
+        this.estimatedPopulation = estimatedPopulation;
+    }
+    
+    
+    
     public Long getId() {
         return id;
     }

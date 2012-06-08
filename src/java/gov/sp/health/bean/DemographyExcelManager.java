@@ -274,7 +274,7 @@ public class DemographyExcelManager {
             }
             FacesMessage msg = new FacesMessage("Succesful", "All the data in Excel File Impoted to the database");
             FacesContext.getCurrentInstance().addMessage(null, msg);
-            return "display_areas";
+            return "demography_display_areas";
         } catch (IOException ex) {
             JsfUtil.addErrorMessage(ex.getMessage());
             return "";

@@ -8,10 +8,10 @@
  */
 package gov.sp.health.bean;
 
-import gov.sp.health.autobean.MOHAreaFacade;
+import gov.sp.health.autobean.PHIAreaFacade;
 import gov.sp.health.autobean.PopulationFacade;
 import gov.sp.health.entity.MOHArea;
-import gov.sp.health.entity.DPDHSArea;
+import gov.sp.health.entity.PHIArea;
 import gov.sp.health.entity.Population;
 import java.util.Calendar;
 import java.util.List;
@@ -33,15 +33,15 @@ import javax.faces.model.ListDataModel;
  */
 @ManagedBean
 @SessionScoped
-public final class MOHAreaController {
+public final class PHIController {
 
-    private MOHArea current;
+    private PHIArea current;
     private DataModel items = null;
-    private DPDHSArea dPDHSArea;
+    private MOHArea mOHArea;
     Population population;
     //
     @EJB
-    private MOHAreaFacade ejbFacade;
+    private PHIAreaFacade ejbFacade;
     @EJB
     PopulationFacade pFacade;
     //
@@ -53,14 +53,7 @@ public final class MOHAreaController {
     boolean modifyControlDisable = true;
     String selectText = "";
 
-    public DPDHSArea getdPDHSArea() {
-        return dPDHSArea;
-    }
-
-    public void setdPDHSArea(DPDHSArea dPDHSArea) {
-        this.dPDHSArea = dPDHSArea;
-    }
-
+   
     public PopulationFacade getpFacade() {
         return pFacade;
     }
@@ -77,22 +70,23 @@ public final class MOHAreaController {
         this.population = population;
     }
 
-    public MOHAreaFacade getEjbFacade() {
+    public PHIAreaFacade getEjbFacade() {
         return ejbFacade;
     }
 
-    public void setEjbFacade(MOHAreaFacade ejbFacade) {
+    public void setEjbFacade(PHIAreaFacade ejbFacade) {
         this.ejbFacade = ejbFacade;
     }
 
-    public DPDHSArea getDPDHSArea() {
-        return dPDHSArea;
+    public MOHArea getmOHArea() {
+        return mOHArea;
     }
 
-    public void setDPDHSArea(DPDHSArea dPDHSArea) {
-        this.dPDHSArea = dPDHSArea;
+    public void setmOHArea(MOHArea mOHArea) {
+        this.mOHArea = mOHArea;
     }
 
+   
     public SessionController getSessionController() {
         return sessionController;
     }
@@ -101,7 +95,7 @@ public final class MOHAreaController {
         this.sessionController = sessionController;
     }
 
-    public MOHAreaController() {
+    public PHIController() {
     }
 
     public int getSelectedItemIndex() {
@@ -112,39 +106,38 @@ public final class MOHAreaController {
         this.selectedItemIndex = selectedItemIndex;
     }
 
-    public MOHArea getCurrent() {
+    public PHIArea getCurrent() {
 //        JsfUtil.addSuccessMessage("Got current");
         return current;
     }
 
-    public void setCurrent(MOHArea current) {
-        
+    public void setCurrent(PHIArea current) {
         if (current != null) {
-            dPDHSArea = current.getdPDHSArea();
-            String temSQL = "SELECT p FROM Population p where p.retired=false and p.mOHArea.id = " + current.getId();
+            mOHArea = current.getmOHArea();
+            String temSQL = "SELECT p FROM Population p where p.retired=false and p.pHIArea.id = " + current.getId();
             List<Population> lstPop = pFacade.findBySQL(temSQL);
             if (lstPop.isEmpty()) {
                 population = new Population();
-                population.setmOHArea(current);
+                population.setpHIArea(current);
                 pFacade.create(population);
             } else {
                 population = lstPop.get(0);
             }
         } else {
-            dPDHSArea = null;
+            mOHArea = null;
             population = null;
         }
         this.current = current;
         JsfUtil.addSuccessMessage("Details displayed");
     }
 
-    private MOHAreaFacade getFacade() {
+    private PHIAreaFacade getFacade() {
         return ejbFacade;
     }
 
     public DataModel getItems() {
         if (items == null) {
-            items = new ListDataModel(getFacade().findBySQL("Select d From MOHArea d WHERE d.retired=false ORDER BY d.name"));
+            items = new ListDataModel(getFacade().findBySQL("Select d From PHIArea d WHERE d.retired=false ORDER BY d.name"));
             JsfUtil.addSuccessMessage("Got Item");
         }
         return items;
@@ -169,7 +162,7 @@ public final class MOHAreaController {
                         true));
                 if (items.getRowCount() > 0) {
                     items.setRowIndex(0);
-                    current = (MOHArea) items.getRowData();
+                    current = (PHIArea) items.getRowData();
                     Long temLong = current.getId();
                     selectedItemIndex = intValue(temLong);
                 } else {
@@ -182,14 +175,14 @@ public final class MOHAreaController {
 
     }
 
-    public MOHArea searchItem(String itemName, boolean createNewIfNotPresent) {
-        MOHArea searchedItem = null;
+    public PHIArea searchItem(String itemName, boolean createNewIfNotPresent) {
+        PHIArea searchedItem = null;
         items = new ListDataModel(getFacade().findAll("name", itemName, true));
         if (items.getRowCount() > 0) {
             items.setRowIndex(0);
-            searchedItem = (MOHArea) items.getRowData();
+            searchedItem = (PHIArea) items.getRowData();
         } else if (createNewIfNotPresent) {
-            searchedItem = new MOHArea();
+            searchedItem = new PHIArea();
             searchedItem.setName(itemName);
             searchedItem.setCreatedAt(Calendar.getInstance().getTime());
             searchedItem.setCreater(sessionController.loggedUser);
@@ -217,26 +210,26 @@ public final class MOHAreaController {
 
     public void prepareAdd() {
         selectedItemIndex = -1;
-        current = new MOHArea();
+        current = new PHIArea();
         population = new Population();
         this.prepareSelectControlDisable();
     }
 
     public void saveSelected() {
         if (selectedItemIndex > 0) {
-            current.setdPDHSArea(dPDHSArea);
+            current.setmOHArea(mOHArea);
             getFacade().edit(current);
             if (population != null) {
                 getpFacade().edit(population);
             }
             JsfUtil.addSuccessMessage(new MessageProvider().getValue("savedOldSuccessfully"));
         } else {
-            current.setdPDHSArea(dPDHSArea);
+            current.setmOHArea(mOHArea);
             current.setCreatedAt(Calendar.getInstance().getTime());
             current.setCreater(sessionController.loggedUser);
             getFacade().create(current);
             if (population != null) {
-                population.setmOHArea(current);
+                population.setpHIArea(current);
                 getpFacade().edit(population);
             }
             JsfUtil.addSuccessMessage(new MessageProvider().getValue("savedNewSuccessfully"));
@@ -257,7 +250,7 @@ public final class MOHAreaController {
 
             getFacade().create(current);
             JsfUtil.addSuccessMessage(new MessageProvider().getValue("savedNewSuccessfully"));
-            current = new MOHArea();
+            current = new PHIArea();
         } catch (Exception e) {
             JsfUtil.addErrorMessage(e, "Error");
         }
@@ -321,15 +314,15 @@ public final class MOHAreaController {
         modifyControlDisable = true;
     }
 
-    @FacesConverter(forClass = MOHArea.class)
-    public static class MOHAreaControllerConverter implements Converter {
+    @FacesConverter(forClass = PHIArea.class)
+    public static class PHIControllerConverter implements Converter {
 
         public Object getAsObject(FacesContext facesContext, UIComponent component, String value) {
             if (value == null || value.length() == 0) {
                 return null;
             }
-            MOHAreaController controller = (MOHAreaController) facesContext.getApplication().getELResolver().
-                    getValue(facesContext.getELContext(), null, "mOHAreaController");
+            PHIController controller = (PHIController) facesContext.getApplication().getELResolver().
+                    getValue(facesContext.getELContext(), null, "pHIController");
             return controller.ejbFacade.find(getKey(value));
         }
 
@@ -349,12 +342,12 @@ public final class MOHAreaController {
             if (object == null) {
                 return null;
             }
-            if (object instanceof MOHArea) {
-                MOHArea o = (MOHArea) object;
+            if (object instanceof PHIArea) {
+                PHIArea o = (PHIArea) object;
                 return getStringKey(o.getId());
             } else {
                 throw new IllegalArgumentException("object " + object + " is of type "
-                        + object.getClass().getName() + "; expected type: " + MOHAreaController.class.getName());
+                        + object.getClass().getName() + "; expected type: " + PHIController.class.getName());
             }
         }
     }

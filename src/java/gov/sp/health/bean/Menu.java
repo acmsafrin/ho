@@ -54,13 +54,13 @@ public class Menu {
     public void createMenu() {
         model = new DefaultMenuModel();
 //        model.addSubmenu(cadreSubmenu());
-        model.addSubmenu(biomedSubmenu());
-        model.addSubmenu(transportSubmenu());
-        model.addSubmenu(demographySubmenu());
-        model.addSubmenu(humanSubmenu());
-        model.addSubmenu(medicalSubmenu());
-        model.addSubmenu(inventorySubmenu());
-        model.addSubmenu(adminSubmenu());
+        if (sessionController.privilege.isBmeView()) model.addSubmenu(biomedSubmenu());
+        if (sessionController.privilege.isVehicleView()) model.addSubmenu(transportSubmenu());
+        if (sessionController.privilege.isDemographyView()) model.addSubmenu(demographySubmenu());
+        if (sessionController.privilege.isCaderView()) model.addSubmenu(humanSubmenu());
+        if (sessionController.privilege.isMsView()) model.addSubmenu(medicalSubmenu());
+        if (sessionController.privilege.isInventoryView()) model.addSubmenu(inventorySubmenu());
+        if (sessionController.privilege.isManageAccounts()) model.addSubmenu(adminSubmenu());
 
     }
 
@@ -225,19 +225,22 @@ public class Menu {
         submenu = new Submenu();
         submenu.setLabel("Demography");
 
+        
         item = new MenuItem();
-        item.setValue("Institution Types");
-        item.setUrl("institution_type.xhtml");
+        item.setValue("Edit");
+        item.setUrl("demography_edit.xhtml");
+        submenu.getChildren().add(item);
+
+        
+        
+        item = new MenuItem();
+        item.setValue("Import");
+        item.setUrl("demography_import_excel.xhtml");
         submenu.getChildren().add(item);
 
         item = new MenuItem();
-        item.setValue("Institutions");
-        item.setUrl("institutions.xhtml");
-        submenu.getChildren().add(item);
-
-        item = new MenuItem();
-        item.setValue("Designations Category");
-        item.setUrl("designation_category.xhtml");
+        item.setValue("Display");
+        item.setUrl("demography_display_areas.xhtml");
         submenu.getChildren().add(item);
 
         item = new MenuItem();
